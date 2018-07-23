@@ -1,0 +1,10 @@
+*.log
+*.uuid
+*.db
+known_devices.yaml
+entity_registry.yaml
+secrets.yaml
+components
+deps
+tts
+.cloud

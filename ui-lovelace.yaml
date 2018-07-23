@@ -1,0 +1,11 @@
+title: OxSight Office
+views:
+  - title: Home
+    icon: mdi:home-assistant
+    # theme: dark-mode
+    cards:
+      - type: weather-forecast
+        entity: weather.dark_sky
+      - type: iframe
+        aspect_ratio: 90%
+        url: https://embed.windy.com/embed2.html?rain,51.5069676,-0.1335761,10

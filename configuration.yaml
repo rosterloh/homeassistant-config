@@ -1,0 +1,41 @@
+homeassistant:
+  latitude: !secret latitude_office
+  longitude: !secret longitude_office
+  elevation: 36
+  name: Office
+  temperature_unit: C
+  unit_system: metric
+  time_zone: Europe/London
+  customize: !include customize.yaml
+  packages: !include_dir_named packages
+updater:
+  include_used_components: true
+
+zone:
+  name: Work
+  latitude: !secret latitude_office
+  longitude: !secret longitude_office
+  radius: 200
+  icon: mdi:briefcase
+zone 2:
+  name: Home
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
+  radius: 200
+  icon: mdi:home
+
+config:
+frontend:
+discovery:
+history:
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+sun:
+camera:
+  - platform: rpi_camera
+cloud:
+automation: !include automations.yaml
+group: !include groups.yaml
+sensor: !include sensor.yaml
+script: !include scripts.yaml

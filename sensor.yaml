@@ -1,0 +1,8 @@
+- platform: version
+- platform: uptime
+  unit_of_measurement: minutes
+- platform: speedtest
+  hour:
+    - 12
+  monitored_conditions:
+    - download

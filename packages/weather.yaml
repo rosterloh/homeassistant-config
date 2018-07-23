@@ -1,0 +1,26 @@
+# Download the Dark Sky icons from https://www.dr-lex.be/software/download/DarkSky-icons.zip
+# and save them under /www/icons/dark_sky/ in your configuration directory.
+
+sensor:
+  - platform: darksky
+    api_key: !secret darksky_key
+    forecast:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+    monitored_conditions:
+      - summary
+      - precip_probability
+      - wind_speed
+      - cloud_cover
+      - icon
+      - temperature_low
+      - temperature_high
+      - daily_summary
+      - hourly_summary
+      - humidity
+      - temperature
+    update_interval:
+      minutes: 5
