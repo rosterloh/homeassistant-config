@@ -11,6 +11,40 @@ homeassistant:
 updater:
   include_used_components: true
 
+#camera:
+#  - platform: rpi_camera
+cloud:
+config:
+discovery:
+frontend:
+  themes: !include_dir_merge_named themes/
+logger:
+  default: warning
+  logs:
+    homeassistant.components.sensor.pi_hole: critical
+    homeassistant.components.sensor.darksky: critical
+    homeassistant.components.mqtt: debug
+    aiohttp.access: critical
+    aiohttp.server: critical
+mqtt:
+  broker: core-mosquitto
+  port: 1883
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
+notify:
+  - platform: nfandroidtv
+    name: Shield
+    host: 192.168.2.28
+sun:
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
 zone:
   name: Work
   latitude: !secret latitude_office
@@ -24,18 +58,11 @@ zone 2:
   radius: 200
   icon: mdi:home
 
-config:
-frontend:
-discovery:
-history:
-weather:
-  - platform: darksky
-    api_key: !secret darksky_key
-sun:
-camera:
-  - platform: rpi_camera
-cloud:
 automation: !include automations.yaml
 group: !include groups.yaml
-sensor: !include sensor.yaml
+history: !include history.yaml
+input_select: !include input_select.yaml
+logbook: !include logbook.yaml
 script: !include scripts.yaml
+sensor: !include sensor.yaml
+switch: !include switches.yaml

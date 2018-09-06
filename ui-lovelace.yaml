@@ -1,11 +1,57 @@
+resources:
+  - url: /local/custom-lovelace/monster-card/monster-card.js?v=1
+    type: js
+  - url: /local/tracker-card.js?v=0
+    type: js
 title: OxSight Office
 views:
-  - title: Home
-    icon: mdi:home-assistant
-    # theme: dark-mode
+  - icon: mdi:home-assistant
+    id: home
+    title: Home
+    cards:
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
+        filter:
+          include:
+            - domain: configurator
+
+  - icon: mdi:thought-bubble-outline
+    id: weather
+    title: Weather
     cards:
       - type: weather-forecast
         entity: weather.dark_sky
       - type: iframe
         aspect_ratio: 90%
         url: https://embed.windy.com/embed2.html?rain,51.5069676,-0.1335761,10
+
+  - icon: mdi:settings
+    id: settings
+    title: Settings
+    cards:
+      - type: custom:tracker-card
+        title:
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
+      - type: entities
+        title: HASS Details
+        show_header_toggle: false
+        entities:
+          - switch.developer_mode
+          - sensor.hassuptime
+          - input_select.current_theme
+      - type: entities
+        title: Network Details
+        entities:
+          - binary_sensor.pihole
+          - sensor.speedtest_download
+          - sensor.pihole_dns_queries_today
+          - sensor.pihole_domains_blocked
+          - sensor.pihole_ads_percentage_blocked_today
+          - sensor.pihole_dns_unique_domains
+          - sensor.glances_cpu_load
+          - sensor.glances_disk_used
+          - sensor.glances_ram_used

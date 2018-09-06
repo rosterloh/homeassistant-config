@@ -1,6 +1,7 @@
 *.log
 *.uuid
 *.db
+.storage
 known_devices.yaml
 entity_registry.yaml
 secrets.yaml

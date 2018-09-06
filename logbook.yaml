@@ -1,0 +1,11 @@
+include:
+  domains:
+    - input_select
+    - light
+    - switch
+  entities:
+    - sensor.speedtest_download
+exclude:
+  domains:
+    - sun
+    - weather
