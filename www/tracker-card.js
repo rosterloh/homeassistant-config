@@ -104,6 +104,7 @@ class TrackerCard extends HTMLElement {
         if (list !== undefined && list.length > 0) {
           const updated_content = `
             ${list.map(elem => `
+
                 <tr>
                   <td class='name'><a href="${elem[1].repo?elem[1].repo:'#'}" target='_blank'>${elem[0]}</a></td>
                   <td>${elem[1].local?elem[1].local:'n/a'}</td>

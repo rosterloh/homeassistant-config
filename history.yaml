@@ -1,4 +1,4 @@
 use_include_order: True
-  include:
-    entities:
-      -  sun.sun
+include:
+  entities:
+    - sun.sun

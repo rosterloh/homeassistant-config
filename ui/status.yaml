@@ -1,0 +1,28 @@
+- type: entities
+  title: Internet
+  entities:
+    - binary_sensor.pihole
+    - sensor.speedtest_download
+    - sensor.pihole_dns_queries_today
+    - sensor.pihole_domains_blocked
+    - sensor.pihole_ads_percentage_blocked_today
+    - sensor.pihole_dns_unique_domains
+
+- type: history-graph
+  entities:
+    - sensor.processor_use
+    - sensor.memory_free
+
+- type: custom:tracker-card
+  title:
+  trackers:
+    - sensor.custom_card_tracker
+    - sensor.custom_component_tracker
+
+- type: entities
+  title: HASS Details
+  show_header_toggle: false
+  entities:
+    - switch.developer_mode
+    - sensor.hassuptime
+    - input_select.current_theme

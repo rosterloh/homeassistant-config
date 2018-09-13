@@ -1,0 +1,16 @@
+HASS Details:
+  - switch.developer_mode
+  - sensor.hassuptime
+  - sensor.ssl_certificate_expiry
+  - input_select.current_theme
+
+Network Details:
+  - binary_sensor.pihole
+  - sensor.speedtest_download
+  - sensor.pihole_dns_queries_today
+  - sensor.pihole_domains_blocked
+  - sensor.pihole_ads_percentage_blocked_today
+  - sensor.pihole_dns_unique_domains
+  - sensor.glances_cpu_load
+  - sensor.glances_disk_used
+  - sensor.glances_ram_used

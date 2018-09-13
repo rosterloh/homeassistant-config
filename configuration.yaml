@@ -15,6 +15,7 @@ updater:
 #  - platform: rpi_camera
 cloud:
 config:
+custom_updater:
 discovery:
 frontend:
   themes: !include_dir_merge_named themes/
@@ -45,18 +46,6 @@ sun:
 weather:
   - platform: darksky
     api_key: !secret darksky_key
-zone:
-  name: Work
-  latitude: !secret latitude_office
-  longitude: !secret longitude_office
-  radius: 200
-  icon: mdi:briefcase
-zone 2:
-  name: Home
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  radius: 200
-  icon: mdi:home
 
 automation: !include automations.yaml
 group: !include groups.yaml
@@ -64,5 +53,6 @@ history: !include history.yaml
 input_select: !include input_select.yaml
 logbook: !include logbook.yaml
 script: !include scripts.yaml
-sensor: !include sensor.yaml
+sensor: !include_dir_merge_list sensor
 switch: !include switches.yaml
+zone: !include_dir_merge_list zones
