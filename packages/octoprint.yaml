@@ -1,0 +1,18 @@
+#################################################################
+#                                                               #
+#                    Packages/OctoPrint                         #
+#                                                               #
+#################################################################
+
+octoprint:
+  host: 192.168.1.17
+  api_key: !secret octopi_api
+  name: Prusa
+  bed: true
+  number_of_tools: 1
+  
+camera:
+  - platform: mjpeg
+    name: OctoPrint
+    still_image_url: http://192.168.1.17/webcam/?action=snapshot
+    mjpeg_url: http://192.168.1.17/webcam/?action=stream

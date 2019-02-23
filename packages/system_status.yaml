@@ -1,0 +1,216 @@
+#################################################################
+#                                                               #
+#                    Packages/Core Network                      #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                          Customize                            #
+#                                                               #
+#################################################################
+
+homeassistant:
+  customize:
+    sensor.disk_use:
+      friendly_name: Disk Use
+    sensor.speedtest_ping:
+      friendly_name: Ping
+      icon: mdi:pulse
+    sensor.speedtest_download:
+      friendly_name: Download
+      icon: mdi:arrow-down-bold
+    sensor.speedtest_upload:
+      friendly_name: Upload
+      icon: mdi:arrow-up-bold
+    sensor.pihole_ads_percentage_blocked_today:
+      friendly_name: Percentage of Ad Traffic Blocked
+      unit_of_measurement: '%'
+      icon: mdi:ticket-percent
+    sensor.pihole_domains_blocked:
+      friendly_name: Total Domains Blocked
+      icon: mdi:do-not-disturb
+    sensor.pihole_dns_queries_today:
+      friendly_name: DNS Queries Today
+      icon: mdi:note-text
+    sensor.pihole_dns_unique_domains:
+      friendly_name: Unique Domains
+      icon: mdi:approval
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+
+####################################################
+#                                                  #
+#               Device Track - Netgear             #
+#                                                  #
+####################################################
+
+  - platform: netgear
+    host: 192.168.1.1
+    port: 80
+    username: admin
+    password: !secret netgear_password
+    
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  internet:
+    name: Internet
+    view: no
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      
+  rpi resources:
+    name: RPi Resources
+    view: no
+    entities:
+      - sensor.disk_use
+      - sensor.memory_use_percent
+      - sensor.processor_use
+      - sensor.cpu_temperature
+      - sensor.last_boot
+      
+#################################################################
+#                                                               #
+#                       Speedtes.net                            #
+#                                                               #
+#################################################################
+
+speedtestdotnet:
+  monitored_conditions:
+      - ping
+      - download
+      - upload
+  server_id: 17176
+  scan_interval:
+    hours: 4
+      
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensor - File Size                #
+#                                                  #
+####################################################
+
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
+
+####################################################
+#                                                  #
+#                 Sensor - PiHole                  #
+#                                                  #
+####################################################
+
+  - platform: pi_hole
+    host: 192.168.1.24
+    ssl: true
+    monitored_conditions:
+      - ads_blocked_today
+      - ads_percentage_today
+      - dns_queries_today
+      - domains_being_blocked
+      - unique_domains
+
+####################################################
+#                                                  #
+#             Sensor - System Monitor              #
+#                                                  #
+####################################################
+
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: "/"
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+
+####################################################
+#                                                  #
+#                 Sensor - Uptime                  #
+#                                                  #
+####################################################
+
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: hours
+
+#################################################################
+#                                                               #
+#                          Automations                          #
+#                                                               #
+#################################################################
+
+automation:
+## Notify of High Disk Use
+  - alias: Disk Use Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_use
+      above: 12
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server Disk Use is {{states.sensor.disk_use.state}}Gb'
+          
+## Notify of High CPU Usage
+  - alias: CPU Use Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.processor_use
+      above: 85
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server Processor {{states.sensor.processor_use.state}}%'
+          
+## Notify if CPU Temperature is High
+  - alias: CPU Temp Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_temperature
+      above: 85
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server CPU Temp is {{states.sensor.cpu_temperature.state}}c'
+          
+## Notify if ISP Download Speed has dropped
+  - alias: Internet Download Speed Drop
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.speedtest_download
+      below: 40
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'

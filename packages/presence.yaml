@@ -1,0 +1,49 @@
+#################################################################
+#                                                               #
+#                       Packages/Presence                       #
+#                                                               #
+#################################################################
+
+googlehome:
+  devices:
+    - host: !secret home_max
+    - host: !secret home_hub
+    - host: !secret home_mini_mbr
+    - host: !secret home_mini_dr
+    - host: !secret home_workshop
+
+#################################################################
+#                                                               #
+#                       Device Tracker                          #
+#                                                               #
+#################################################################
+
+device_tracker:
+
+####################################################
+#                                                  #
+#               Device Track - Google              #
+#                                                  #
+####################################################
+
+  - platform: google_maps
+    username: !secret google_username
+    password: !secret google_password
+    
+#################################################################
+#                                                               #
+#                            Script                             #
+#                                                               #
+#################################################################
+
+script:
+  nest_set_away:
+    sequence:
+      - service: nest.set_away_mode
+        data:
+          away_mode: away
+  nest_set_home:
+    sequence:
+      - service: nest.set_away_mode
+        data:
+          away_mode: home

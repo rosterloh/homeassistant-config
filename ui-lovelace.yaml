@@ -1,29 +1,201 @@
 resources:
-  - url: /local/tracker-card.js?v=0.1.4
+  - url: /local/custom_ui/tracker-card.js?v=1.2.4
+    type: module
+  - url: /local/custom_ui/surveillance-card.js?v=0.0.1
+    type: module
+  - url: /local/custom_ui/mini-graph-card-bundle.js?v=0.3.0
+    type: module
+  - url: /local/custom_ui/card-modder.js?v=f3d96f
+    type: module
+  - url: /local/custom_ui/card-tools.js?v=deb8e3
     type: js
-  - url: /local/custom-lovelace/monster-card/monster-card.js?v=0.2.3
+  - url: /local/custom_ui/bignumber-card.js?v=0.0.1
     type: js
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                               VIEW - HOME                                                                 #
+#                                                                                                                                           #
+#############################################################################################################################################  
 
 name: Tun Furlong 
-views: 
-- name: main
-  id: main
-  title: Control
-  icon: mdi:star
-  cards: !include ui/main.yaml
+views:
+  - id: home
+    name: Home
+    icon: mdi:home-assistant
+    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    cards:
 
-- name: Weather
-  title: Weather
-  icon: mdi:cloud
-  cards: !include ui/weather.yaml
+#################################################################
+#                                                               #
+#                     Home - Weather Card                       #
+#                                                               #
+################################################################# 
 
-- name: media
-  id: view_media
-  title: Media
-  icon: mdi:play-network
-  cards: !include ui/media.yaml
+      - type: weather-forecast
+        entity: weather.dark_sky
 
-- name: Status
-  title: Status Report
-  icon: mdi:speedometer
-  cards: !include ui/status.yaml
+#################################################################
+#                                                               #
+#                   Home - OctoPrint Card                       #
+#                                                               #
+################################################################# 
+
+      - type: picture-entity
+        entity: camera.octoprint
+        name: printcam
+        show_state: false
+        tap_action: more-info
+        
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            title: Bed Temp
+            entity: sensor.octoprint_actual_bed_temp
+            unit_of_measurement: °C
+            min: 0
+            max: 150
+            severity: 
+              red: 120
+              amber: 0
+              green: 60
+            #scale: '50px'
+
+          - type: gauge
+            title: Hot End Temp
+            entity: sensor.octoprint_actual_tool0_temp
+            unit_of_measurement: °C
+            min: 0
+            max: 260
+            severity:
+              red: 225
+              amber: 0
+              green: 200
+            #scale: '50px'  
+
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            title: Bed Target
+            entity: sensor.octoprint_target_bed_temp
+            unit_of_measurement: °C
+            min: 0
+            max: 150
+            severity: 
+              red: 120
+              amber: 0
+              green: 59
+            #scale: '50px'
+
+          - type: gauge
+            title: Hot End Target
+            entity: sensor.octoprint_target_tool0_temp
+            unit_of_measurement: °C
+            min: 0
+            max: 260
+            severity:
+              red: 225
+              amber: 0
+              green: 199
+            #scale: '50px'
+
+      - type: custom:bignumber-card
+        title: Current Job Completion Status
+        entity: sensor.octoprint_job_percentage
+        scale: 30px
+        from: left
+        min: 0
+        max: 100
+        severity:
+          - value: 20
+            style: 'var(--label-badge-red)'
+          - value: 40
+            style: 'var(--label-badge-yellow)'
+          - value: 70
+            style: 'var(--label-badge-green)' 
+      
+      - type: horizontal-stack
+        cards:
+          - type: sensor
+            name: Elapsed
+            entity: sensor.octoprint_time_elapsed
+            graph: none
+
+          - type: sensor
+            name: Remaining
+            entity: sensor.octoprint_time_remaining
+            graph: none
+
+      - type: glance
+        show_header_toggle: false
+        column_width: calc(100% / 3)
+        entities:
+          - entity: binary_sensor.octoprint_printing
+            name: Printing Status
+            icon: mdi:printer-wireless
+          - entity: binary_sensor.octoprint_printing_error
+            name:  Error State
+            icon: mdi:printer-alert
+          - entity: sensor.octoprint_current_state
+            name: Current Status
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                               VIEW - CCTV                                                                 #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+  - id: cctv
+    name: CCTV
+    icon: mdi:cctv
+    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    panel: true
+    cards:
+      - type: custom:surveillance-card
+        thumb_interval: 15
+        update_interval: 2
+        cameras:
+          - entity: camera.front_door
+            motion_entity: binary_sensor.front_door_camera_path_activity
+          - entity: camera.backyard
+            motion_entity: binary_sensor.backyard_camera_motion_detected
+          - entity: camera.dining_room
+            motion_entity: binary_sensor.dining_room_camera_motion_detected
+          - entity: camera.octoprint
+
+#############################################################################################################################################
+#                                                                                                                                           # 
+#                                                               VIEW - SETTINGS                                                             #
+#                                                                                                                                           #
+#############################################################################################################################################
+
+  - id: settings
+    name: Settings
+    icon: mdi:settings
+    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    cards:
+
+#################################################################
+#                                                               #
+#                     Settings - Tracker Card                   #
+#                                                               #
+#################################################################
+
+      - type: custom:tracker-card
+        trackers:
+          - sensor.custom_card_tracker
+          - sensor.custom_component_tracker
+
+#################################################################
+#                                                               #
+#                     Settings - Zigbee                         #
+#                                                               #
+#################################################################
+
+      - type: entities
+        entities:
+          - entity: input_boolean.zigbee_permit_join
+          - entity: timer.zigbee_permit_join
+          - entity: sensor.bridge_state
+        show_header_toggle: false
+        title: Zigbee

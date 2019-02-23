@@ -1,3 +1,0 @@
-- platform: version
-  name: HA Installed Version
-  scan_interval: 86400

@@ -1,32 +1,127 @@
 homeassistant:
-  latitude: !secret latitude_office
-  longitude: !secret longitude_office
+  latitude: !secret latitude_home
+  longitude: !secret longitude_home
   elevation: 36
-  name: Office
+  name: Tun Furlong
   temperature_unit: C
   unit_system: metric
   time_zone: Europe/London
-  customize: !include customize.yaml
+  customize: !include includes/customize.yaml
   packages: !include_dir_named packages
-updater:
-  include_used_components: true
+  whitelist_external_dirs:
+    - /config
 
-#camera:
-#  - platform: rpi_camera
-cloud:
-config:
-custom_updater:
-discovery:
+#################################################################
+#                                                               #
+#                        Customizations                         #
+#                                                               #
+#################################################################
+
 frontend:
-  themes: !include_dir_merge_named themes/
+  javascript_version: latest
+  extra_html_url:
+    - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
+    - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
+    - /local/custom_ui/fontawesome/hass-fontawesome-brands.html
+    
+lovelace:
+  mode: yaml
+
+custom_updater:
+  show_installable: false
+  hide_sensor: false
+  track:
+    - components
+    - cards
+    - python_scripts
+  component_urls:
+    #- https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
+  card_urls:
+    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
+    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
+    - https://raw.githubusercontent.com/maykar/custom-lovelace/master/tracker.json
+    #- https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
+
+#################################################################
+#                                                               #
+#                           Enables                             #
+#                                                               #
+#################################################################
+
+hassio:
+
+api:
+  api_password: !secret api_password
+
+http:
+  api_password: !secret http_password
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+  base_url: https://rosterloh.synology.me:8123
+  trusted_networks:
+    - 192.168.1.0/24
+  cors_allowed_origins:
+    - https://rosterloh.synology.me
+    - 192.168.1.0/24
+
+config:
+
+discovery:
+
+history:
+
+logbook:
+
+map:
+
+person:
+
+system_health:
+
+updater:
+
+google_assistant:
+  project_id: !secret google_assistant_project
+  api_key: !secret google_assistant_api_key
+  expose_by_default: false
+  exposed_domains:
+    - light
+    - switch
+    - script
+    - input_boolean
+    - scene
+
+####################################################
+#                                                  #
+#                    Includes                      #
+#                                                  #
+####################################################
+
+#input_select: !include includes/input_select.yaml
+#python_script: !include_dir_named python_scripts
+automation: !include includes/automations.yaml
+group: !include includes/groups.yaml
+script: !include includes/scripts.yaml
+sensor: !include_dir_merge_list sensor
+switch: !include includes/switches.yaml
+vacuum: !include includes/vacuums.yaml
+zone: !include includes/zones.yaml
+
+####################################################
+#                                                  #
+#                      Logger                      #
+#                                                  #
+####################################################
+
 logger:
-  default: warning
-  logs:
-    homeassistant.components.sensor.pi_hole: critical
-    homeassistant.components.sensor.darksky: critical
-    homeassistant.components.mqtt: debug
-    aiohttp.access: critical
-    aiohttp.server: critical
+  default: error
+  
+####################################################
+#                                                  #
+#                      MQTT                        #
+#                                                  #
+####################################################
+
 mqtt:
   broker: core-mosquitto
   port: 1883
@@ -38,21 +133,25 @@ mqtt:
   will_message:
     topic: 'hass/status'
     payload: 'offline'
-notify:
-  - platform: nfandroidtv
-    name: Shield
-    host: 192.168.2.28
-sun:
-weather:
-  - platform: darksky
-    api_key: !secret darksky_key
 
-automation: !include automations.yaml
-group: !include groups.yaml
-history: !include history.yaml
-input_select: !include input_select.yaml
-logbook: !include logbook.yaml
-script: !include scripts.yaml
-sensor: !include_dir_merge_list sensor
-switch: !include switches.yaml
-zone: !include_dir_merge_list zones
+####################################################
+#                                                  #
+#                     Panel                        #
+#                                                  #
+####################################################
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:home-automation
+    url: https://rosterloh.synology.me:3218
+
+####################################################
+#                                                  #
+#                     Recorder                     #
+#                                                  #
+####################################################
+
+recorder:
+  purge_interval: 1
+  purge_keep_days: 14

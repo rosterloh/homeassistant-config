@@ -1,0 +1,38 @@
+#################################################################
+#                                                               #
+#                      Packages/Firmware                        #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                        Input Boolean                          #
+#                                                               #
+#################################################################
+
+input_boolean:        
+  ha_update_available:
+    name: HA Update Avaiable
+    initial: off
+    icon: mdi:cloud-download
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                  HASSIO Version                  #
+#                                                  #
+####################################################
+
+## Check Latest HA Version
+  - platform: rest
+    resource: https://s3.amazonaws.com/hassio-version/stable.json
+    name: Latest HA Version
+    value_template: "{{ value_json.homeassistant.default }}"
+    scan_interval: 3600

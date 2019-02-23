@@ -1,7 +1,53 @@
-# Download the Dark Sky icons from https://www.dr-lex.be/software/download/DarkSky-icons.zip
-# and save them under /www/icons/dark_sky/ in your configuration directory.
+#################################################################
+#                                                               #
+#                      Packages/Weather                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  sun:
+    name: Sun
+    view: no
+    entities:
+      - sun.sun
+      - sensor.moon
+
+#################################################################
+#                                                               #
+#                            Sensors                            #
+#                                                               #
+#################################################################
 
 sensor:
+
+####################################################
+#                                                  #
+#                 Sensor - AirVisual               #
+#                                                  #
+####################################################
+
+  - platform: airvisual
+    api_key: !secret airviskey
+    monitored_conditions:
+      - us
+    show_on_map: false
+    #scan_interval: 30
+    city: london
+    state: england
+    country: uk
+
+####################################################
+#                                                  #
+#                  Sensor - Darksky                #
+#                                                  #
+####################################################
+
   - platform: darksky
     api_key: !secret darksky_key
     forecast:
@@ -11,16 +57,49 @@ sensor:
       - 4
       - 5
     monitored_conditions:
+      - icon
       - summary
+      - precip_type
       - precip_probability
+      - precip_accumulation
+      - precip_intensity
+      - precip_intensity_max
+      - uv_index
+      - daily_summary
       - wind_speed
       - cloud_cover
       - icon
       - temperature_low
       - temperature_high
-      - daily_summary
       - hourly_summary
       - humidity
       - temperature
-    update_interval:
+    scan_interval:
       minutes: 5
+
+####################################################
+#                                                  #
+#                   Sensor - Moon                  #
+#                                                  #
+####################################################
+
+  - platform: moon
+  
+#################################################################
+#                                                               #
+#                              Sun                              #
+#                                                               #
+#################################################################
+
+sun:
+
+#################################################################
+#                                                               #
+#                            Weather                            #
+#                                                               #
+#################################################################
+
+weather:
+  - platform: darksky
+    api_key: !secret darksky_key
+    mode: daily
