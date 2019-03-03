@@ -27,6 +27,8 @@ frontend:
 lovelace:
   mode: yaml
 
+custom_dependencies:
+
 custom_updater:
   show_installable: false
   hide_sensor: false
@@ -76,8 +78,6 @@ map:
 
 person:
 
-system_health:
-
 updater:
 
 google_assistant:
@@ -97,14 +97,11 @@ google_assistant:
 #                                                  #
 ####################################################
 
-#input_select: !include includes/input_select.yaml
 #python_script: !include_dir_named python_scripts
 automation: !include includes/automations.yaml
-group: !include includes/groups.yaml
 script: !include includes/scripts.yaml
-sensor: !include_dir_merge_list sensor
 switch: !include includes/switches.yaml
-vacuum: !include includes/vacuums.yaml
+#vacuum: !include includes/vacuums.yaml
 zone: !include includes/zones.yaml
 
 ####################################################
@@ -122,17 +119,18 @@ logger:
 #                                                  #
 ####################################################
 
-mqtt:
-  broker: core-mosquitto
-  port: 1883
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+#mqtt:
+#  discovery: true
+#  broker: core-mosquitto
+#  port: 1883
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  birth_message:
+#    topic: 'hass/status'
+#    payload: 'online'
+#  will_message:
+#    topic: 'hass/status'
+#    payload: 'offline'
 
 ####################################################
 #                                                  #
@@ -153,5 +151,9 @@ panel_iframe:
 ####################################################
 
 recorder:
+  db_url: !secret recorder_db_url
   purge_interval: 1
   purge_keep_days: 14
+  exclude:
+    domains:
+      - sun

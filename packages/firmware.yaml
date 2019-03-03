@@ -34,5 +34,21 @@ sensor:
   - platform: rest
     resource: https://s3.amazonaws.com/hassio-version/stable.json
     name: Latest HA Version
-    value_template: "{{ value_json.homeassistant.default }}"
+    value_template: "{{ value_json.homeassistant.raspberrypi3-64 }}"
     scan_interval: 3600
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+  alias: 'Update Available Notifications'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+  action:
+    service: notify.slack
+    data:
+      message: 'Update for Home Assistant is available.'

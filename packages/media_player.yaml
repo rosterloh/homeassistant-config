@@ -1,0 +1,23 @@
+#################################################################
+#                                                               #
+#                      Packages/Media Player                    #
+#                                                               #
+#################################################################
+
+media_player:
+
+#  - platform: androidtv
+#    host: !secret shield
+#    name: "ShieldTV"
+#    adb_server_ip: 192.168.2.233
+#    adb_server_port: 5037
+#    apps:
+#      "amazon": "Amazon Prime Video"
+#      "youtube": "Youtube"
+#      "netflix": "Netflix"
+      
+#  - platform: webostv
+#    host: 192.168.1.10
+#    name: Living Room TV
+#    filename: webostv.conf
+#    timeout: 5

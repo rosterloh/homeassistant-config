@@ -1,16 +1,20 @@
 resources:
-  - url: /local/custom_ui/tracker-card.js?v=1.2.4
+  - url: /customcards/custom_ui/tracker-card.js
     type: module
-  - url: /local/custom_ui/surveillance-card.js?v=0.0.1
+  - url: /customcards/custom_ui/surveillance-card.js
     type: module
-  - url: /local/custom_ui/mini-graph-card-bundle.js?v=0.3.0
+  - url: /customcards/custom_ui/mini-graph-card-bundle.js
     type: module
-  - url: /local/custom_ui/card-modder.js?v=f3d96f
+  - url: /customcards/custom_ui/card-modder.js
     type: module
-  - url: /local/custom_ui/card-tools.js?v=deb8e3
+  - url: /customcards/custom_ui/card-tools.js
     type: js
-  - url: /local/custom_ui/bignumber-card.js?v=0.0.1
+  - url: /customcards/custom_ui/bignumber-card.js
     type: js
+  - url: /customcards/custom_ui/compact-custom-header.js
+    type: module
+  - url: /customcards/custom_ui/weather-card.js
+    type: module
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -23,8 +27,9 @@ views:
   - id: home
     name: Home
     icon: mdi:home-assistant
-    background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
+    background: center / cover no-repeat url("/local/lovelace/dark.jpg") fixed
     cards:
+      - type: custom:compact-custom-header
 
 #################################################################
 #                                                               #
@@ -32,8 +37,29 @@ views:
 #                                                               #
 ################################################################# 
 
-      - type: weather-forecast
-        entity: weather.dark_sky
+      - type: vertical-stack
+        cards:
+          - type: custom:weather-card
+            entity: weather.dark_sky
+            icons: "/local/custom_ui/icons/"
+          - type: glance
+            tilte: Aerogarden
+            column_width: calc(100% / 4)
+            entities:
+              - entity: sensor.bme680_temperature
+                name: Temperature
+              - entity: sensor.bme680_humidity
+                name: Humidity
+              - entity: sensor.bme680_pressure
+                name: Pressure
+              - entity: sensor.bme680_gas_resistance
+                name: Gas
+              - entity: light.plant_lights
+                tap_action:
+                  action: toggle
+              - entity: switch.plant_pump
+                tap_action:
+                  action: toggle
 
 #################################################################
 #                                                               #
@@ -51,7 +77,7 @@ views:
         cards:
           - type: gauge
             title: Bed Temp
-            entity: sensor.octoprint_actual_bed_temp
+            entity: sensor.prusa_actual_bed_temp
             unit_of_measurement: °C
             min: 0
             max: 150
@@ -63,7 +89,7 @@ views:
 
           - type: gauge
             title: Hot End Temp
-            entity: sensor.octoprint_actual_tool0_temp
+            entity: sensor.prusa_actual_tool0_temp
             unit_of_measurement: °C
             min: 0
             max: 260
@@ -77,7 +103,7 @@ views:
         cards:
           - type: gauge
             title: Bed Target
-            entity: sensor.octoprint_target_bed_temp
+            entity: sensor.prusa_target_bed_temp
             unit_of_measurement: °C
             min: 0
             max: 150
@@ -89,7 +115,7 @@ views:
 
           - type: gauge
             title: Hot End Target
-            entity: sensor.octoprint_target_tool0_temp
+            entity: sensor.prusa_target_tool0_temp
             unit_of_measurement: °C
             min: 0
             max: 260
@@ -101,7 +127,7 @@ views:
 
       - type: custom:bignumber-card
         title: Current Job Completion Status
-        entity: sensor.octoprint_job_percentage
+        entity: sensor.prusa_job_percentage
         scale: 30px
         from: left
         min: 0
@@ -118,25 +144,25 @@ views:
         cards:
           - type: sensor
             name: Elapsed
-            entity: sensor.octoprint_time_elapsed
+            entity: sensor.prusa_time_elapsed
             graph: none
 
           - type: sensor
             name: Remaining
-            entity: sensor.octoprint_time_remaining
+            entity: sensor.prusa_time_remaining
             graph: none
 
       - type: glance
         show_header_toggle: false
         column_width: calc(100% / 3)
         entities:
-          - entity: binary_sensor.octoprint_printing
+          - entity: binary_sensor.prusa_printing
             name: Printing Status
             icon: mdi:printer-wireless
-          - entity: binary_sensor.octoprint_printing_error
+          - entity: binary_sensor.prusa_printing_error
             name:  Error State
             icon: mdi:printer-alert
-          - entity: sensor.octoprint_current_state
+          - entity: sensor.prusa_current_state
             name: Current Status
 
 #############################################################################################################################################
@@ -151,17 +177,20 @@ views:
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     panel: true
     cards:
-      - type: custom:surveillance-card
-        thumb_interval: 15
-        update_interval: 2
-        cameras:
-          - entity: camera.front_door
-            motion_entity: binary_sensor.front_door_camera_path_activity
-          - entity: camera.backyard
-            motion_entity: binary_sensor.backyard_camera_motion_detected
-          - entity: camera.dining_room
-            motion_entity: binary_sensor.dining_room_camera_motion_detected
-          - entity: camera.octoprint
+      - type: vertical-stack
+        cards:
+          - type: custom:surveillance-card
+            thumb_interval: 15
+            update_interval: 2
+            cameras:
+              - entity: camera.front_door
+                motion_entity: binary_sensor.front_door_camera_path_activity
+              - entity: camera.backyard
+                motion_entity: binary_sensor.backyard_camera_motion_detected
+              - entity: camera.dining_room
+                motion_entity: binary_sensor.dining_room_camera_motion_detected
+              - entity: camera.octoprint
+          - type: custom:compact-custom-header
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -174,6 +203,7 @@ views:
     icon: mdi:settings
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     cards:
+      - type: custom:compact-custom-header
 
 #################################################################
 #                                                               #

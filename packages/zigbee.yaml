@@ -9,6 +9,7 @@
 #                        Input Boolean                          #
 #                                                               #
 #################################################################
+
 input_boolean:
   zigbee_permit_join:
     name: Allow devices to join
