@@ -3,11 +3,11 @@ A component to install the mysqlclient to support recorder on MariaDB
 """
 import logging
 
-VERSION = '1.0.0'
+VERSION = '1.0.1'
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['mysqlclient==1.4.2', 'PyMySQL==0.9.3']
+REQUIREMENTS = ['mysqlclient==1.4.2.post1', 'PyMySQL==0.9.3']
 
 DOMAIN = 'custom_dependencies'
 

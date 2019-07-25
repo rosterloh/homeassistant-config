@@ -7,10 +7,15 @@
 googlehome:
   devices:
     - host: !secret home_max
+      track_devices: false
     - host: !secret home_hub
+      track_devices: false
     - host: !secret home_mini_mbr
+      track_devices: false
     - host: !secret home_mini_dr
+      track_devices: false
     - host: !secret home_workshop
+      track_devices: false
 
 #################################################################
 #                                                               #
@@ -29,7 +34,54 @@ device_tracker:
   - platform: google_maps
     username: !secret google_username
     password: !secret google_password
-    
+
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      richard:
+        friendly_name: "Richard"
+        value_template: >-
+          {% if is_state('device_tracker.google_maps_117827202043451375424', 'home') %}
+            Home
+          {% else %}
+            Away
+          {% endif %}
+        icon_template: >-
+          {% if is_state('device_tracker.google_maps_117827202043451375424', 'work') %}
+            mdi:briefcase
+          {% else %}
+            mdi:walk
+          {% endif %}
+        entity_picture_template: >-
+          {% if is_state('device_tracker.google_maps_117827202043451375424', 'home') %}
+            /local/richard.jpg
+          {% endif %}
+          
+      jess:
+        friendly_name: "Jess"
+        value_template: >-
+          {% if is_state('device_tracker.google_maps_113157436158025112894', 'home') %}
+            Home
+          {% else %}
+            Away
+          {% endif %}
+        entity_picture_template: >-
+          {% if is_state('device_tracker.google_maps_113157436158025112894', 'home') %}
+            /local/jess.jpg
+          {% endif %}
 #################################################################
 #                                                               #
 #                            Script                             #
@@ -47,3 +99,21 @@ script:
       - service: nest.set_away_mode
         data:
           away_mode: home
+
+#################################################################
+#                                                               #
+#                            Zones                              #
+#                                                               #
+#################################################################
+zone:
+  - name: Work
+    latitude: !secret latitude_office
+    longitude: !secret longitude_office
+    radius: 200
+    icon: mdi:briefcase
+
+  - name: Home
+    latitude: !secret latitude_home
+    longitude: !secret longitude_home
+    radius: 200
+    icon: mdi:home

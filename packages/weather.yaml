@@ -51,11 +51,11 @@ sensor:
   - platform: darksky
     api_key: !secret darksky_key
     forecast:
+      - 0
       - 1
       - 2
       - 3
       - 4
-      - 5
     monitored_conditions:
       - icon
       - summary
@@ -75,7 +75,7 @@ sensor:
       - humidity
       - temperature
     scan_interval:
-      minutes: 5
+      minutes: 15
 
 ####################################################
 #                                                  #

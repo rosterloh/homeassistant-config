@@ -40,4 +40,4 @@ notify:
 #################################################################
     
 tts:
-  - platform: google
+  - platform: google_translate

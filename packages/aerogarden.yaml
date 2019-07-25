@@ -1,14 +1,59 @@
 #################################################################
 #                                                               #
-#                     Packages/Aerogarden                       #
+#                     Packages/AeroGarden                       #
 #                                                               #
 #################################################################
 
 #################################################################
 #                                                               #
-#                            Sensors                            #
+#                        Input Boolean                          #
 #                                                               #
 #################################################################
 
-sensor:
+input_boolean:
+  aerogarden_leds_automate:
+    name: Enable automatic AeroGarden LEDs switching 
+    initial: off
+    icon: mdi:camera-timer
 
+#################################################################
+#                                                               #
+#                         Automation                            #
+#                                                               #
+#################################################################
+
+automation:
+
+  - id: enable_plant_leds
+    alias: Enable AeroGarden LEDs
+    hide_entity: true
+    trigger:
+      platform: time
+      at: '20:00:00'
+    condition:
+      condition: state
+      entity_id: input_boolean.aerogarden_leds_automate
+      state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.aerogarden_plant_leds
+      - delay: 14:00
+      - service: light.turn_off
+        data:
+          entity_id:
+            - light.aerogarden_plant_leds
+         
+  - id: disable_plant_leds
+    alias: Disable AeroGarden LEDs
+    hide_entity: true
+    trigger:
+      platform: state
+      entity_id: input_boolean.aerogarden_leds_automate
+      to: 'off'
+    action:
+      service: light.turn_off
+      data:
+        entity_id:
+         - light.aerogarden_plant_leds

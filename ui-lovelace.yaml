@@ -1,19 +1,17 @@
 resources:
-  - url: /customcards/custom_ui/tracker-card.js
+  - url: /community_plugin/surveillance-card/surveillance-card.js
     type: module
-  - url: /customcards/custom_ui/surveillance-card.js
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
-  - url: /customcards/custom_ui/mini-graph-card-bundle.js
-    type: module
-  - url: /customcards/custom_ui/card-modder.js
-    type: module
-  - url: /customcards/custom_ui/card-tools.js
+  - url: /community_plugin/bignumber-card/bignumber-card.js
     type: js
-  - url: /customcards/custom_ui/bignumber-card.js
-    type: js
-  - url: /customcards/custom_ui/compact-custom-header.js
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
-  - url: /customcards/custom_ui/weather-card.js
+  - url: /community_plugin/weather-card/weather-card.js
+    type: module
+  - url: /community_plugin/bar-card/bar-card.js
+    type: js
+  - url: /community_plugin/simple-thermostat/simple-thermostat.js
     type: module
 
 #############################################################################################################################################
@@ -22,14 +20,45 @@ resources:
 #                                                                                                                                           #
 #############################################################################################################################################  
 
-name: Tun Furlong 
+name: Tun Furlong
+cch:
+    menu: show
+    options: show
+    notifications: clock
+    clock_format: '24'
+    clock_date: true
+    date_locale: en-gb
+    swipe: true
 views:
   - id: home
     name: Home
     icon: mdi:home-assistant
     background: center / cover no-repeat url("/local/lovelace/dark.jpg") fixed
     cards:
-      - type: custom:compact-custom-header
+
+#################################################################
+#                                                               #
+#                     Home - Presence Card                      #
+#                                                               #
+################################################################# 
+
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: entities
+                show_header_toggle: false
+                entities:
+                  - sensor.richard
+                  - type: divider
+                  - sensor.richard_phone_battery
+                    
+              - type: entities
+                show_header_toggle: false
+                entities:
+                  - sensor.jess
+                  - type: divider
+                  - sensor.jess_phone_battery
 
 #################################################################
 #                                                               #
@@ -54,10 +83,13 @@ views:
                 name: Pressure
               - entity: sensor.bme680_gas_resistance
                 name: Gas
-              - entity: light.plant_lights
+              - entity: light.aerogarden_plant_leds
                 tap_action:
                   action: toggle
-              - entity: switch.plant_pump
+              - entity: switch.aerogarden_plant_pump
+                tap_action:
+                  action: toggle
+              - entity: input_boolean.aerogarden_leds_automate
                 tap_action:
                   action: toggle
 
@@ -165,6 +197,27 @@ views:
           - entity: sensor.prusa_current_state
             name: Current Status
 
+#################################################################
+#                                                               #
+#                   Home - Thermostat Card                      #
+#                                                               #
+#################################################################
+
+      - type: thermostat
+        title: Downstairs
+        entity: climate.downstairs
+        
+      - type: custom:mini-graph-card
+        entities:
+         - entity: sensor.downstairs_thermostat_temperature
+           name: TEMPERATURE
+           color: '#e74c3c'
+         - entity: sensor.downstairs_thermostat_humidity
+           name: HUMIDITY
+        name: DOWNSTAIRS CLIMATE
+        hours_to_show: 36
+        points_per_hour: 1
+
 #############################################################################################################################################
 #                                                                                                                                           # 
 #                                                               VIEW - CCTV                                                                 #
@@ -190,7 +243,6 @@ views:
               - entity: camera.dining_room
                 motion_entity: binary_sensor.dining_room_camera_motion_detected
               - entity: camera.octoprint
-          - type: custom:compact-custom-header
 
 #############################################################################################################################################
 #                                                                                                                                           # 
@@ -203,18 +255,50 @@ views:
     icon: mdi:settings
     background: center / cover no-repeat url("/local/lovelace/background-15.gif") fixed
     cards:
-      - type: custom:compact-custom-header
 
 #################################################################
 #                                                               #
-#                     Settings - Tracker Card                   #
+#                     Settings - System Card                    #
 #                                                               #
 #################################################################
 
-      - type: custom:tracker-card
-        trackers:
-          - sensor.custom_card_tracker
-          - sensor.custom_component_tracker
+      - type: vertical-stack
+        title: System
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.processor_use
+                name: CPU
+                line_color: '#2980b9'
+                line_width: 2
+                hours_to_show: 24
+          - type: vertical-stack
+            cards:
+              - type: custom:bar-card
+                entity: sensor.disk_use_percent_home
+                title: HDD
+                title_position: inside
+                align: split
+                show_icon: true
+                color: '#00ba6a'
+              - type: custom:bar-card
+                entity: sensor.memory_use_percent
+                title: RAM
+                title_position: inside
+                align: split
+                show_icon: true
+              - type: glance
+                entities:
+                  - sensor.count_automations
+                  - sensor.count_lights
+                  - sensor.count_scripts
+                  - sensor.count_sensors
+                  - sensor.count_switches
+              - type: entities
+                entities:
+                  - sensor.last_boot
 
 #################################################################
 #                                                               #
@@ -222,10 +306,32 @@ views:
 #                                                               #
 #################################################################
 
-      - type: entities
-        entities:
-          - entity: input_boolean.zigbee_permit_join
-          - entity: timer.zigbee_permit_join
-          - entity: sensor.bridge_state
-        show_header_toggle: false
-        title: Zigbee
+      - type: vertical-stack
+        title: Network
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.speedtest_download
+                name: Download
+                line_color: '#2980b9'
+                line_width: 6
+                hours_to_show: 24
+                icon: mdi:download-network
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.speedtest_upload
+                name: Upload
+                line_color: '#2980b9'
+                line_width: 6
+                hours_to_show: 24
+                icon: mdi:upload-network
+              - type: custom:mini-graph-card
+                entities:
+                  - sensor.speedtest_ping
+                name: Ping
+                line_color: '#dbdfe2'
+                line_width: 6
+                hours_to_show: 24
+                icon: mdi:server-network

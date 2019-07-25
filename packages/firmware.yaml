@@ -36,6 +36,12 @@ sensor:
     name: Latest HA Version
     value_template: "{{ value_json.homeassistant.raspberrypi3-64 }}"
     scan_interval: 3600
+## Remote    
+  - platform: version
+    image: raspberrypi3-64
+    source: hassio
+## Local 
+  - platform: version
 
 #################################################################
 #                                                               #
@@ -44,11 +50,11 @@ sensor:
 #################################################################
 
 automation:
-  alias: 'Update Available Notifications'
+  alias: Update notifications
   trigger:
-    platform: state
-    entity_id: updater.updater
+    - platform: state
+      entity_id: updater.updater
   action:
     service: notify.slack
     data:
-      message: 'Update for Home Assistant is available.'
+      message: "New Home Assistant version {{ states.updater.updater.state }} is available for download.\r\n\r\nYou are currently running {{ sensor.current_version }}.\r\n\r\nhttps://home-assistant.io/blog/categories/release-notes/"

@@ -122,15 +122,15 @@ sensor:
 #                                                  #
 ####################################################
 
-  - platform: pi_hole
-    host: !secret hass
-    ssl: true
-    monitored_conditions:
-      - ads_blocked_today
-      - ads_percentage_today
-      - dns_queries_today
-      - domains_being_blocked
-      - unique_domains
+#  - platform: pi_hole
+#    host: !secret pihole
+#    ssl: true
+#    monitored_conditions:
+#      - ads_blocked_today
+#      - ads_percentage_today
+#      - dns_queries_today
+#      - domains_being_blocked
+#      - unique_domains
 
 ####################################################
 #                                                  #
@@ -155,6 +155,92 @@ sensor:
   - platform: uptime
     name: Time Online
     unit_of_measurement: hours
+
+####################################################
+#                                                  #
+#                 Sensor - Templates               #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      count_automations:
+        entity_id: sensor.date
+        friendly_name: Automations
+        value_template: >
+          {%- set domains = ['automation'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_scripts:
+        entity_id: sensor.date
+        friendly_name: Scripts
+        value_template: >
+          {%- set domains = ['script'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_binary_sensors:
+        entity_id: sensor.date
+        friendly_name: Binary Sensors
+        value_template: >
+          {%- set domains = ['binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_sensors:
+        entity_id: sensor.date
+        friendly_name: Sensors
+        value_template: >
+          {%- set domains = ['sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_switches:
+        entity_id: sensor.date
+        friendly_name: Switches
+        value_template: >
+          {%- set domains = ['switch'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_lights:
+        entity_id: sensor.date
+        friendly_name: Lights
+        value_template: >
+          {%- set domains = ['light'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
 
 #################################################################
 #                                                               #
@@ -222,3 +308,13 @@ automation:
         data:
           title: 'HA HASSIO Server'
           message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
+
+  - id: letsencrypt-renewal
+    alias: "Let's Encrypt Renewal"
+    trigger:
+      platform: time
+      at: '00:00:00'
+    action:
+      - service: hassio.addon_restart
+        data:
+        addon: core_letsencrypt

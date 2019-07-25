@@ -4,6 +4,11 @@
 #                                                               #
 #################################################################
 
+rest_command:
+  google_backup:
+    url: 'http://192.168.1.24:8055/gb/doBackup'
+    timeout: '300'
+
 #################################################################
 #                                                               #
 #                         Automations                           #
@@ -12,12 +17,24 @@
 
 automation:
 
-## Create daily snapshot of hassio
-  - alias: Daily Backup at 3 AM
+## Create weekly snapshot of hassio
+  - alias: Weekly Backup
     trigger:
-      platform: time
-      at: '3:00:00'
+      platform: time_pattern
+      hours: '/168'
     action:
     - service: hassio.snapshot_full
       data_template:
         name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+    - delay: 1:00
+    - service: rest_command.google_backup
+
+## Notify result        
+  - alias: Notify backup complete
+    trigger:
+      platform: mqtt
+      topic: googlebackup/result
+    action:
+    - service: notify.slack
+      data_template:
+        message: '{{ trigger.payload }}'

@@ -1,48 +1,21 @@
 homeassistant:
-  latitude: !secret latitude_home
-  longitude: !secret longitude_home
-  elevation: 36
-  name: Tun Furlong
-  temperature_unit: C
-  unit_system: metric
-  time_zone: Europe/London
-  customize: !include includes/customize.yaml
+  auth_providers:
+    - type: homeassistant
+    - type: trusted_networks
+      trusted_networks:
+        - 192.168.1.0/24
+    - type: legacy_api_password
+      api_password: !secret api_password
+
   packages: !include_dir_named packages
   whitelist_external_dirs:
     - /config
 
-#################################################################
-#                                                               #
-#                        Customizations                         #
-#                                                               #
-#################################################################
-
-frontend:
-  javascript_version: latest
-  extra_html_url:
-    - /local/custom_ui/fontawesome/hass-fontawesome-solid.html
-    - /local/custom_ui/fontawesome/hass-fontawesome-regular.html
-    - /local/custom_ui/fontawesome/hass-fontawesome-brands.html
-    
 lovelace:
   mode: yaml
 
-custom_dependencies:
-
-custom_updater:
-  show_installable: false
-  hide_sensor: false
-  track:
-    - components
-    - cards
-    - python_scripts
-  component_urls:
-    #- https://raw.githubusercontent.com/pnbruckner/homeassistant-config/master/custom_components.json
-  card_urls:
-    - https://raw.githubusercontent.com/kalkih/mini-media-player/master/tracker.json
-    - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
-    - https://raw.githubusercontent.com/maykar/custom-lovelace/master/tracker.json
-    #- https://raw.githubusercontent.com/ljmerza/waze-card/master/updater.json
+hacs:
+  token: !secret hacs_github_access_token
 
 #################################################################
 #                                                               #
@@ -52,57 +25,35 @@ custom_updater:
 
 hassio:
 
-api:
-  api_password: !secret api_password
-
 http:
-  api_password: !secret http_password
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
   base_url: https://rosterloh.synology.me:8123
-  trusted_networks:
-    - 192.168.1.0/24
   cors_allowed_origins:
     - https://rosterloh.synology.me
     - 192.168.1.0/24
 
+#default_config
+#cloud:
 config:
-
+conversation:
 discovery:
-
+frontend:
 history:
-
 logbook:
-
 map:
-
+mobile_app:
 person:
-
+ssdp:
 updater:
+zeroconf:
 
 google_assistant:
   project_id: !secret google_assistant_project
   api_key: !secret google_assistant_api_key
-  expose_by_default: false
   exposed_domains:
-    - light
     - switch
-    - script
-    - input_boolean
-    - scene
-
-####################################################
-#                                                  #
-#                    Includes                      #
-#                                                  #
-####################################################
-
-#python_script: !include_dir_named python_scripts
-automation: !include includes/automations.yaml
-script: !include includes/scripts.yaml
-switch: !include includes/switches.yaml
-#vacuum: !include includes/vacuums.yaml
-zone: !include includes/zones.yaml
+    - light
 
 ####################################################
 #                                                  #
@@ -112,37 +63,6 @@ zone: !include includes/zones.yaml
 
 logger:
   default: error
-  
-####################################################
-#                                                  #
-#                      MQTT                        #
-#                                                  #
-####################################################
-
-#mqtt:
-#  discovery: true
-#  broker: core-mosquitto
-#  port: 1883
-#  username: !secret mqtt_username
-#  password: !secret mqtt_password
-#  birth_message:
-#    topic: 'hass/status'
-#    payload: 'online'
-#  will_message:
-#    topic: 'hass/status'
-#    payload: 'offline'
-
-####################################################
-#                                                  #
-#                     Panel                        #
-#                                                  #
-####################################################
-
-panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:home-automation
-    url: https://rosterloh.synology.me:3218
 
 ####################################################
 #                                                  #
