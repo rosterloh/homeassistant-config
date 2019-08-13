@@ -1,0 +1,198 @@
+title: Scenes
+path:  scenes
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - name1: Lights
+          - icon1: floor-lamp
+          - path1: lights
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Scenes'
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '##### Presets'
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_day_lights
+              - name: Day
+              - icon: weather-sunny
+              - label: Lighting
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.day_lighting
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_evening_lighting
+              - name: Evening
+              - icon: weather-sunset
+              - label: Lighting
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.evening_lighting
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_night_lighting
+              - name: Night
+              - icon: weather-night
+              - label: Verlichting
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.night_lighting
+                  haptic: light
+          - !include ../decluttering_templates/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: group.scene_cleaning_on
+              - name: Cleaning
+              - icon: spray-bottle
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.cleaning
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.dummy1
+              - name: Movie
+              - icon: movie
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.living_movie
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_lights_out
+              - name: All Lights
+              - icon: close-circle
+              - label: Turn Off
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.lights_out
+                  haptic: light
+          - !include ../decluttering_templates/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: group.scene_cooking_on
+              - name: Cooking
+              - icon: stove
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.cooking
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: group.scene_washing_on
+              - name: Washing
+              - icon: washing-machine
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.washing
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: group.scene_near_bedtime
+              - name: Near Bedtime
+              - icon: hotel
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.near_bedtime
+                  haptic: light
+          - !include ../decluttering_templates/blank-card.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../decluttering_templates/blank-card.yaml
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_finished_cooking
+              - name: Finished
+              - label: Cooking
+              - icon: power
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.finished_cooking
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_finished_washing
+              - name: Finished
+              - label: Washing
+              - icon: power
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.finished_washing
+                  haptic: light
+          - type: custom:decluttering-card
+            template: switch_button_card
+            variables:
+              - entity: input_boolean.scene_goodnight
+              - name: Goodnight
+              - icon: sleep
+              - label: All off
+              - show_state: false
+              - tap_action:
+                  action: call-service
+                  service: scene.turn_on
+                  service_data:
+                    entity_id: scene.goodnight
+                  haptic: light
+          - !include ../decluttering_templates/blank-card.yaml

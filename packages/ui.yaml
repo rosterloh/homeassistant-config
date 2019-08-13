@@ -1,0 +1,103 @@
+#################################################################
+#                                                               #
+#                           Packages/UI                         #
+#                                                               #
+#################################################################
+
+#################################################################
+#                                                               #
+#                         Input Select                          #
+#                                                               #
+#################################################################
+
+input_select:
+  richard:
+    name: Category
+    options:
+      - Agenda
+      - General
+      - Location
+    initial: Agenda
+  jess:
+    name: Category
+    options:
+      - Agenda
+      - General
+      - Location
+    initial: Agenda
+  general:
+    name: Category
+    options:
+      - Dates
+      - Climate
+      - Links
+      - Others
+      - Map
+      - Cameras
+      - Sensors
+      - Washing
+      - Energy
+      - Home
+      - Current
+      - Location
+      - Vacuum
+      - Remote
+      - Scenes
+      - Cleaning
+      - Weather
+      - Themes
+      - Lights
+      - Devices
+    initial: Home
+  general2:
+    name: Category
+    options:
+      - Dates
+      - Climate
+      - Links
+      - Others
+      - Map
+      - Cameras
+      - Sensors
+      - Washing
+      - Energy
+      - Home
+      - Current
+      - Location
+      - Vacuum
+      - Remote
+      - Scenes
+      - Cleaning
+      - Weather
+      - Themes
+      - Lights
+      - Devices
+    initial: Home
+
+#################################################################
+#                                                               #
+#                         Input Boolean                         #
+#                                                               #
+#################################################################
+
+input_boolean:
+  dummy1:
+    initial: off
+  dummy2:
+    initial: off
+  apkjess:
+    initial: off
+  apkrichard:
+    initial: off
+  scene_day_lights:
+  scene_night_lights:
+  scene_evening_lights:
+  scene_cleaning:
+  scene_near_bed:
+  scene_washing:
+  scene_finished_washing:
+  scene_cooking:
+  scene_finished_cooking:
+  scene_goodnight:
+  scene_lights_out:
+  simple_alarm:

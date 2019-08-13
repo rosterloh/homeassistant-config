@@ -5,14 +5,63 @@
 #################################################################
 
 octoprint:
-  host: 192.168.1.41
+  host: 192.168.1.22
   api_key: !secret octopi_api
   name: Prusa
   bed: true
   number_of_tools: 1
-  
+
+#################################################################
+#                                                               #
+#                          Camera                               #
+#                                                               #
+################################################################# 
+
 camera:
   - platform: mjpeg
     name: OctoPrint
-    still_image_url: http://192.168.1.41/webcam/?action=snapshot
-    mjpeg_url: http://192.168.1.41/webcam/?action=stream
+    still_image_url: http://192.168.1.22/webcam/?action=snapshot
+    mjpeg_url: http://192.168.1.22/webcam/?action=stream
+    
+#################################################################
+#                                                               #
+#                          Sensors                              #
+#                                                               #
+################################################################# 
+
+sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      prusa_time_elapsed_friendly:
+        friendly_name: "Prusa Time Elapsed"
+        value_template: "{{ states('sensor.prusa_time_elapsed') | int | timestamp_custom('%H:%M:%S', 0) }}"
+      prusa_time_remaining_friendly:
+        friendly_name: "Prusa Time Remaining"
+        value_template: "{{ states('sensor.prusa_time_remaining') | int | timestamp_custom('%H:%M:%S', 0) }}"
+      prusa_switch_amps:
+        friendly_name_template: "{{ states.switch.prusa_printer.name}} Current"
+        value_template: '{{ states.switch.prusa_printer.attributes["current_a"] | float }}'
+        unit_of_measurement: 'A'
+      prusa_switch_watts:
+        friendly_name_template: "{{ states.switch.prusa_printer.name}} Current Consumption"
+        value_template: '{{ states.switch.prusa_printer.attributes["current_power_w"] | float }}'
+        unit_of_measurement: 'W'
+      prusa_switch_total_kwh:
+        friendly_name_template: "{{ states.switch.prusa_printer.name}} Total Consumption"
+        value_template: '{{ states.switch.prusa_printer.attributes["total_energy_kwh"] | float }}'
+        unit_of_measurement: 'kWh'
+      prusa_switch_volts:
+        friendly_name_template: "{{ states.switch.prusa_printer.name}} Voltage"
+        value_template: '{{ states.switch.prusa_printer.attributes["voltage"] | float }}'
+        unit_of_measurement: 'V'
+      prusa_switch_today_kwh:
+        friendly_name_template: "{{ states.switch.prusa_printer.name}} Today's Consumption"
+        value_template: '{{ states.switch.prusa_printer.attributes["today_energy_kwh"] | float }}'
+        unit_of_measurement: 'kWh'

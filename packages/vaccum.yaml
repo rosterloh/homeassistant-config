@@ -10,7 +10,85 @@
 #                                                               #
 #################################################################
 
-#vacuum:
-#  - platform: xiaomi_miio
-#    host: !secret albert
-#    token: YOUR_TOKEN
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret albert_ip
+    token: !secret albert_token
+    name: Albert
+    
+#################################################################
+#                                                               #
+#                         Input Select                          #
+#                                                               #
+#################################################################
+
+input_select:
+  vacuum:
+    name: Vacuum
+    options:
+      - Basic
+      - Presets
+      - Map
+      - Information
+    initial: Basic
+  xiaomi_vacuum:
+    name: Xiaomi Vacuum
+    options:
+      - Quiet
+      - Balanced
+      - Turbo
+      - Max
+      - Mop
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                  Template                        #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      vacuum_battery:
+        value_template: '{{ states.vacuum.albert.attributes.battery_level }}'
+        friendly_name: 'Vacuum Battery Level'
+      vacuum_total_cleaned_area:
+        value_template: '{{ states.vacuum.albert.attributes.total_cleaned_area }}'
+        friendly_name: 'Vacuum Total Cleaned Area'
+      vacuum_cleaning_count:
+        value_template: '{{ states.vacuum.albert.attributes.cleaning_count }}'
+        friendly_name: 'Vacuum Cleaning Count'
+      vacuum_total_cleaning_time:
+        value_template: '{{ states.vacuum.albert.attributes.total_cleaning_time }}'
+        friendly_name: 'Vacuum Total Cleaning Time'
+      vacuum_main_brush_left:
+        value_template: '{{ states.vacuum.albert.attributes.main_brush_left }}'
+        friendly_name: 'Vacuum Main Brush Left'
+      vacuum_side_brush_left:
+        value_template: '{{ states.vacuum.albert.attributes.side_brush_left }}'
+        friendly_name: 'Vacuum Side Brush Left'
+      vacuum_filter_left:
+        value_template: '{{ states.vacuum.albert.attributes.filter_left }}'
+        friendly_name: 'Vacuum Filter Left'
+      vacuum_sensor_dirty_left:
+        value_template: '{{ states.vacuum.albert.attributes.sensor_dirty_left }}'
+        friendly_name: 'Vacuum Sensor Dirty Left'
+      vacuum_cleaner_error_sensor:
+        friendly_name: Vacuum Cleaner Error Sensor
+        value_template: >-
+          {% if states.vacuum.albert.attributes.error is defined %}
+            {{states.vacuum.albert.attributes.error}}
+          {% else %}
+            No Error
+          {% endif %}
+      vacuum_cleaner_status_sensor:
+        friendly_name: Vacuum Cleaner Status Sensor
+        value_template: >-
+          {{ states.vacuum.albert.attributes.status }}

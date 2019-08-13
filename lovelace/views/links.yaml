@@ -1,0 +1,15 @@
+title: Links
+path:  links
+cards:    
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - name1: Location
+          - icon1: map
+          - path1: location
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Links'

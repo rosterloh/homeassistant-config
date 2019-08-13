@@ -6,7 +6,7 @@
 
 zha:
   radio_type: deconz
-  usb_path: /dev/ttyACM0
+  usb_path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE1962708-if00
   database_path: /config/zigbee.db
  
 #################################################################
@@ -15,11 +15,11 @@ zha:
 #                                                               #
 #################################################################
 
-input_boolean:
-  zigbee_permit_join:
-    name: Allow devices to join
-    initial: off
-    icon: mdi:cellphone-wireless
+#input_boolean:
+#  zigbee_permit_join:
+#    name: Allow devices to join
+#    initial: off
+#    icon: mdi:cellphone-wireless
 
 #################################################################
 #                                                               #
@@ -27,10 +27,10 @@ input_boolean:
 #                                                               #
 #################################################################
 
-timer:
-  zigbee_permit_join:
-    name: Time remaining
-    duration: 600
+#timer:
+#  zigbee_permit_join:
+#    name: Time remaining
+#    duration: 600
 
 #################################################################
 #                                                               #
@@ -38,7 +38,7 @@ timer:
 #                                                               #
 #################################################################
 
-sensor:
+#sensor:
 
 ####################################################
 #                                                  #
@@ -46,10 +46,10 @@ sensor:
 #                                                  #
 ####################################################
 
-  - platform: mqtt
-    name: Bridge state
-    state_topic: "zigbee2mqtt/bridge/state"
-    icon: mdi:router-wireless
+#  - platform: mqtt
+#    name: Bridge state
+#    state_topic: "zigbee2mqtt/bridge/state"
+#    icon: mdi:router-wireless
 
 #################################################################
 #                                                               #
@@ -57,53 +57,53 @@ sensor:
 #                                                               #
 #################################################################
 
-automation:
+#automation:
 
-  - id: enable_zigbee_join
-    alias: Enable Zigbee joining
-    hide_entity: true
-    trigger:
-      platform: state
-      entity_id: input_boolean.zigbee_permit_join
-      to: 'on'
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'true'
-    - service: timer.start
-      data:
-        entity_id: timer.zigbee_permit_join
+#  - id: enable_zigbee_join
+#    alias: Enable Zigbee joining
+#    hide_entity: true
+#    trigger:
+#      platform: state
+#      entity_id: input_boolean.zigbee_permit_join
+#      to: 'on'
+#    action:
+#    - service: mqtt.publish
+#      data:
+#        topic: zigbee2mqtt/bridge/config/permit_join
+#        payload: 'true'
+#    - service: timer.start
+#      data:
+#        entity_id: timer.zigbee_permit_join
 
-  - id: disable_zigbee_join
-    alias: Disable Zigbee joining
-    trigger:
-    - entity_id: input_boolean.zigbee_permit_join
-      platform: state
-      to: 'off'
-    action:
-    - data:
-        payload: 'false'
-        topic: zigbee2mqtt/bridge/config/permit_join
-      service: mqtt.publish
-    - data:
-        entity_id: timer.zigbee_permit_join
-      service: timer.cancel
-    hide_entity: true
+#  - id: disable_zigbee_join
+#    alias: Disable Zigbee joining
+#    trigger:
+#    - entity_id: input_boolean.zigbee_permit_join
+#      platform: state
+#      to: 'off'
+#    action:
+#    - data:
+#        payload: 'false'
+#        topic: zigbee2mqtt/bridge/config/permit_join
+#      service: mqtt.publish
+#    - data:
+#        entity_id: timer.zigbee_permit_join
+#      service: timer.cancel
+#    hide_entity: true
 
-  - id: disable_zigbee_join_timer
-    alias: Disable Zigbee joining by timer
-    hide_entity: true
-    trigger:
-    - platform: event
-      event_type: timer.finished
-      event_data:
-        entity_id: timer.zigbee_permit_join
-    action:
-    - service: mqtt.publish
-      data:
-        topic: zigbee2mqtt/bridge/config/permit_join
-        payload: 'false'
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.zigbee_permit_join
+#  - id: disable_zigbee_join_timer
+#    alias: Disable Zigbee joining by timer
+#    hide_entity: true
+#    trigger:
+#    - platform: event
+#      event_type: timer.finished
+#      event_data:
+#        entity_id: timer.zigbee_permit_join
+#    action:
+#    - service: mqtt.publish
+#      data:
+#        topic: zigbee2mqtt/bridge/config/permit_join
+#        payload: 'false'
+#    - service: input_boolean.turn_off
+#      data:
+#        entity_id: input_boolean.zigbee_permit_join

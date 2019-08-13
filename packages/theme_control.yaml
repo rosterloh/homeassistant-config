@@ -6,137 +6,27 @@
 
 #################################################################
 #                                                               #
-#                            Themes                             #
+#                         Input Select                          #
 #                                                               #
 #################################################################
 
-frontend:
-  themes:
-    midnight:
-# Main colors
-      primary-color: '#5294E2'                                                        # Header
-      accent-color: '#E45E65'                                                         # Accent color
-      dark-primary-color: 'var(--accent-color)'                                       # Hyperlinks                                         
-      light-primary-color: 'var(--accent-color)'                                      # Horizontal line in about
-                                                                             
-# Text colors                                                                  
-      primary-text-color: '#FFFFFF'                                                   # Primary text colour, here is referencing dark-primary-color
-      text-primary-color: 'var(--primary-text-color)'                                 # Primary text colour
-      secondary-text-color: '#5294E2'                                                 # For secondary titles in more info boxes etc.
-      disabled-text-color: '#7F848E'                                                  # Disabled text colour
-      label-badge-border-color: 'green'                                               # Label badge border, just a reference value   
-
-# Background colors                                                            
-      primary-background-color: '#383C45'                                             # Settings background
-      secondary-background-color: '#383C45'                                           # Main card UI background  
-      divider-color: 'rgba(0, 0, 0, .12)'                                             # Divider 
-  
-# Table rows                                                                   
-      table-row-background-color: '#353840'                                           # Table row
-      table-row-alternative-background-color: '#3E424B'                               # Table row alternative
-                                                                             
-# Nav Menu                                                                   
-      paper-listbox-color: 'var(--primary-color)'                                     # Navigation menu selection hoover
-      paper-listbox-background-color: '#2E333A'                                       # Navigation menu background
-      paper-grey-50: 'var(--primary-text-color)'                                   
-      paper-grey-200: '#414A59'                                                       # Navigation menu selection
-                                                                             
-# Paper card                                                               
-      paper-card-header-color: 'var(--accent-color)'                                  # Card header text colour
-      paper-card-background-color: '#434954'                                          # Card background colour
-      paper-dialog-background-color: '#434954'                                        # Card dialog background colour
-      paper-item-icon-color: 'var(--primary-text-color)'                              # Icon color
-      paper-item-icon-active-color: '#ffc107'                                         # Icon color active
-      paper-item-icon_-_color: 'green'           
-      paper-item-selected_-_background-color: '#434954'                               # Popup item select                      
-      paper-tabs-selection-bar-color: 'green'
-
-# Labels 
-      label-badge-red: 'var(--accent-color)'                                          # References the brand colour label badge border
-      label-badge-text-color: 'var(--primary-text-color)'                             # Now same as label badge border but that's a matter of taste
-      label-badge-background-color: '#2E333A'                                         # Same, but can also be set to transparent here
-
-# Switches
-      paper-toggle-button-checked-button-color: 'var(--accent-color)'
-      paper-toggle-button-checked-bar-color: 'var(--accent-color)'
-      paper-toggle-button-checked-ink-color: 'var(--accent-color)'
-      paper-toggle-button-unchecked-button-color: 'var(--disabled-text-color)'
-      paper-toggle-button-unchecked-bar-color: 'var(--disabled-text-color)'
-      paper-toggle-button-unchecked-ink-color: 'var(--disabled-text-color)'  
-
-# Sliders
-      paper-slider-knob-color: 'var(--accent-color)'
-      paper-slider-knob-start-color: 'var(--accent-color)'
-      paper-slider-pin-color: 'var(--accent-color)'
-      paper-slider-active-color: 'var(--accent-color)'
-      paper-slider-container-color: 'linear-gradient(var(--primary-background-color), var(--secondary-background-color)) no-repeat'
-      paper-slider-secondary-color: 'var(--secondary-background-color)'
-      paper-slider-disabled-active-color: 'var(--disabled-text-color)'
-      paper-slider-disabled-secondary-color: 'var(--disabled-text-color)'
-
-# Google colors
-      google-red-500: '#E45E65'
-      google-green-500: '#39E949'
-
-    dark:
-# Colors
-      text-color: '#DADADB'                                                           # Grey text
-      text-medium-light-color: '#A0A2A8'                                              # Medium-light grey text
-      text-medium-color: '#80828A'                                                    # Medium grey text
-      text-dark-color: '#6A6B74'                                                      # Dark grey text
-      accent-color: '#008bef'                                                         # Blue
-      accent-medium-color: '#2686c1'                                                  # Decent blue
-      background-color: '#3b4049'                                                     # Dark grey background
-      background-color-2: '#484E59'                                                   # Light grey background
-      background-card-color: '#434952'                                                # Grey background
-      border-color: '#383C46'                                                         # Grey border
-
-# Header
-      primary-color: '#363941'                                                        # Background
-      text-primary-color: 'var(--text-color)'                                         # Text
-  
-# Left Menu
-      paper-listbox-background-color: 'var(--background-color)'                       # Background
-      sidebar-icon-color: 'var(--text-medium-color)'                                  # icons
-      sidebar-selected-icon-color: 'var(--text-medium-light-color)'                   # Selected row icon and background (15%)
-      sidebar-selected-text-color: 'var(--text-color)'                                # Selected row label
-
-# UI
-      paper-card-header-color: 'var(--text-color)'                                    # Title in settings
-      primary-background-color: 'var(--background-color)'                             # Background (also title background in left menu)
-      mdc-theme-primary: 'var(--accent-medium-color)'                                 # Action Buttons (save, restart etc.)
-  
-# Card
-      paper-card-background-color: 'var(--background-card-color)'                     # Background
-      dark-primary-color: 'var(--text-color)'
-      primary-text-color: 'var(--text-color)'
-      paper-listbox-color: 'var(--text-color)'
-      light-primary-color: 'var(--text-dark-color)'
-      secondary-text-color: 'var(--text-medium-color)'
-      disabled-text-color: 'var(--text-dark-color)'
-      paper-dialog-button-color: 'var(--text-color)'
-      secondary-background-color: 'var(--background-color-2)'                         # Background more info title
-
-# Icons
-      paper-item-icon-color: 'var(--text-dark-color)'                                 # Off
-      paper-item-icon-active-color: 'var(--accent-color)'                             # On
-  
-# Switches
-      paper-toggle-button-checked-button-color: 'var(--text-medium-light-color)'      # Knob On
-      paper-toggle-button-checked-bar-color: '#009FFF'                                # Background On
-      paper-toggle-button-unchecked-button-color: 'var(--text-medium-light-color)'    # Knob Off
-      paper-toggle-button-unchecked-bar-color: '#767682'                              # Background Off
-  
-# Shadows
-      shadow-elevation-2dp_-_box-shadow: 'inset 0px 0px 0px 1px var(--border-color)'
-      shadow-elevation-4dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-6dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-8dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-10dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-12dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-14dp_-_box-shadow: 'var(--shadow-elevation-2dp_-_box-shadow)'
-      shadow-elevation-16dp_-_box-shadow: '0px 0px 0px 3px var(--text-dark-color)'
-  
+input_select:
+  theme_selector:
+    name: Theme Selector 
+    options:
+      - Homekit Blue Light
+      - Homekit Blue Dark
+      - Homekit Gray Light
+      - Homekit Gray Dark
+      - Homekit Orange
+      - Standard Blue Light
+      - Standard Blue Dark
+      - Standard Gray Light
+      - Standard Gray Dark
+      - Standard Orange
+      - Automatic (default)
+    initial: Automatic (default)
+    
 #################################################################
 #                                                               #
 #                          Automations                          #
@@ -144,11 +34,195 @@ frontend:
 #################################################################
 
 automation:
-  - alias: 'Set Theme to Midnight'
+  - alias: 'Set theme light at startup'
+    initial_state: 'true'
     trigger:
-    - platform: homeassistant
-      event: start
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'above_horizon'
     action:
-    - service: frontend.set_theme
+      service: frontend.set_theme
       data:
-        name: dark
+        name: Homekit Gray Light
+
+  - alias: 'Set theme dark at startup'
+    initial_state: 'true'
+    trigger:
+      - platform: homeassistant
+        event: start
+    condition:
+      condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+
+  - alias: 'theme selector input_select 1'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Gray Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 2'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Gray Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 3'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Blue Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Blue Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 4'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Blue Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Blue Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 5'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Blue Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Blue Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 6'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Blue Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Blue Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 7'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Automatic (default)'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 8'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Gray Light'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Gray Light
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 9'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Gray Dark'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Gray Dark
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 10'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Homekit Orange'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Orange
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  - alias: 'theme selector input_select 11'
+    initial_state: true
+    trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
+        to: 'Standard Orange'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Standard Orange
+      - service: homeassistant.turn_off
+        data:
+          entity_id: group.theme_selector
+  # Theme Day/Night Cycle
+  - alias: 'Set dark theme for the night'
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunset
+        offset: '+00:00:00'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Dark
+  - alias: 'Set light theme for the day'
+    initial_state: true
+    trigger:
+      - platform: sun
+        event: sunrise
+        offset: '+00:00:00'
+    action:
+      - service: frontend.set_theme
+        data:
+          name: Homekit Gray Light

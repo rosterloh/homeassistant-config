@@ -1,0 +1,141 @@
+title: Cat
+path: cat
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - name1: Location
+          - icon1: map
+          - path1: location 
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Juno'
+      - type: custom:swipe-card
+        parameters:
+          effect: 'coverflow'
+          grabCursor: true
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '#### Information >'
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '##### Attendance'
+              - type: horizontal-stack
+                cards:
+                  - !include ../decluttering_templates/blank-card.yaml
+                  - type: 'custom:vertical-stack-in-card'
+                    cards:
+                      - type: custom:decluttering-card
+                        template: check_button_card
+                        variables:
+                          - title: Brushing
+                          - entity: sensor.animals_juno_brushing
+                          - value 1: 3 days
+                          - value 2: 6 days
+                          - value 3: 9 days
+                      - type: custom:decluttering-card
+                        template: check_button_card
+                        variables:
+                          - title: Vaccinations
+                          - entity: sensor.animals_juno_vaccinations
+                          - value 1: 3 months
+                          - value 2: 6 months
+                          - value 3: 9 months
+                      - type: custom:decluttering-card
+                        template: check_button_card
+                        variables:
+                          - title: Flea Drops
+                          - entity: sensor.animals_juno_fleadrops
+                          - value 1: 1 month
+                          - value 2: 3 months
+                          - value 3: 6 months
+                      - type: custom:decluttering-card
+                        template: check_button_card
+                        variables:
+                          - title: Deworming
+                          - entity: sensor.animals_juno_worm
+                          - value 1: 2 months
+                          - value 2: 3 months
+                          - value 3: 4 months
+                      - type: custom:decluttering-card
+                        template: check_button_card
+                        variables:
+                          - title: Trim
+                          - entity: sensor.animals_juno_trim
+                          - value 1: 9 months
+                          - value 2: 12 months
+                          - value 3: 18 months
+                  - !include ../decluttering_templates/blank-card.yaml
+              - type: horizontal-stack
+                cards:
+                  - !include ../decluttering_templates/blank-card.yaml
+                  - type: entities
+                    style: |
+                      ha-card {
+                        background: var(--homekit-card-off);
+                        --paper-item-icon-color: var(--icon-color-off);
+                        color: var(--name-color-off);
+                        border-radius: var(--border-radius);
+                        font-family: Helvetica;
+                        font-size: 12px;
+                        opacity: 0.8;
+                      }
+                    entities:
+                      - type: weblink
+                        name: Springwell Veterinary Surgery
+                        icon: 'mdi:phone'
+                        url: tel:+441442822151
+                  - !include ../decluttering_templates/blank-card.yaml
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '#### < Location'
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: "##### History & Map"
+              - type: horizontal-stack
+                cards:
+                  - !include ../decluttering_templates/blank-card.yaml
+                  - type: history-graph
+                    style: |
+                      ha-card {
+                        background: var(--homekit-card-off);
+                        --paper-item-icon-color: var(--icon-color-off);
+                        color: var(--name-color-off);
+                        border-radius: var(--border-radius);
+                        font-family: Helvetica;
+                        opacity: 0.8;
+                      }
+                    entities:
+                      - person.juno
+                  - !include ../decluttering_templates/blank-card.yaml
+              - type: horizontal-stack
+                cards:
+                  - !include ../decluttering_templates/blank-card.yaml
+                  - type: map
+                    style: |
+                      ha-card {
+                        background: var(--homekit-card-off);
+                        --paper-item-icon-color: var(--icon-color-off);
+                        color: var(--name-color-off);
+                        border-radius: var(--border-radius);
+                        font-family: Helvetica;
+                        font-size: 12px;
+                        overflow: hidden;
+                      }
+                    aspect_ratio: 4x4
+                    default_zoom: 15
+                    entities:
+                      - person.tala
+                  - !include ../decluttering_templates/blank-card.yaml

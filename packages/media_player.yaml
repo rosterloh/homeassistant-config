@@ -21,3 +21,58 @@ media_player:
     name: Living Room TV
     filename: webostv.conf
     timeout: 5
+
+#################################################################
+#                                                               #
+#                            Scenes                             #
+#                                                               #
+#################################################################
+
+scene:
+
+  - name: Livingroom dim
+    entities:
+      light.dimmable_light_1: false
+      light.dimmable_light_2: false
+      light.dimmable_light_3:
+        state: on
+        transition: 2
+        brightness_pct: 15
+        color_temp: 280
+      light.dimmable_light_4: false
+      light.dimmable_light_5: false
+      light.dimmable_light_6: false
+      light.dimmable_light_7: false
+      light.dimmable_light_8:
+        state: on
+        transition: 2
+        brightness_pct: 25
+        color_temp: 280
+
+#################################################################
+#                                                               #
+#                         Automation                            #
+#                                                               #
+#################################################################
+
+automation:
+
+  - alias: 'Dim Lights for Lounge Media'
+    initial_state: 'true'
+    trigger:
+    - entity_id: media_player.living_room_tv
+      platform: state
+      from: 'off'
+      to: 'idle'
+    condition:
+      condition: or
+      conditions:
+        - after: sunset
+          condition: sun
+          after_offset: "-01:00:00"
+        - before: sunrise
+          condition: sun
+    action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.livingroom_dim

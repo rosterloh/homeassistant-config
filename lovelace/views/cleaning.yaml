@@ -1,0 +1,37 @@
+title: Cleaning
+path:  cleaning
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - name1: Vacuum
+          - icon1: robot-vacuum
+          - path1: vacuum
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Cleaning Lists'
+      - type: custom:swipe-card
+        parameters:
+          effect: 'coverflow'
+          grabCursor: true
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '#### Cleaning >'
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '##### Checklist'
+              - type: horizontal-stack
+                cards:
+      - type: 'custom:button-card'
+        color_type: blank-card
+        styles:
+          card:
+            - height: 50px

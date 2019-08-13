@@ -33,7 +33,6 @@ device_tracker:
 
   - platform: google_maps
     username: !secret google_username
-    password: !secret google_password
 
 #################################################################
 #                                                               #
@@ -99,21 +98,3 @@ script:
       - service: nest.set_away_mode
         data:
           away_mode: home
-
-#################################################################
-#                                                               #
-#                            Zones                              #
-#                                                               #
-#################################################################
-zone:
-  - name: Work
-    latitude: !secret latitude_office
-    longitude: !secret longitude_office
-    radius: 200
-    icon: mdi:briefcase
-
-  - name: Home
-    latitude: !secret latitude_home
-    longitude: !secret longitude_home
-    radius: 200
-    icon: mdi:home

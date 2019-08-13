@@ -23,11 +23,11 @@ automation:
       platform: time_pattern
       hours: '/168'
     action:
-    - service: hassio.snapshot_full
-      data_template:
-        name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
-    - delay: 1:00
-    - service: rest_command.google_backup
+      - service: hassio.snapshot_full
+        data_template:
+          name: Automated Backup {{ now().strftime('%Y-%m-%d') }}
+      - delay: 1:00
+      - service: rest_command.google_backup
 
 ## Notify result        
   - alias: Notify backup complete
@@ -35,6 +35,6 @@ automation:
       platform: mqtt
       topic: googlebackup/result
     action:
-    - service: notify.slack
-      data_template:
-        message: '{{ trigger.payload }}'
+      - service: notify.slack
+        data_template:
+          message: '{{ trigger.payload }}'

@@ -1,0 +1,358 @@
+# Weather Card and Quick Access Menu, These are
+# Conditional and the conditions are set on the
+# alarm. If you have a different alarm entity,
+# use that instead.
+type: vertical-stack
+cards:
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: 'disarmed'
+    card:
+      type: custom:swipe-card
+      start_card: 2
+      parameters:
+        effect: 'coverflow'
+        grabCursor: true
+      cards:
+        - type: custom:decluttering-card
+          template: back_button
+          variables:
+            - name1: Profile
+            - icon1: human-greeting
+            - lovelace1: profile
+            - path1: ' '
+            - entity3: alarm_control_panel.home_alarm
+            - name3: Alarm 
+            - icon3: shield-check
+            - path3: alarm
+            - hold_action:
+                action: call-service
+                service: input_boolean.toggle
+                service_data:
+                  entity_id: input_boolean.simple_alarm
+        - !include ../decluttering_templates/simple-weather-card-template.yaml
+
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state_not: 'disarmed'
+    card:
+      type: custom:swipe-card
+      start_card: 2
+      parameters:
+        effect: 'coverflow'
+        grabCursor: true
+      cards:
+        - !include ../decluttering_templates/simple-weather-card-template.yaml
+        - type: custom:decluttering-card
+          template: back_button
+          variables:
+            - name1: Profile
+            - icon1: human-greeting
+            - lovelace1: profile
+            - path1: ' '
+            - entity3: alarm_control_panel.home_alarm
+            - name3: Alarm 
+            - icon3: shield-check
+            - path3: alarm
+            - hold_action:
+                action: call-service
+                service: input_boolean.toggle
+                service_data:
+                  entity_id: input_boolean.simple_alarm
+
+# Frontpage Picture Elements, For variables options please
+# check the decluttering templates. These cards are conditional
+# the conditions are set on a person being home or away.
+
+  # Left Photo
+  - type: horizontal-stack
+    cards:
+      - !include ../decluttering_templates/blank-card.yaml
+      - type: conditional
+        conditions:
+          - entity: person.jess
+            state_not: "home"
+        card:
+          type: custom:decluttering-card
+          template: person_elements
+          variables:
+            - name: jess
+            - namesensor: !secret jess_sensor
+            - direction: left
+            - image: '/local/img/jess.jpg'
+            - travel: sensor.travel_time_jess
+            - battery: sensor.jess_phone_battery
+            - icon: home
+            - tap_action:
+                action: navigate
+                navigation_path: /lovelace/jess
+      - type: conditional
+        conditions:
+          - entity: person.jess
+            state: "home"
+        card:
+          type: custom:decluttering-card
+          template: person_elements
+          variables:
+            - name: jess
+            - namesensor: !secret jess_sensor
+            - direction: left
+            - image: '/local/img/jess.jpg'
+            - travel: sensor.travel_time_jess_work
+            - battery: sensor.jess_phone_battery
+            - icon: office-building
+            - tap_action:
+                action: navigate
+                navigation_path: /lovelace/jess
+
+# Right Photo
+      - type: conditional
+        conditions:
+          - entity: person.richard
+            state_not: "home"
+        card:
+          type: custom:decluttering-card
+          template: person_elements
+          variables:
+            - name: richard
+            - namesensor: !secret rich_sensor
+            - direction: right
+            - image: '/local/img/richard.jpg'
+            - travel: sensor.travel_time_richard
+            - battery: sensor.richard_phone_battery
+            - icon: home
+            - tap_action:
+                action: navigate
+                navigation_path: /lovelace/richard
+      - type: conditional
+        conditions:
+          - entity: person.richard
+            state: "home"
+        card:
+          type: custom:decluttering-card
+          template: person_elements
+          variables:
+            - name: richard
+            - namesensor: !secret rich_sensor
+            - direction: right
+            - image: '/local/img/richard.jpg'
+            - travel: sensor.travel_time_richard_work
+            - battery: sensor.richard_phone_battery
+            - icon: office-building
+            - tap_action:
+                action: navigate
+                navigation_path: /lovelace/richard
+      - !include ../decluttering_templates/blank-card.yaml
+
+# Photo Middle
+  - type: horizontal-stack
+    cards:
+      - !include ../decluttering_templates/blank-card.yaml
+      - type: picture-elements
+        style: |
+          ha-card {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+          }
+        image: '/local/img/juno.jpg'
+        elements:
+          - type: image
+            entity: person.juno
+            image: '/local/img/juno.png'
+            tap_action:
+              action: navigate
+              navigation_path: /lovelace/cat
+            hold_action:
+              action: navigate
+              navigation_path: /lovelace/cat
+            style:
+              left: 50%
+              top: 50%
+              width: 100%
+              heigth: 100%
+          - type: state-label
+            entity: person.juno
+            style:
+              left: 0
+              bottom: 0
+              pointer-events: none
+              font-size: 16px
+              line-height: 24px
+              color: white
+              background-color: rgba(0, 0, 0, 0.3)
+              width: 100%
+              transform: initial
+              padding: 0 8px
+      - !include ../decluttering_templates/blank-card.yaml
+
+# Frontpage Shortcut Buttons, These are once again conditional
+# If the alarm is set to anything but disarmed these buttons
+# will hide and only the quick access menu will be accessible.
+
+  # First Row
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: 'disarmed'
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../decluttering_templates/blank-card.yaml
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Climate
+            - label: Control
+            - icon: thermostat
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/climate
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/climate
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Light
+            - label: Control
+            - icon: floor-lamp
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/lights
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/lights
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Device
+            - label: Control
+            - icon: power-plug
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/devices
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/devices
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Security
+            - label: Panel
+            - icon: cctv
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/security
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/security
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - !include ../decluttering_templates/blank-card.yaml
+
+  # Second Row
+  - type: conditional
+    conditions:
+      - entity: alarm_control_panel.home_alarm
+        state: 'disarmed'
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../decluttering_templates/blank-card.yaml
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Cleaning
+            - label: Lists
+            - icon: broom
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/cleaning
+                haptic: light
+            - hold_action:
+                action: navigate
+                navigation_path: /lovelace/cleaning
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Scenes
+            - label: Presets
+            - icon: arrange-send-backward
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/scenes
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/scenes
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Vacuum
+            - label: Albert
+            - icon: robot-vacuum
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/vacuum
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/vacuum
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - type: custom:decluttering-card
+          template: switch_button_card
+          variables:
+            - name: Menu
+            - label: All Options
+            - icon: menu
+            - show_state: false
+            - tap_action: 
+                action: navigate
+                navigation_path: /lovelace/menu
+                haptic: light
+            - hold_action: 
+                action: navigate
+                navigation_path: /lovelace/menu
+                haptic: light
+            - entity: input_boolean.dummy1
+            - margin-right: 40px
+            - opacity: 0.8
+        - !include ../decluttering_templates/blank-card.yaml

@@ -1,0 +1,30 @@
+  light.plant_lights:
+    title: Workshop Plants
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+    card:
+      type: custom:decluttering-card
+      template: light_popup_card
+      variables:
+        - entity: light.plant_lights
+  light.workshop_lights:
+    title: Workshop LEDs
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+    card:
+      type: custom:decluttering-card
+      template: light_popup_card
+      variables:
+        - entity: light.workshop_lights
+  light.light_1:
+    title: Workshop Light
+    style:
+      border-radius: var(--border-radius)
+      background: var(--background-image)
+    card:
+      type: custom:decluttering-card
+      template: light_popup_card
+      variables:
+        - entity: light.lights_1

@@ -18,42 +18,62 @@ input_boolean:
 
 #################################################################
 #                                                               #
+#                        Input Datetime                         #
+#                                                               #
+#################################################################
+
+input_datetime:
+  aerogarden_leds_on:
+    name: Aerogarden LEDs on time
+    has_date: false
+    has_time: true
+    initial: 20:00
+  aerogarden_leds_off:
+    name: Aerogarden LEDs off time
+    has_date: false
+    has_time: true
+    initial: 08:00
+
+#################################################################
+#                                                               #
 #                         Automation                            #
 #                                                               #
 #################################################################
 
 automation:
 
-  - id: enable_plant_leds
-    alias: Enable AeroGarden LEDs
-    hide_entity: true
+  - id: plant_leds_on
+    alias: AeroGarden LEDs automatic on
     trigger:
-      platform: time
-      at: '20:00:00'
+      platform: template
+      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_on', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
     condition:
       condition: state
       entity_id: input_boolean.aerogarden_leds_automate
       state: 'on'
     action:
-      - service: light.turn_on
-        data:
-          entity_id:
-            - light.aerogarden_plant_leds
-      - delay: 14:00
-      - service: light.turn_off
-        data:
-          entity_id:
-            - light.aerogarden_plant_leds
-         
+      service: light.turn_on
+      entity_id: light.aerogarden_plant_leds
+
+  - id: plant_leds_on
+    alias: AeroGarden LEDs automatic off
+    trigger:
+      platform: template
+      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_off', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+    condition:
+      condition: state
+      entity_id: input_boolean.aerogarden_leds_automate
+      state: 'on'
+    action:
+      service: light.turn_off
+      entity_id: light.aerogarden_plant_leds
+
   - id: disable_plant_leds
     alias: Disable AeroGarden LEDs
-    hide_entity: true
     trigger:
       platform: state
       entity_id: input_boolean.aerogarden_leds_automate
       to: 'off'
     action:
       service: light.turn_off
-      data:
-        entity_id:
-         - light.aerogarden_plant_leds
+      entity_id: light.aerogarden_plant_leds

@@ -1,0 +1,37 @@
+title: Calendar
+path: calendar
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: back_button
+        variables:
+          - name1: Links
+          - icon1: link-variant
+          - path1: links
+      - type: custom:decluttering-card
+        template: header_text
+        variables:
+          - content: '## Important Dates'
+      - type: vertical-stack
+        cards:
+          - type: custom:decluttering-card
+            template: header_text
+            variables:
+              - content: '##### Important Dates'
+          - type: horizontal-stack
+            cards:
+              - !include ../decluttering_templates/blank-card.yaml
+              - type: entities
+                style: |
+                  ha-card {
+                    background: var(--homekit-card-off);
+                    --paper-item-icon-color: var(--icon-color-off);
+                    color: var(--name-color-off);
+                    border-radius: var(--border-radius);
+                  }
+                entities:
+                  - entity: sensor.anniversary
+                    icon: mdi:ring
+                    name: Anniversary
+              - !include ../decluttering_templates/blank-card.yaml
