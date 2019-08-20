@@ -30,7 +30,7 @@ cards:
               - content: '##### Frontdoor Camera'
           - type: horizontal-stack
             cards:
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
               - type: picture-entity
                 style: |
                   ha-card {
@@ -38,8 +38,8 @@ cards:
                     overflow: hidden;
                   }
                 entity: camera.front_door
-              - !include ../decluttering_templates/blank-card.yaml
-          - !include notifications.yaml
+              - !include ../includes/blank-card.yaml
+          - !include ../notifications/notifications.yaml
 ### End of tablet part
 
 # Notifications Panel for the frontpage for all users that are not
@@ -48,4 +48,4 @@ cards:
       default:
         type: vertical-stack
         cards:
-          - !include notifications.yaml
+          - !include ../notifications/notifications.yaml

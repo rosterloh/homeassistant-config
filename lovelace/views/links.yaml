@@ -13,3 +13,5 @@ cards:
         template: header_text
         variables:
           - content: '## Links'
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

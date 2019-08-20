@@ -6,9 +6,9 @@ cards:
       - type: custom:decluttering-card
         template: back_button
         variables:
-          - name1: PostNL
-          - icon1: package-variant-closed
-          - path1: postnl-stephanie
+          - name1: Weather
+          - icon1: weather-sunny
+          - path1: weather
       - type: custom:decluttering-card
         template: header_text
         variables:

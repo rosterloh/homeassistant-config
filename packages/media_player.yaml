@@ -10,7 +10,7 @@ media_player:
     host: !secret shield
     name: "ShieldTV"
     adb_server_ip: !secret hass
-    adb_server_port: 5037
+    adb_server_port: 5038
     apps:
       "amazon": "Amazon Prime Video"
       "youtube": "Youtube"
@@ -51,6 +51,27 @@ scene:
 
 #################################################################
 #                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
+group:
+
+  living_room_overhead:
+    name: Livingroom Overhead Lights
+    entities:
+      - light.dimmable_light_1
+      - light.dimmable_light_2
+      - light.dimmable_light_3
+      - light.dimmable_light_4
+      - light.dimmable_light_5
+      - light.dimmable_light_6
+      - light.dimmable_light_7
+      - light.dimmable_light_8
+
+
+#################################################################
+#                                                               #
 #                         Automation                            #
 #                                                               #
 #################################################################
@@ -60,10 +81,10 @@ automation:
   - alias: 'Dim Lights for Lounge Media'
     initial_state: 'true'
     trigger:
-    - entity_id: media_player.living_room_tv
+    - entity_id: media_player.shieldtv
       platform: state
       from: 'off'
-      to: 'idle'
+      to: 'standby'
     condition:
       condition: or
       conditions:
@@ -76,3 +97,25 @@ automation:
     - service: scene.turn_on
       data:
         entity_id: scene.livingroom_dim
+
+  - alias: 'Lounge Lights on when TV off'
+    initial_state: 'true'
+    trigger:
+    - entity_id: media_player.shieldtv
+      platform: state
+      from: 'standby'
+      to: 'off'
+    condition:
+      condition: or
+      conditions:
+        - after: sunset
+          condition: sun
+          after_offset: "-01:00:00"
+        - before: sunrise
+          condition: sun
+    action:
+    - service: light.turn_on
+      data:
+        entity_id: light.living_room
+        transition: 3
+        brightness_pct: 60

@@ -30,8 +30,5 @@ cards:
                   - content: '##### Checklist'
               - type: horizontal-stack
                 cards:
-      - type: 'custom:button-card'
-        color_type: blank-card
-        styles:
-          card:
-            - height: 50px
+                  - !include ../includes/blank-card.yaml
+              - !include ../includes/bottom-card.yaml

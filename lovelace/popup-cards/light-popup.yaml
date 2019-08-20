@@ -1,30 +1,50 @@
   light.plant_lights:
     title: Workshop Plants
     style:
+      color: white
       border-radius: var(--border-radius)
       background: var(--background-image)
     card:
-      type: custom:decluttering-card
-      template: light_popup_card
-      variables:
-        - entity: light.plant_lights
-  light.workshop_lights:
+      type: vertical-stack
+      cards:
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: light_popup_card
+              variables:
+                - entity: light.light.plant_lights
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml
+  light.gledopto_gl_c_007_1d3ab8f9_11:
     title: Workshop LEDs
     style:
+      color: white
       border-radius: var(--border-radius)
       background: var(--background-image)
     card:
-      type: custom:decluttering-card
-      template: light_popup_card
-      variables:
-        - entity: light.workshop_lights
-  light.light_1:
+      - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: light_popup_card
+              variables:
+                - entity: light.gledopto_gl_c_007_1d3ab8f9_11
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml
+  light.philips_lct007_1047db70_11:
     title: Workshop Light
     style:
+      color: white
       border-radius: var(--border-radius)
       background: var(--background-image)
     card:
-      type: custom:decluttering-card
-      template: light_popup_card
-      variables:
-        - entity: light.lights_1
+      - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: light_popup_card
+              variables:
+                - entity: light.philips_lct007_1047db70_11
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

@@ -5,7 +5,7 @@
 #################################################################
 
 octoprint:
-  host: 192.168.1.22
+  host: 192.168.1.28
   api_key: !secret octopi_api
   name: Prusa
   bed: true
@@ -20,8 +20,8 @@ octoprint:
 camera:
   - platform: mjpeg
     name: OctoPrint
-    still_image_url: http://192.168.1.22/webcam/?action=snapshot
-    mjpeg_url: http://192.168.1.22/webcam/?action=stream
+    still_image_url: http://192.168.1.28/webcam/?action=snapshot
+    mjpeg_url: http://192.168.1.28/webcam/?action=stream
     
 #################################################################
 #                                                               #
@@ -65,3 +65,23 @@ sensor:
         friendly_name_template: "{{ states.switch.prusa_printer.name}} Today's Consumption"
         value_template: '{{ states.switch.prusa_printer.attributes["today_energy_kwh"] | float }}'
         unit_of_measurement: 'kWh'
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+  alias: Send a notice when 3D print is done
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.prusa_printing
+      to: "off"
+      from: "on"
+  action:
+    - service: notify.slack
+      data:
+        message: "Your 3D print is complete"
+        title: "Print Complete"

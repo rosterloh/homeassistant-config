@@ -1,6 +1,23 @@
-# These are the parameters you can use in your quickmenu
-# The ones you see here are the default ones, use any of
-# these variables in your config.
+# These are the variables you can use in your decluttering
+# card. Add one or more variables in your decluttering-card.
+# The variables you see below are the default ones. 
+#
+# A standard decluttering-card config would look like:
+# - type: custom:decluttering-card
+#   template: this_templates_name
+#   variables:
+#     - entity: switch.test
+#     - name: test
+# 
+# All the variables you can use are within the default config
+# below. The variables you can use are the first word after each
+# dash -.
+#
+# If you omit adding variables to your decluttering-card
+# it will use defaults instead, which are defined below as well.
+# You can change the default config below. If you only enter a
+# few of the variables it will only use defaults for undefined
+# variables.
 
 # Default Config
 default:
@@ -57,6 +74,12 @@ default:
   - justify-self-name: start
   - padding-left-name: 10px
 
+  # Grid
+  - grid:
+      - grid-template-areas: '"i" "n" "s" "l"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: 1fr min-content min-content
+
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
@@ -96,10 +119,7 @@ card:
       - font-weight: bold
       - padding-left: 10px
       - color: var(--upcoming-color)
-    grid:
-      - grid-template-areas: '"i" "n" "s" "l"'
-      - grid-template-columns: 1fr
-      - grid-template-rows: 1fr min-content min-content
+    grid: '[[grid]]'
     img_cell:
       - align-self: start
       - text-align: start

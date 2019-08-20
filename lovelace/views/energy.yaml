@@ -19,7 +19,7 @@ cards:
           - content: '##### Current'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -28,6 +28,8 @@ cards:
               - line_color: '#ffb414'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -36,6 +38,8 @@ cards:
               - line_color: '#ffb414'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -44,14 +48,16 @@ cards:
               - line_color: '#ffb414'
               - graph: bar
               - extrema: true
-          - !include ../decluttering_templates/blank-card.yaml
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Power'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -60,6 +66,8 @@ cards:
               - line_color: '#1427ff'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -68,6 +76,8 @@ cards:
               - line_color: '#1427ff'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -76,14 +86,16 @@ cards:
               - line_color: '#1427ff'
               - graph: bar
               - extrema: true
-          - !include ../decluttering_templates/blank-card.yaml 
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml 
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Voltage'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -92,6 +104,8 @@ cards:
               - line_color: '#00d8ff'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -100,6 +114,8 @@ cards:
               - line_color: '#00d8ff'
               - graph: bar
               - extrema: true
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -108,7 +124,30 @@ cards:
               - line_color: '#00d8ff'
               - graph: bar
               - extrema: true
-          - !include ../decluttering_templates/blank-card.yaml 
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml
+
+### The following piece is for tablets only
+  - type: custom:state-switch
+    entity: user
+    states:
+      Home Assistant:
+        type: vertical-stack
+        cards:
+          - type: markdown 
+            style: |
+              ha-card {
+                background: none;
+                color: white;
+                box-shadow: none;
+                text-align: end;
+                font-size: 45px;
+                height: 155px;
+              }
+            content: '# [[ sensor.time.state ]]'
+### End of tablet code.
+
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
@@ -117,7 +156,7 @@ cards:
           - content: '##### Energy Today'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -126,8 +165,8 @@ cards:
               - line_color: '#bf00ff'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -136,8 +175,8 @@ cards:
               - line_color: '#bf00ff'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -146,16 +185,16 @@ cards:
               - line_color: '#bf00ff'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
-          - !include ../decluttering_templates/blank-card.yaml 
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml 
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Energy Yesterday'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -164,8 +203,8 @@ cards:
               - line_color: '#c20202'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -174,8 +213,8 @@ cards:
               - line_color: '#c20202'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -184,16 +223,16 @@ cards:
               - line_color: '#c20202'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
-          - !include ../decluttering_templates/blank-card.yaml
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Energy Total'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -202,8 +241,8 @@ cards:
               - line_color: '#00ff95'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -212,8 +251,8 @@ cards:
               - line_color: '#00ff95'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
+              - decimals: 0
+              - font_size: 65
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -222,6 +261,7 @@ cards:
               - line_color: '#00ff95'
               - graph: bar
               - extrema: true
-              - font_size: 45
-              - height: 120
-          - !include ../decluttering_templates/blank-card.yaml
+              - decimals: 0
+              - font_size: 65
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

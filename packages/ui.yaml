@@ -6,76 +6,6 @@
 
 #################################################################
 #                                                               #
-#                         Input Select                          #
-#                                                               #
-#################################################################
-
-input_select:
-  richard:
-    name: Category
-    options:
-      - Agenda
-      - General
-      - Location
-    initial: Agenda
-  jess:
-    name: Category
-    options:
-      - Agenda
-      - General
-      - Location
-    initial: Agenda
-  general:
-    name: Category
-    options:
-      - Dates
-      - Climate
-      - Links
-      - Others
-      - Map
-      - Cameras
-      - Sensors
-      - Washing
-      - Energy
-      - Home
-      - Current
-      - Location
-      - Vacuum
-      - Remote
-      - Scenes
-      - Cleaning
-      - Weather
-      - Themes
-      - Lights
-      - Devices
-    initial: Home
-  general2:
-    name: Category
-    options:
-      - Dates
-      - Climate
-      - Links
-      - Others
-      - Map
-      - Cameras
-      - Sensors
-      - Washing
-      - Energy
-      - Home
-      - Current
-      - Location
-      - Vacuum
-      - Remote
-      - Scenes
-      - Cleaning
-      - Weather
-      - Themes
-      - Lights
-      - Devices
-    initial: Home
-
-#################################################################
-#                                                               #
 #                         Input Boolean                         #
 #                                                               #
 #################################################################
@@ -101,3 +31,19 @@ input_boolean:
   scene_goodnight:
   scene_lights_out:
   simple_alarm:
+  notification_slaapkamer_deur:
+  notification_front_door:
+  notification_livingroom_door:
+  notification_washing_machine:
+  notification_dishwasher:
+  notification_alarm:
+  notification_all_calm:
+  notification_smoke_detector:
+  notification_juno:
+  notification_motion_outside:
+  notification_motion_toilet:
+  notification_motion_workshop:
+  notification_vacuum:
+  notification_anniversary:
+  notification_birthday:
+  notification_apk:

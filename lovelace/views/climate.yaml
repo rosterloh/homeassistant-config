@@ -19,7 +19,7 @@ cards:
           - content: '##### Thermostat'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
             template: climate_card
             variables:
@@ -30,15 +30,15 @@ cards:
 #            variables:
 #              - entity: climate.tado_smart_radiator_thermostat_va1671957504
 #              - ambient_temperature: sensor.printer_am2301_temperature
-#          - !include ../decluttering_templates/blank-card.yaml
+#          - !include ../includes/blank-card.yaml
 #      - type: horizontal-stack
 #        cards:
-#          - !include ../decluttering_templates/blank-card.yaml
+#          - !include ../includes/blank-card.yaml
 #          - type: custom:decluttering-card
 #            template: switch_button_card
 #            variables:
 #              - entity: input_boolean.tado_woonkamer
-#              - name: Woonkamer
+#              - name: Downstairs
 #              - icon: radiator
 #              - aspect_ratio: 2/1
 #              - show_label: false
@@ -54,7 +54,7 @@ cards:
 #              - show_label: false
 #              - margin-right: 120px
 #              - size: 15%
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
 
 ### The following piece is for tablets only
   - type: custom:state-switch
@@ -84,97 +84,59 @@ cards:
           - content: '##### Temperature'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
+          - type: custom:decluttering-card
+            template: mini-graph-card
+            variables:
+              - entity: downstairs_thermostat_temperature
+              - name: Downstairs
+              - line_color: '#ffb414'
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
               - entity: bme680_temperature
               - name: Workshop
               - line_color: '#ffb414'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: printer_am2301_temperature
-#              - name: Kleine Kamer
-#              - line_color: '#ffb414'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: temperature_158d0002b546e7
-#              - name: Slaapkamer
-#              - line_color: '#ffb414'
-          - !include ../decluttering_templates/blank-card.yaml 
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../decluttering_templates/blank-card.yaml 
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: sensor.bme680_temperature
-#              - name: Workshop
-#              - line_color: '#ffb414'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: temperature_158d0002b54868
-#              - name: Badkamer
-#              - line_color: '#ffb414'
-#          - type: custom:button-card
-#            color_type: blank-card
-#            aspect_ratio: 1/1
-#          - !include ../decluttering_templates/blank-card.yaml 
+          - type: custom:decluttering-card
+            template: mini-graph-card
+            variables:
+              - entity: lumi_lumi_weather_036b913a_1_1026
+              - name: Aqara
+              - line_color: '#ffb414'
+          - !include ../includes/blank-card.yaml 
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Humidity'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
+          - type: custom:decluttering-card
+            template: mini-graph-card
+            variables:
+              - entity: downstairs_thermostat_humidity
+              - name: Downstairs
+              - line_color: '#1427ff'
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
               - entity: bme680_humidity
               - name: Workshop
               - line_color: '#1427ff'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: printer_am2301_humidity
-#              - name: Kleine Kamer
-#              - line_color: '#1427ff'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: humidity_158d0002b546e7
-#              - name: Slaapkamer
-#              - line_color: '#1427ff'
-          - !include ../decluttering_templates/blank-card.yaml
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../decluttering_templates/blank-card.yaml 
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: waterkoker_am2301_humidity
-#              - name: Keuken
-#              - line_color: '#1427ff'
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: temperature_158d0002b54868
-#              - name: Badkamer
-#              - line_color: '#1427ff'
-          - type: custom:button-card
-            color_type: blank-card
-            aspect_ratio: 1/1
-          - !include ../decluttering_templates/blank-card.yaml 
+          - type: custom:decluttering-card
+            template: mini-graph-card
+            variables:
+              - entity: lumi_lumi_weather_036b913a_1_1029
+              - name: Aqara
+              - line_color: '#1427ff'
+          - !include ../includes/blank-card.yaml
       - type: custom:decluttering-card
         template: header_text
         variables:
           - content: '##### Air Pressure'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml 
+          - !include ../includes/blank-card.yaml 
           - type: custom:decluttering-card
             template: mini-graph-card
             variables:
@@ -183,20 +145,16 @@ cards:
               - line_color: '#00d8ff'
               - font_size: 53
               - height: 120
-#          - type: custom:decluttering-card
-#            template: mini-graph-card
-#            variables:
-#              - entity: pressure_158d0002b54868
-#              - name: Badkamer
-#              - line_color: '#00d8ff'
-#              - font_size: 53
-#              - height: 120
+          - type: custom:decluttering-card
+            template: mini-graph-card
+            variables:
+              - entity: lumi_lumi_weather_036b913a_1_1027
+              - name: Aqara
+              - line_color: '#00d8ff'
+              - font_size: 53
+              - height: 120
           - type: custom:button-card
             color_type: blank-card
             aspect_ratio: 1/1
-          - !include ../decluttering_templates/blank-card.yaml
-      - type: 'custom:button-card'
-        color_type: blank-card
-        styles:
-          card:
-            - height: 10px
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

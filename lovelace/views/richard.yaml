@@ -6,9 +6,9 @@ cards:
       - type: custom:decluttering-card
         template: back_button
         variables:
-          - name1: PostNL
-          - icon1: package-variant-closed 
-          - path1: postnl-jimmy 
+          - name1: Prusa
+          - icon1: download-network 
+          - path1: octoprint 
       - type: custom:decluttering-card
         template: header_text
         variables:
@@ -18,3 +18,25 @@ cards:
         variables:
           - name: richard
           - name-s: richard's
+      - type: custom:flex-table-card
+        title: Trains to Euston
+        icon: mdi:train
+        max_rows: 6
+        entities:
+          include: sensor.next_train_to_eus
+        columns:
+          - name: Time
+            attr_as_list: next_trains
+            modify: x.scheduled
+          - name: Est
+            attr_as_list: next_trains
+            modify: x.estimated
+          - name: Status
+            attr_as_list: next_trains
+            prefix: '<style> cc { color: red; } </style>'
+            modify: 'if (x.status == "LATE") { "<cc>" + x.status + "</cc>" } else { x.status }'
+          - name: Delay
+            attr_as_list: next_trains
+            modify: 'if (x.estimated ) { (parseInt(x.estimated) * 60 + parseInt((x.estimated).slice(3,5))) - (parseInt(x.scheduled) * 60 + parseInt((x.scheduled).slice(3,5))) } else { " " }'
+            suffix: 'm'
+            align: right

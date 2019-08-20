@@ -21,7 +21,7 @@ cards:
               - content: '##### Important Dates'
           - type: horizontal-stack
             cards:
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
               - type: entities
                 style: |
                   ha-card {
@@ -34,4 +34,5 @@ cards:
                   - entity: sensor.anniversary
                     icon: mdi:ring
                     name: Anniversary
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
+          - !include ../includes/bottom-card.yaml

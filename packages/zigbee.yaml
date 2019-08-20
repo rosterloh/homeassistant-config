@@ -6,7 +6,7 @@
 
 zha:
   radio_type: deconz
-  usb_path: /dev/serial/by-id/usb-dresden_elektronik_ingenieurtechnik_GmbH_ConBee_II_DE1962708-if00
+  usb_path: /dev/ttyACM0
   database_path: /config/zigbee.db
  
 #################################################################

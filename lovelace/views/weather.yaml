@@ -24,10 +24,10 @@ cards:
                 template: header_text
                 variables:
                   - content: '#### Overview >'
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
               - type: horizontal-stack
                 cards:
-                  - !include ../decluttering_templates/blank-card.yaml
+                  - !include ../includes/blank-card.yaml
                   - type: custom:weather-card-chart
                     style: |
                       ha-card {
@@ -38,10 +38,15 @@ cards:
                         border-radius: var(--border-radius);
                       }
                     weather: weather.dark_sky
-                  - !include ../decluttering_templates/blank-card.yaml
+                    title: Tun Furlong
+                  - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '##### Detailed Information'
               - type: horizontal-stack
                 cards:
-                  - !include ../decluttering_templates/blank-card.yaml
+                  - !include ../includes/blank-card.yaml
                   - type: custom:more-info-card
                     style: |
                       ha-card {
@@ -52,16 +57,26 @@ cards:
                         border-radius: var(--border-radius);
                       }
                     entity: weather.dark_sky
-                  - !include ../decluttering_templates/blank-card.yaml
+                  - !include ../includes/blank-card.yaml
+              - !include ../includes/bottom-card.yaml
           - type: vertical-stack
             cards:
+              - type: custom:air-visual-card
+                air_pollution_level: sensor.u_s_air_pollution_level
+                air_quality_index: sensor.u_s_air_quality_index
+                main_pollutant: sensor.u_s_main_pollutant
+                city: 'London'
               - type: custom:decluttering-card
                 template: header_text
                 variables:
-                  - content: '#### < Map'          
+                  - content: '#### < Map'
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '##### Rain Radar'
               - type: horizontal-stack
                 cards:
-                  - !include ../decluttering_templates/blank-card.yaml
+                  - !include ../includes/blank-card.yaml
                   - type: iframe
                     style: |
                       ha-card {
@@ -69,6 +84,24 @@ cards:
                         overflow: hidden;
                         box-shadow: none;
                       }
-                    aspect_ratio: 155%
-                    url: https://embed.windy.com/embed2.html?lat=51.7946766&lon=-0.660528&zoom=11&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=49.440&detailLon=1.099&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
-                  - !include ../decluttering_templates/blank-card.yaml
+                    aspect_ratio: 100%
+                    url: https://maps.meteoradar.co.uk/GratisRadar/825/912/verwacht?zoom=9" scrolling=no width=500 height=500 frameborder=no
+                  - !include ../includes/blank-card.yaml
+              - type: custom:decluttering-card
+                template: header_text
+                variables:
+                  - content: '##### Windy'
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: iframe
+                    style: |
+                      ha-card {
+                        border-radius: var(--border-radius);
+                        overflow: hidden;
+                        box-shadow: none;
+                      }
+                    aspect_ratio: 100%
+                    url: https://embed.windy.com/embed2.html?lat=51.7946766&lon=-0.660528&zoom=11&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=51.7946766&detailLon=-0.660528&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
+                  - !include ../includes/blank-card.yaml
+              - !include ../includes/bottom-card.yaml

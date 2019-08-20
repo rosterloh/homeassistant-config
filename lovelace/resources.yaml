@@ -42,3 +42,9 @@
     type: module
   - url: /community_plugin/weather-card/weather-card.js
     type: module
+  - url: /community_plugin/flex-table-card/flex-table-card.js
+    type: js
+  - url: /community_plugin/air-visual-card/air-visual-card.js
+    type: js
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: js

@@ -19,7 +19,7 @@ cards:
           - content: '##### Map'
       - type: horizontal-stack
         cards:
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
           - type: map
             style: |
               ha-card {
@@ -41,4 +41,5 @@ cards:
               - zone.work
               - zone.london
               - zone.tring
-          - !include ../decluttering_templates/blank-card.yaml
+          - !include ../includes/blank-card.yaml
+      - !include ../includes/bottom-card.yaml

@@ -17,6 +17,7 @@ Homekit Gray Light:
   weather-night: 'rgb(255, 251, 239)'
   weather-color: black
   upcoming-color: black
+  header-color: white
   primary-color: '#000000'
   paper-card-background-color: 'rgb(255, 251, 239)'
   primary-background-color: 'rgb(255, 251, 239)'

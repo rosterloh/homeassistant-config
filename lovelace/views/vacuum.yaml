@@ -28,12 +28,20 @@ cards:
                 template: header_text
                 variables:
                   - content: '##### Current Status'
-              - type: custom:decluttering-card
-                template: notification_card
-                variables:
-                  - color: rgba(0, 0, 0, 0.5)
-                  - icon: robot-vacuum
-                  - content: '[[ sensor.vacuum_cleaner_status_sensor.state ]]'
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: markdown
+                    style: |
+                      ha-card {
+                        background: rgba(0, 0, 0, 0.5);
+                        border-radius: var(--border-radius);
+                        font-size: 13px;
+                        font-family: Helvetica;
+                        color: white;
+                      }              
+                    content: '<ha-icon icon="mdi:robot-vacuum"></ha-icon> [[ sensor.vacuum_cleaner_status_sensor.state ]]'
+                  - !include ../includes/blank-card.yaml
               - type: custom:decluttering-card
                 template: header_text
                 variables:
@@ -903,7 +911,7 @@ cards:
                           haptic: light
                         hold_action:
                           action: none
-                  - !include ../decluttering_templates/blank-card.yaml
+                  - !include ../includes/blank-card.yaml
 
 ### The following piece is for tablets only, You can leave this out if not needed.
   - type: custom:state-switch
@@ -929,7 +937,7 @@ cards:
               - content: '##### Manual Zoned Cleaning'
           - type: horizontal-stack
             cards: 
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
               - type: custom:xiaomi-vacuum-map-card
                 style: |
                   ha-card {
@@ -945,5 +953,5 @@ cards:
                 reference_point:
                   x: 546
                   y: 235
-              - !include ../decluttering_templates/blank-card.yaml
+              - !include ../includes/blank-card.yaml
 ### End of tablet code.

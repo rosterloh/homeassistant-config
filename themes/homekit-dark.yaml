@@ -17,7 +17,7 @@ Homekit Blue Dark:
   weather-night: 'rgb(100, 100, 100)'
   weather-color: AliceBlue
   upcoming-color: AliceBlue
-  menu-button: white
+  header-color: white
 
   ### The Following Theme is the Slate Theme, this is the global HA theme. On my setup you will only see this in the HA menu's.
   # Main colors
@@ -100,3 +100,4 @@ Homekit Blue Dark:
   lumo-shade-10pct: 'rgba(34, 34, 34, .1)'
   lumo-shade-5pct: 'rgba(34, 34, 34, .05)'
   lumo-tint-5pct: '#222222'
+  ha-card-background: 'rgb(100, 100, 100)'
