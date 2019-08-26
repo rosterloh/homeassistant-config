@@ -50,11 +50,14 @@ sensor:
 #################################################################
 
 automation:
-  alias: Update notifications
-  trigger:
+  
+  - alias: Update notifications
+    initial_state: 'true'
+    trigger:
     - platform: state
       entity_id: updater.updater
-  action:
-    service: notify.slack
-    data:
-      message: "New Home Assistant version {{ states.updater.updater.state }} is available for download.\r\n\r\nYou are currently running {{ sensor.current_version }}.\r\n\r\nhttps://home-assistant.io/blog/categories/release-notes/"
+    action:
+    - service: notify.slack
+      data:
+        title: 'Home Assistant Update'
+        message: "New Home Assistant version {{ states.updater.updater.state }} is available for download.\r\n\r\nYou are currently running {{ sensor.current_version }}.\r\n\r\nhttps://home-assistant.io/blog/categories/release-notes/"

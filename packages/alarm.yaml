@@ -29,3 +29,209 @@ alarm_control_panel:
       pending_time: 0
       delay_time: 0
     disarm_after_trigger: false
+
+#################################################################
+#                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
+group:
+
+  device_status:
+    name: Status and Location
+    entities:
+      - person.richard
+      - person.jess
+
+  device_status_2:
+    name: Device Tracker with cat
+    entities:
+      - person.richard
+      - person.jess
+      - person.juno
+
+#################################################################
+#                                                               #
+#                         Automation                            #
+#                                                               #
+#################################################################
+
+automation:
+
+  - alias: Alarm Alert
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'triggered'
+    action:
+    - service: notify.slack
+      data:
+        title: "Home Alarm"
+        message: "ALARM ALARM !The Alarm is triggered! ALARM ALARM"
+
+  - alias: Alarm Away Notification
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'armed_away'
+    action:
+    - service: notify.slack
+      data:
+        title: "Home Alarm"
+        message: "The Alarm Away is now active!"
+
+  - alias: Alarm Home Notification
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'armed_home'
+    action:
+    - service: notify.slack
+      data:
+        title: "Home Alarm"
+        message: "The Alarm Home is now active!"
+
+  - alias: Alarm Night Notification
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'armed_night'
+    action:
+    - service: notify.slack
+      data:
+        title: "Home Alarm"
+        message: "The Alarm Night is now active!"
+
+  - alias: Alarm Disarm Notification
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: alarm_control_panel.home_alarm
+      to: 'disarmed'
+    action:
+    - service: notify.slack
+      data:
+        title: "Home Alarm"
+        message: "The Alarm is now disarmed!"  
+
+#  - alias: Alarm Disarm Richard Away
+#    initial_state: 'true'
+#    trigger:
+#    - platform: state
+#      entity_id: person.richard
+#      to: 'home'
+#      for:
+#        seconds: 30
+#    condition:
+#    - condition: state
+#      entity_id: alarm_control_panel.home_alarm  
+#      state: 'armed_away'
+#    action:
+#    - service: alarm_control_panel.alarm_disarm
+#      data: !secret alarm_code   
+
+#   - alias: Alarm Disarm Richard Home
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: person.richard
+#       to: 'home'
+#       for:
+#         seconds: 30
+#     condition:
+#       - condition: state
+#         entity_id: alarm_control_panel.home_alarm  
+#         state: 'armed_home'
+#     action:
+#       - service: alarm_control_panel.alarm_disarm
+#         data: !secret alarm_code  
+
+#   - alias: Alarm Disarm Jess Away
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: person.jess
+#       to: 'home'
+#       for:
+#         seconds: 30
+#     condition:
+#       - condition: state
+#         entity_id: alarm_control_panel.home_alarm  
+#         state: 'armed_away'
+#     action:
+#       - service: alarm_control_panel.alarm_disarm
+#         data: !secret alarm_code  
+
+#   - alias: Alarm Disarm Jess Home
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: person.jess
+#       to: 'home'
+#       for:
+#         seconds: 30
+#     condition:
+#       - condition: state
+#         entity_id: alarm_control_panel.home_alarm  
+#         state: 'armed_home'
+#     action:
+#       - service: alarm_control_panel.alarm_disarm
+#         data: !secret alarm_code
+
+#   - alias: Alarm Activation Alert
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: group.device_status
+#       from: 'home'
+#     condition:
+#       condition: or
+#       conditions:
+#         - condition: state
+#           entity_id: alarm_control_panel.home_alarm  
+#           state: 'disarmed'
+#         - condition: state
+#           entity_id: alarm_control_panel.home_alarm  
+#           state: 'armed_home'
+#     action:
+#       - service: alarm_control_panel.alarm_arm_away
+#         data: !secret alarm_code
+
+#   - alias: Alarm Activation Cat Home
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: group.device_status
+#       from: 'home'
+#     condition:
+#       - condition: state
+#         entity_id: alarm_control_panel.home_alarm  
+#         state: 'disarmed'
+#     action:
+#       - service: alarm_control_panel.alarm_arm_home
+#         data: !secret alarm_code 
+
+#   - alias: simple alarm activate
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: input_boolean.simple_alarm
+#       to: 'on'
+#     action:
+#       - service: alarm_control_panel.alarm_arm_home
+#         data: !secret alarm_code
+
+#   - alias: simple alarm deactivate
+#     initial_state: 'true'
+#     trigger:
+#     - platform: state
+#       entity_id: input_boolean.simple_alarm
+#       to: 'off'
+#     action:
+#       - service: alarm_control_panel.alarm_disarm
+#         data: !secret alarm_code

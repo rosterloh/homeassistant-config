@@ -4,13 +4,13 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Device Events'
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Currently ON'
       - type: horizontal-stack

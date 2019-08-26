@@ -4,17 +4,17 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Weather
           - icon1: weather-sunny
           - path1: weather
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Jessica Osterloh'
       - type: custom:decluttering-card
-        template: person_more_info
+        template: person-more-info
         variables:
           - name: jess
           - name-s: Jess'

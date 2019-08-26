@@ -22,7 +22,10 @@
 # Default Config
 default:
   # Entity (The entity to use in your graph)
-  - entity: sensor.yourentityhere
+  - entities:
+    - sensor.your_entity_here
+    - sensor.add_another_entity_here
+    - sensor.or_if_you_want_three
 
   # Name (Name of the card)
   - name: yournamehere
@@ -67,8 +70,7 @@ card:
       font-weight: bold;
       opacity: 0.8;
     }
-  entities: 
-    - sensor.[[entity]]
+  entities: '[[entities]]'
   hours_to_show: '[[hours_to_show]]'
   points_per_hour: '[[points_per_hour]]'
   line_width: '[[line_width]]'

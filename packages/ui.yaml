@@ -15,10 +15,6 @@ input_boolean:
     initial: off
   dummy2:
     initial: off
-  apkjess:
-    initial: off
-  apkrichard:
-    initial: off
   scene_day_lights:
   scene_night_lights:
   scene_evening_lights:
@@ -31,7 +27,7 @@ input_boolean:
   scene_goodnight:
   scene_lights_out:
   simple_alarm:
-  notification_slaapkamer_deur:
+  notification_bedroom_door:
   notification_front_door:
   notification_livingroom_door:
   notification_washing_machine:
@@ -46,4 +42,78 @@ input_boolean:
   notification_vacuum:
   notification_anniversary:
   notification_birthday:
-  notification_apk:
+
+#################################################################
+#                                                               #
+#                         Automations                           #
+#                                                               #
+#################################################################
+
+automation:
+
+# Reset Menu's after x Seconds (used with input_select on e.g. other view)
+  - alias: 'reset input_select_richard'
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.general
+    action:
+    - delay:
+        seconds: 20
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.general
+        option: Home
+
+  - alias: 'reset input_select_jess'
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.general2
+    action:
+    - delay:
+        seconds: 20
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.general2
+        option: Home
+
+  - alias: 'reset main menu richard'
+    initial_state: 'false'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.lovelace_menu_richard
+      to: "on"
+    action:
+    - delay:
+        seconds: 45
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lovelace_menu_richard
+
+  - alias: 'reset main menu jess'
+    initial_state: 'false'
+    trigger:
+    - platform: state
+      entity_id: input_boolean.lovelace_menu_jess
+      to: "on"
+    action:
+    - delay:
+        seconds: 45
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.lovelace_menu_jess
+
+  - alias: 'reset input_select_vacuum'
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.vacuum
+      to: 'Map'
+      for:
+        seconds: 30
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.vacuum
+        option: Information

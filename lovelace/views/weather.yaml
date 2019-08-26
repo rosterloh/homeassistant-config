@@ -4,13 +4,13 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Climate
           - icon1: thermostat
           - path1: climate
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Weather'
       - type: custom:swipe-card
@@ -21,7 +21,7 @@ cards:
           - type: vertical-stack
             cards:
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### Overview >'
               - !include ../includes/blank-card.yaml
@@ -41,7 +41,7 @@ cards:
                     title: Tun Furlong
                   - !include ../includes/blank-card.yaml
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Detailed Information'
               - type: horizontal-stack
@@ -67,11 +67,11 @@ cards:
                 main_pollutant: sensor.u_s_main_pollutant
                 city: 'London'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '#### < Map'
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Rain Radar'
               - type: horizontal-stack
@@ -88,7 +88,7 @@ cards:
                     url: https://maps.meteoradar.co.uk/GratisRadar/825/912/verwacht?zoom=9" scrolling=no width=500 height=500 frameborder=no
                   - !include ../includes/blank-card.yaml
               - type: custom:decluttering-card
-                template: header_text
+                template: header
                 variables:
                   - content: '##### Windy'
               - type: horizontal-stack

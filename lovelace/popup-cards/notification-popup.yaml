@@ -8,14 +8,14 @@ input_boolean.notification_afzuigkap:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -31,7 +31,7 @@ input_boolean.notification_afzuigkap:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -49,7 +49,7 @@ input_boolean.notification_afzuigkap:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -75,14 +75,14 @@ input_boolean.notification_woonkamer_deur:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -100,7 +100,7 @@ input_boolean.notification_woonkamer_deur:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -126,14 +126,14 @@ input_boolean.notification_slaapkamer_deur:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -151,7 +151,7 @@ input_boolean.notification_slaapkamer_deur:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -177,14 +177,14 @@ input_boolean.notification_voordeur:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - entity: light.entree_lamp
               - icon_color: var(--upcoming-color)
@@ -208,14 +208,14 @@ input_boolean.notification_wasmachine:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -231,7 +231,7 @@ input_boolean.notification_wasmachine:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -249,7 +249,7 @@ input_boolean.notification_wasmachine:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -266,8 +266,8 @@ input_boolean.notification_wasmachine:
           - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml
 
-input_boolean.notification_droger:
-  title: Droger
+input_boolean.notification_dishwasher:
+  title: Dishwasher
   style:
     color: white
     border-radius: var(--border-radius)
@@ -276,20 +276,20 @@ input_boolean.notification_droger:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
-              - entity: switch.droger
+              - entity: switch.dishwasher
               - icon: power
-              - name: Droger Uitschakelen
+              - name: Dishwasher Off
               - card_color: var(--homekit-card-off)
               - tap_action:
                   action: toggle
@@ -299,38 +299,37 @@ input_boolean.notification_droger:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
-              - entity: scene.wassen
               - icon: arrange-send-backward
-              - name: Scene Wassen
+              - name: Scene Washing
               - card_color: var(--homekit-card-off)
               - tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
-                    entity_id: scene.wassen
+                    entity_id: scene.washing
                   haptic: light
           - !include ../includes/blank-card.yaml
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
-              - entity: scene.klaar_met_wassen
+              - entity: scene.finshed_washing
               - icon: arrange-send-backward
-              - name: Scene Klaar met Wassen
+              - name: Scene Finshed Washing
               - card_color: var(--homekit-card-off)
               - tap_action:
                   action: call-service
                   service: scene.turn_on
                   service_data:
-                    entity_id: scene.klaar_met_wassen
+                    entity_id: scene.finshed_washing
                   haptic: light
           - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml
@@ -345,7 +344,7 @@ input_boolean.notification_vacuum:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
@@ -368,14 +367,14 @@ input_boolean.notification_alles_rustig:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - name: Apple music
               - icon: music-circle-outline
@@ -388,7 +387,7 @@ input_boolean.notification_alles_rustig:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - name: Plex
               - icon: plex
@@ -401,7 +400,7 @@ input_boolean.notification_alles_rustig:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - name: Netflix
               - icon: netflix
@@ -411,14 +410,14 @@ input_boolean.notification_alles_rustig:
                   haptic: light
           - !include ../includes/blank-card.yaml
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Scenes'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -437,7 +436,7 @@ input_boolean.notification_alles_rustig:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -456,7 +455,7 @@ input_boolean.notification_alles_rustig:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -483,14 +482,14 @@ input_boolean.notification_smoke_detector:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - name: Bel de Brandweer
               - icon: phone
@@ -511,61 +510,57 @@ input_boolean.notification_alarm:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
-              - name: Alarm Uitschakelen
+              - name: Alarm Off
               - icon: shield-check
               - tap_action:
-                  action: call-service
-                  service: alarm_control_panel.alarm_disarm
+                  service: automation.trigger
                   service_data:
-                    entity_id: alarm_control_panel.home_alarm
-                    data: !secret alarmcode
+                    entity_id: automation.alarm_disarm_richard_away
                   haptic: light
           - !include ../includes/blank-card.yaml
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
-              - name: Alarm Inschakelen Afwezig
+              - name: Alarm On Away
               - icon: alert
               - tap_action:
                   action: call-service
-                  service: alarm_control_panel.alarm_arm_away
+                  service: automation.trigger
                   service_data:
-                    entity_id: alarm_control_panel.home_alarm
-                    data: !secret alarmcode
+                    entity_id: automation.alarm_activation_alert
                   haptic: light
           - !include ../includes/blank-card.yaml
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
-              - name: Alarm Inschakelen Thuis
+              - name: Alarm On Home
               - icon: alert
-              - tap_action:
-                  action: call-service
-                  service: alarm_control_panel.alarm_arm_home
+              - tap_action:  
+                  action: call-service 
+                  service: automation.trigger
                   service_data:
-                    entity_id: alarm_control_panel.home_alarm
-                    data: !secret alarmcode
+                    entity_id: automation.alarm_activation_cat_home
                   haptic: light
           - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml
 
-input_boolean.notification_motion_gallerij:
-  title: Beweging Gallerij
+input_boolean.notification_motion_hall:
+  title: Motion Entrance
   style:
     color: white
     border-radius: var(--border-radius)
@@ -574,7 +569,7 @@ input_boolean.notification_motion_gallerij:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
@@ -586,7 +581,7 @@ input_boolean.notification_motion_gallerij:
                 border-radius: var(--border-radius);
                 overflow: hidden;
               }
-            entity: camera.gallerij_camera
+            entity: camera.front_door
             title: Camera's  
             aspect_ratio: 16x9
             camera_view: live
@@ -594,7 +589,7 @@ input_boolean.notification_motion_gallerij:
       - !include ../includes/bottom-card.yaml
 
 input_boolean.notification_motion_toilet:
-  title: Beweging Toilet
+  title: Motion Toilet
   style:
     color: white
     border-radius: var(--border-radius)
@@ -603,16 +598,16 @@ input_boolean.notification_motion_toilet:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
-              - name: Lamp Inschakelen
+              - name: Lamp On
               - icon: ceiling-light
               - tap_action:
                   action: call-service
@@ -625,9 +620,9 @@ input_boolean.notification_motion_toilet:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
-              - name: Lamp Uitschakelen
+              - name: Lamp Off
               - icon: ceiling-light
               - tap_action:
                   action: call-service
@@ -638,8 +633,8 @@ input_boolean.notification_motion_toilet:
           - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml
 
-input_boolean.notification_motion_bijkeuken:
-  title: Beweging Bijkeuken
+input_boolean.notification_juno:
+  title: Juno
   style:
     color: white
     border-radius: var(--border-radius)
@@ -648,65 +643,14 @@ input_boolean.notification_motion_bijkeuken:
     type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Actions'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: arrange-send-backward
-              - name: Scene Wassen
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.wassen
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: arrange-send-backward
-              - name: Scene Klaar Met Wassen
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: call-service
-                  service: scene.turn_on
-                  service_data:
-                    entity_id: scene.klaar_met_wassen
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - !include ../includes/bottom-card.yaml
-
-input_boolean.notification_tala:
-  title: Tala
-  style:
-    color: white
-    border-radius: var(--border-radius)
-    background: var(--background-image)
-  card:
-    type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: header_text
-        variables:
-          - content: '##### Actions'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
+            template: notification
             variables:
               - icon_color: var(--upcoming-color)
               - name_color: var(--upcoming-color)
@@ -720,177 +664,70 @@ input_boolean.notification_tala:
           - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml
 
-input_boolean.notification_apk:
-  title: APK
-  style:
-    color: white
-    border-radius: var(--border-radius)
-    background: var(--background-image)
-  card:
-    type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: header_text
-        variables:
-          - content: '##### Actions'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: phone
-              - name: Bel de garage voor een afspraak
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: url
-                  url: tel://+31 499 460259
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: web
-              - name: Website ANWB
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: url
-                  url: https://www.anwb.nl
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - !include ../includes/bottom-card.yaml
+#input_boolean.notification_anniversary:
+#  title: Anniversary
+#  style:
+#    color: white
+#    border-radius: var(--border-radius)
+#    background: var(--background-image)
+#  card:
+#    type: vertical-stack
+#    cards:
+#      - type: custom:decluttering-card
+#        template: header
+#        variables:
+#          - content: '##### Actions'
+#      - type: horizontal-stack
+#        cards:
+#          - !include ../includes/blank-card.yaml
+#          - type: custom:decluttering-card
+#            template: notification
+#            variables:
+#              - icon_color: var(--upcoming-color)
+#              - name_color: var(--upcoming-color)
+#              - icon: alpha-b-box
+#              - name: Boek een Hotel
+#              - card_color: var(--homekit-card-off)
+#              - tap_action:
+#                  action: url
+#                  url: https://www.booking.com
+#                  haptic: light
+#          - !include ../includes/blank-card.yaml
+#      - type: horizontal-stack
+#        cards:
+#          - !include ../includes/blank-card.yaml
+#          - type: custom:decluttering-card
+#            template: notification
+#            variables:
+#              - icon_color: var(--upcoming-color)
+#              - name_color: var(--upcoming-color)
+#              - icon: waves
+#              - name: Boek dagje Thermen Bussloo
+#              - card_color: var(--homekit-card-off)
+#              - tap_action:
+#                  action: url
+#                  url: https://www.thermenbussloo.nl
+#                  haptic: light
+#          - !include ../includes/blank-card.yaml
+#      - !include ../includes/bottom-card.yaml
 
-input_boolean.notification_anniversary:
-  title: Anniversary
-  style:
-    color: white
-    border-radius: var(--border-radius)
-    background: var(--background-image)
-  card:
-    type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: header_text
-        variables:
-          - content: '##### Actions'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: alpha-b-box
-              - name: Boek een Hotel
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: url
-                  url: https://www.booking.com
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: notification_template
-            variables:
-              - icon_color: var(--upcoming-color)
-              - name_color: var(--upcoming-color)
-              - icon: waves
-              - name: Boek dagje Thermen Bussloo
-              - card_color: var(--homekit-card-off)
-              - tap_action:
-                  action: url
-                  url: https://www.thermenbussloo.nl
-                  haptic: light
-          - !include ../includes/blank-card.yaml
-      - !include ../includes/bottom-card.yaml
-
-input_boolean.notification_birthday:
-  title: Birthday
-  style:
-    color: white
-    border-radius: var(--border-radius)
-    background: var(--background-image)
-  card:
-    type: vertical-stack
-    cards:
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_koos_van_duuren
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Koos 
-            - phone_number: !secret phone_koos
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_jimmy_schings
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Jimmy 
-            - phone_number: !secret phone_jimmy
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_stephanie_schings
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Stephanie 
-            - phone_number: !secret phone_stephanie
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_ralf_vogels
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Ralf 
-            - phone_number: !secret phone_ralf
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_jos_schings
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Jos
-            - phone_number: !secret phone_jos
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_rick_oosterbosch
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Rick
-            - phone_number: !secret phone_rick
-      - type: conditional
-        conditions:
-          - entity: sensor.birthday_ad_van_dartel
-            state: '0'
-        card:
-          type: custom:decluttering-card
-          template: birthday_notification
-          variables:
-            - name: Ad
-            - phone_number: !secret phone_ad
-      - !include ../includes/bottom-card.yaml
+#input_boolean.notification_birthday:
+#  title: Birthday
+#  style:
+#    color: white
+#    border-radius: var(--border-radius)
+#    background: var(--background-image)
+#  card:
+#    type: vertical-stack
+#    cards:
+#      - type: conditional
+#        conditions:
+#          - entity: sensor.birthday_koos_van_duuren
+#            state: '0'
+#        card:
+#          type: custom:decluttering-card
+#          template: birthday_notification
+#          variables:
+#            - name: Koos 
+#            - phone_number: !secret phone_koos
+#      - !include ../includes/bottom-card.yaml

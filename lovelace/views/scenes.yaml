@@ -4,24 +4,24 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Lights
           - icon1: floor-lamp
           - path1: lights
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Scenes'
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Presets'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_day_lights
               - name: Day
@@ -35,7 +35,7 @@ cards:
                     entity_id: scene.day_lighting
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_evening_lighting
               - name: Evening
@@ -49,7 +49,7 @@ cards:
                     entity_id: scene.evening_lighting
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_night_lighting
               - name: Night
@@ -67,7 +67,7 @@ cards:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: group.scene_cleaning_on
               - name: Cleaning
@@ -80,7 +80,7 @@ cards:
                     entity_id: scene.cleaning
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.dummy1
               - name: Movie
@@ -93,7 +93,7 @@ cards:
                     entity_id: scene.living_movie
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_lights_out
               - name: All Lights
@@ -111,7 +111,7 @@ cards:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: group.scene_cooking_on
               - name: Cooking
@@ -124,7 +124,7 @@ cards:
                     entity_id: scene.cooking
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: group.scene_washing_on
               - name: Washing
@@ -137,7 +137,7 @@ cards:
                     entity_id: scene.washing
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: group.scene_near_bedtime
               - name: Near Bedtime
@@ -154,7 +154,7 @@ cards:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_finished_cooking
               - name: Finished
@@ -168,7 +168,7 @@ cards:
                     entity_id: scene.finished_cooking
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_finished_washing
               - name: Finished
@@ -182,7 +182,7 @@ cards:
                     entity_id: scene.finished_washing
                   haptic: light
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: input_boolean.scene_goodnight
               - name: Goodnight

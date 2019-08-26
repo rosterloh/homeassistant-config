@@ -16,7 +16,7 @@ cards:
         grabCursor: true
       cards:
         - type: custom:decluttering-card
-          template: back_button
+          template: quick-access-menu
           variables:
             - name1: Profile
             - icon1: human-greeting
@@ -26,11 +26,6 @@ cards:
             - name3: Alarm 
             - icon3: shield-check
             - path3: alarm
-            - hold_action:
-                action: call-service
-                service: input_boolean.toggle
-                service_data:
-                  entity_id: input_boolean.simple_alarm
         - !include ../includes/simple-weather-card.yaml
 
   - type: conditional
@@ -46,7 +41,7 @@ cards:
       cards:
         - !include ../includes/simple-weather-card.yaml
         - type: custom:decluttering-card
-          template: back_button
+          template: quick-access-menu
           variables:
             - name1: Security
             - icon1: cctv
@@ -76,10 +71,9 @@ cards:
             state_not: "home"
         card:
           type: custom:decluttering-card
-          template: person_elements
+          template: person
           variables:
             - name: jess
-            - namesensor: !secret jess_sensor
             - direction: left
             - image: '/local/img/jess.jpg'
             - travel: sensor.travel_time_jess_to_home
@@ -94,10 +88,9 @@ cards:
             state: "home"
         card:
           type: custom:decluttering-card
-          template: person_elements
+          template: person
           variables:
             - name: jess
-            - namesensor: !secret jess_sensor
             - direction: left
             - image: '/local/img/jess.jpg'
             - travel: sensor.travel_time_jess_to_home
@@ -114,10 +107,9 @@ cards:
             state_not: "home"
         card:
           type: custom:decluttering-card
-          template: person_elements
+          template: person
           variables:
             - name: richard
-            - namesensor: !secret rich_sensor
             - direction: right
             - image: '/local/img/richard.jpg'
             - travel: sensor.travel_time_richard
@@ -132,10 +124,9 @@ cards:
             state: "home"
         card:
           type: custom:decluttering-card
-          template: person_elements
+          template: person
           variables:
             - name: richard
-            - namesensor: !secret rich_sensor
             - direction: right
             - image: '/local/img/richard.jpg'
             - travel: sensor.travel_time_richard_work
@@ -201,7 +192,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Climate
             - label: Control
@@ -219,7 +210,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Light
             - label: Control
@@ -237,7 +228,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Device
             - label: Control
@@ -255,7 +246,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Security
             - label: Panel
@@ -284,7 +275,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Cleaning
             - label: Lists
@@ -302,7 +293,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Scenes
             - label: Presets
@@ -320,7 +311,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Vacuum
             - label: Albert
@@ -338,7 +329,7 @@ cards:
             - margin-right: 40px
             - opacity: 0.8
         - type: custom:decluttering-card
-          template: switch_button_card
+          template: button
           variables:
             - name: Menu
             - label: All Options

@@ -4,17 +4,17 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
         variables:
           - name1: Alarm
           - icon1: shield-home
           - path1: alarm
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Security'
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: "##### Camera's"
       - type: horizontal-stack
@@ -64,17 +64,17 @@ cards:
             content: '# [[ sensor.time.state ]]'
 ### End of tablet code.
 
-#  - type: vertical-stack
-#    cards:
-#      - type: custom:decluttering-card
-#        template: header_text
-#        variables:
-#          - content: '##### Doors'
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../includes/blank-card.yaml
+  - type: vertical-stack
+    cards:
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Doors'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
 #          - type: custom:decluttering-card
-#            template: switch_button_card
+#            template: button
 #            variables:
 #              - entity: binary_sensor.door_window_sensor_158d000236f9dd
 #              - name: Voordeur
@@ -103,14 +103,14 @@ cards:
 #              - tap_action: more-info
 #              - variable: icon
 #              - spin: 'mdi:door-open'
-#          - !include ../includes/blank-card.yaml
-#      - type: custom:decluttering-card
-#        template: header_text
-#        variables:
-#          - content: '##### Motion'
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../includes/blank-card.yaml
+          - !include ../includes/blank-card.yaml
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Motion'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
 #          - type: custom:decluttering-card
 #            template: switch_button_card
 #            variables:
@@ -135,14 +135,14 @@ cards:
 #              - icon: motion-sensor
 #              - show_last_changed: true
 #              - tap_action: more-info
-#          - !include ../includes/blank-card.yaml
-#      - type: custom:decluttering-card
-#        template: header_text
-#        variables:
-#          - content: '##### Alarms'
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../includes/blank-card.yaml
+          - !include ../includes/blank-card.yaml
+      - type: custom:decluttering-card
+        template: header
+        variables:
+          - content: '##### Alarms'
+      - type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
 #          - type: custom:decluttering-card
 #            template: switch_button_card
 #            variables:
@@ -157,5 +157,5 @@ cards:
 #          - type: 'custom:button-card'
 #            color_type: blank-card
 #            aspect_ratio: 1/1
-#          - !include ../includes/blank-card.yaml
+          - !include ../includes/blank-card.yaml
       - !include ../includes/bottom-card.yaml

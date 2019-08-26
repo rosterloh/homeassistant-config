@@ -12,7 +12,7 @@
 type: vertical-stack
 cards:
   - type: custom:decluttering-card
-    template: header_text
+    template: header
     variables:
       - content: '##### Notifications and Events'
 
@@ -41,10 +41,6 @@ cards:
         state: "off"
       - entity: binary_sensor.dafang_motion_sensor
         state: "off"
-      - entity: input_boolean.apkrich
-        state: "off"
-      - entity: input_boolean.apkjess
-        state: "off"
       - entity: vacuum.albert
         state: "docked"
     card:
@@ -52,11 +48,11 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_alles_rustig
             - icon: check-box-outline
-            - name: Alles is rustig, er zijn geen meldingen
+            - name: All is good, there are no notifications
             - card_color: 'rgba(157, 0, 255, 0.5)'
         - !include ../includes/blank-card.yaml
 
@@ -70,7 +66,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_smoke_detector
             - icon: smoke-detector
@@ -89,7 +85,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_alarm
             - icon: alert
@@ -109,7 +105,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_alarm
             - icon: alert
@@ -129,7 +125,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_alarm
             - icon: alert
@@ -147,7 +143,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_alarm
             - icon: clock-alert-outline
@@ -165,7 +161,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_extractor
             - icon: fan
@@ -184,7 +180,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_voordeur
             - icon: door
@@ -202,7 +198,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_livingroom_door
             - icon: door
@@ -220,7 +216,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_workshop_door
             - icon: door
@@ -238,7 +234,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_washing_machine
             - icon: washing-machine
@@ -256,7 +252,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_dishwasher
             - icon: dishwasher
@@ -264,23 +260,23 @@ cards:
             - card_color: 'rgba(9, 195, 242, 0.5)'
         - !include ../includes/blank-card.yaml
 
-  # Hond
-  - type: conditional
-    conditions:
-      - entity: person.tala
-        state_not: home
-    card:
-      type: horizontal-stack
-      cards:
-        - !include ../includes/blank-card.yaml
-        - type: custom:decluttering-card
-          template: notification_template
-          variables:
-            - entity: input_boolean.notification_tala
-            - icon: dog-side
-            - name: Tala is niet thuis!
-            - card_color: 'rgba(0, 255, 251, 0.5)'
-        - !include ../includes/blank-card.yaml
+  # Cat
+#  - type: conditional
+#    conditions:
+#      - entity: person.juno
+#        state_not: home
+#    card:
+#      type: horizontal-stack
+#      cards:
+#        - !include ../includes/blank-card.yaml
+#        - type: custom:decluttering-card
+#          template: notification
+#          variables:
+#            - entity: input_boolean.notification_juno
+#            - icon: cat-side
+#            - name: Juno is not home!
+#            - card_color: 'rgba(0, 255, 251, 0.5)'
+#        - !include ../includes/blank-card.yaml
 
   # Motion Entrance
   - type: conditional
@@ -292,7 +288,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_motion_entrance
             - icon: motion-sensor
@@ -310,7 +306,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_motion_bijkeuken
             - icon: motion-sensor
@@ -319,22 +315,22 @@ cards:
         - !include ../includes/blank-card.yaml
 
   # Motion Toilet
-  - type: conditional
-    conditions:
-      - entity: binary_sensor.motion_sensor_158d00024e687d
-        state: "off"
-    card:
-      type: horizontal-stack
-      cards:
-        - !include ../includes/blank-card.yaml
-        - type: custom:decluttering-card
-          template: notification_template
-          variables:
-            - entity: input_boolean.notification_motion_toilet
-            - icon: motion-sensor
-            - name: Er is beweging op het toilet
-            - card_color: 'rgba(0, 221, 255, 0.5)'
-        - !include ../includes/blank-card.yaml
+#  - type: conditional
+#    conditions:
+#      - entity: binary_sensor.motion_sensor_158d00024e687d
+#        state: "on"
+#    card:
+#      type: horizontal-stack
+#      cards:
+#        - !include ../includes/blank-card.yaml
+#        - type: custom:decluttering-card
+#          template: notification
+#          variables:
+#            - entity: input_boolean.notification_motion_toilet
+#            - icon: motion-sensor
+#            - name: There is motion in the toilet
+#            - card_color: 'rgba(0, 221, 255, 0.5)'
+#        - !include ../includes/blank-card.yaml
 
   # Vacuum Notification (Cleaning)
   - type: conditional
@@ -346,7 +342,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_vacuum
             - icon: robot-vacuum
@@ -365,7 +361,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_vacuum
             - icon: robot-vacuum
@@ -383,7 +379,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_vacuum
             - icon: robot-vacuum
@@ -401,7 +397,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_vacuum
             - icon: robot-vacuum
@@ -420,7 +416,7 @@ cards:
       cards:
         - !include ../includes/blank-card.yaml
         - type: custom:decluttering-card
-          template: notification_template
+          template: notification
           variables:
             - entity: input_boolean.notification_vacuum
             - icon: robot-vacuum
@@ -438,7 +434,7 @@ cards:
 #      cards:
 #        - !include ../includes/blank-card.yaml
 #        - type: custom:decluttering-card
-#          template: notification_template
+#          template: notification
 #          variables:
 #            - entity: input_boolean.notification_anniversary
 #            - icon: steering
@@ -453,13 +449,13 @@ cards:
 #  - type: conditional
 #    conditions:
 #      - entity: sensor.birthday_koos_van_duuren
-#        state_not: '0'
+#        state: '0'
 #    card:
 #      type: horizontal-stack
 #      cards:
 #        - !include ../includes/blank-card.yaml
 #        - type: custom:decluttering-card
-#          template: notification_template
+#          template: notification
 #          variables:
 #            - entity: input_boolean.notification_birthday
 #            - icon: gift-outline

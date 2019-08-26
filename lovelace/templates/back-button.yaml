@@ -28,7 +28,7 @@ default:
   - path1: scenes
   - lovelace1: lovelace
 
-   # Middle Button
+  # Middle Button
   - entity2: input_boolean.dummy1
   - name2: Menu
   - icon2: menu
@@ -65,14 +65,14 @@ card:
   type: vertical-stack
   cards:
     - type: custom:decluttering-card
-      template: header_text
+      template: header
       variables:
         - content: '##### Quick Access'
     - type: horizontal-stack
       cards:   
-        - !include ../decluttering_templates/blank-card.yaml
+        - !include ../includes/blank-card.yaml
         - type: 'custom:decluttering-card'
-          template: switch_button_card
+          template: button
           variables:
             - entity: '[[entity1]]'
             - name: '[[name1]]'
@@ -97,7 +97,7 @@ card:
                 navigation_path: /[[lovelace1]]/[[path1]]
                 haptic: light
         - type: 'custom:decluttering-card'
-          template: switch_button_card
+          template: button
           variables:
             - entity: '[[entity2]]'
             - name: '[[name2]]'
@@ -122,7 +122,7 @@ card:
                 navigation_path: /[[lovelace2]]/[[path2]]
                 haptic: light
         - type: 'custom:decluttering-card'
-          template: switch_button_card
+          template: button
           variables:
             - entity: '[[entity3]]'
             - name: '[[name3]]'
@@ -144,4 +144,4 @@ card:
                 navigation_path: /[[lovelace3]]/[[path3]]
                 haptic: light
             - hold_action: '[[hold_action]]'
-        - !include ../decluttering_templates/blank-card.yaml
+        - !include ../includes/blank-card.yaml

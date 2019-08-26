@@ -6,20 +6,20 @@ cards:
   - type: vertical-stack 
     cards:
       - type: custom:decluttering-card
-        template: back_button
+        template: quick-access-menu
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '## Lights'
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Living Room'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: group.living_room_overhead
               - name: Ceiling
@@ -28,7 +28,7 @@ cards:
               - grid:
                   !include ../includes/light-devices-grid.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.living_room_lamp
               - name: Lamps
@@ -41,14 +41,14 @@ cards:
             aspect_ratio: 1/1
           - !include ../includes/blank-card.yaml
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Workshop'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.gledopto_gl_c_007_1d3ab8f9_11
               - name: LEDs
@@ -57,7 +57,7 @@ cards:
               - grid:
                   !include ../includes/light-devices-grid.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.philips_lct007_1047db70_11
               - name: Bulb
@@ -66,7 +66,7 @@ cards:
               - grid:
                   !include ../includes/light-devices-grid.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.aerogarden_plant_leds
               - name: Plant Lights
@@ -98,14 +98,14 @@ cards:
   - type: vertical-stack
     cards:
       - type: custom:decluttering-card
-        template: header_text
+        template: header
         variables:
           - content: '##### Kitchen'
       - type: horizontal-stack
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.kitchen_table
               - name: Ceiling
@@ -128,7 +128,7 @@ cards:
         cards:
           - !include ../includes/blank-card.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.entrance
               - name: Entrance
@@ -138,7 +138,7 @@ cards:
               - grid:
                   !include ../includes/light-devices-grid.yaml
           - type: custom:decluttering-card
-            template: switch_button_card
+            template: button
             variables:
               - entity: light.front_door
               - name: Hallway
