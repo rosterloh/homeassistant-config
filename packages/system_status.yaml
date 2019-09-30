@@ -96,7 +96,17 @@ speedtestdotnet:
   server_id: 17176
   scan_interval:
     hours: 4
-      
+
+#################################################################
+#                                                               #
+#                           Pi-hole                             #
+#                                                               #
+#################################################################
+
+pi_hole:
+    host: !secret pihole
+    ssl: true
+
 #################################################################
 #                                                               #
 #                           Sensors                             #
@@ -118,19 +128,11 @@ sensor:
 
 ####################################################
 #                                                  #
-#                 Sensor - PiHole                  #
+#                 Sensor - Pi-hole                 #
 #                                                  #
 ####################################################
 
-#  - platform: pi_hole
-#    host: !secret pihole
-#    ssl: true
-#    monitored_conditions:
-#      - ads_blocked_today
-#      - ads_percentage_today
-#      - dns_queries_today
-#      - domains_being_blocked
-#      - unique_domains
+  - platform: pi_hole
 
 ####################################################
 #                                                  #

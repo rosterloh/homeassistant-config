@@ -18,3 +18,5 @@ cards:
         variables:
           - name: jess
           - name-s: Jess'
+          - sensor_battery_state: binary_sensor.jess_phone_charging
+          - sensor_battery_level: sensor.jess_phone_battery

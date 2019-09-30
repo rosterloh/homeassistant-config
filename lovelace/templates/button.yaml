@@ -27,6 +27,7 @@ default:
   - opacity: 0.4
   - opacity_on: 1.0
   - border-radius: var(--border-radius)
+  - ha-card-background: var(--homekit-card-off)
 
   # Label
   - label: '&nbsp;'

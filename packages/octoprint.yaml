@@ -22,7 +22,20 @@ camera:
     name: OctoPrint
     still_image_url: http://192.168.1.28/webcam/?action=snapshot
     mjpeg_url: http://192.168.1.28/webcam/?action=stream
-    
+
+#################################################################
+#                                                               #
+#                       Binary Sensors                          #
+#                                                               #
+################################################################# 
+
+binary_sensor:
+
+  - platform: octoprint
+    monitored_conditions:
+      - Printing
+      - Printing Error
+      
 #################################################################
 #                                                               #
 #                          Sensors                              #
@@ -30,6 +43,20 @@ camera:
 ################################################################# 
 
 sensor:
+
+####################################################
+#                                                  #
+#                Sensors - Template                #
+#                                                  #
+####################################################
+
+  - platform: octoprint
+    monitored_conditions:
+      - Current State
+      - Temperatures
+      - Job Percentage
+      - Time Elapsed
+      - Time Remaining
 
 ####################################################
 #                                                  #

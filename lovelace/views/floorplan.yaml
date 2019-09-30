@@ -18,15 +18,16 @@ cards:
           - type: custom:decluttering-card
             template: header
             variables:
-              - content: '###### Tap and hold the image to download'
+              - content: '###### Tap elements to trigger actions'
           - type: horizontal-stack
             cards:
               - !include ../includes/blank-card.yaml
-              - type: picture
+              - type: picture-elements
                 style: |
                   ha-card {
                     border-radius: var(--border-radius);
                   }
                 aspect_ratio: 1.78
-                image: /local/img/floorplan.jpg
+                image: /local/img/floorplan.png
+                elements:
               - !include ../includes/blank-card.yaml

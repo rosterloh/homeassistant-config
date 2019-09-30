@@ -25,6 +25,9 @@ default:
   - name: richard
   - name-s: Richard's
 
+  # Battery/State Sensor
+  - sensor_battery_state: sensor.battery_state
+  - sensor_battery_level: sensor.battery_level
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
@@ -121,9 +124,9 @@ card:
                       opacity: 0.8;
                     }
                   entities:
-                    - entity: sensor.battery_level_[[name]]
+                    - entity: '[[sensor_battery_level]]'
                       name: Phone Battery
-                    - entity: sensor.battery_state_[[name]]
+                    - entity: '[[sensor_battery_state]]'
                       name: Phone Status
                     - entity: sensor.travel_time_[[name]]
                       name: Home

@@ -18,10 +18,9 @@ cards:
         - type: custom:decluttering-card
           template: quick-access-menu
           variables:
-            - name1: Profile
-            - icon1: human-greeting
-            - lovelace1: profile
-            - path1: ' '
+            - name1: dev-tools
+            - icon1: tools
+            - path1: developer-tools
             - entity3: alarm_control_panel.home_alarm
             - name3: Alarm 
             - icon3: shield-check

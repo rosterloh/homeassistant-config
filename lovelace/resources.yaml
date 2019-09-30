@@ -40,11 +40,9 @@
     type: module
   - url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js
     type: module
-  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+  - url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
     type: module
   - url: /community_plugin/simple-weather-card/simple-weather-card-bundle.js
-    type: module
-  - url: /community_plugin/sun-card/sun-card.js
     type: module
   - url: /community_plugin/thermostat-card/thermostat-card.js
     type: module

@@ -32,6 +32,8 @@ notify:
     platform: slack
     api_key: !secret slack_api
     default_channel: '#ha'
+    username: 'Home Assistant'
+    icon: ':house_with_garden:'
 
 #################################################################
 #                                                               #

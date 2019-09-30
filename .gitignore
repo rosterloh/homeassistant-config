@@ -16,3 +16,4 @@ node-red
 plex.conf
 www/community
 custom_components/hacs
+custom_components/browser_mod

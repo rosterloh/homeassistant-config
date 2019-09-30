@@ -4,19 +4,6 @@
 #                                                               #
 #################################################################
 
-googlehome:
-  devices:
-    - host: !secret home_max
-      track_devices: false
-    - host: !secret home_hub
-      track_devices: false
-    - host: !secret home_mini_mbr
-      track_devices: false
-    - host: !secret home_mini_dr
-      track_devices: false
-    - host: !secret home_workshop
-      track_devices: false
-
 #################################################################
 #                                                               #
 #                       Device Tracker                          #

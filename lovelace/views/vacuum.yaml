@@ -59,8 +59,9 @@ cards:
                       - entity: sensor.vacuum_battery
                       - name: Battery
                       - show_label: false
-                      - color: auto
                       - icon: battery
+                      - color: auto
+                      - icon: auto
                       - opacity: 0.8
                       - tap_action:
                           action: none
@@ -215,7 +216,9 @@ cards:
                         - icon: play
                         - show_state: false
                         - color: gray
+                        - ha-card-background: var(--homekit-card-on)
                         - off_name_color: black
+                        - off_label_color: gray
                         - off_icon_color: green
                         - opacity: 1.0
                         - tap_action:
@@ -238,7 +241,7 @@ cards:
                         - name: Clean
                         - label: Full Clean
                         - icon: play
-                        - show_state: 
+                        - show_state: false
                         - color: gray
                         - opacity: 0.4
                         - tap_action:
@@ -260,9 +263,11 @@ cards:
                         - entity: input_boolean.dummy1
                         - name: Pause
                         - icon: pause
-                        - show_state: 
+                        - show_state: false
                         - color: gray
+                        - ha-card-background: var(--homekit-card-on)
                         - off_name_color: black
+                        - off_label_color: gray
                         - off_icon_color: orange
                         - opacity: 1.0
                         - tap_action:
@@ -284,7 +289,7 @@ cards:
                         - entity: input_boolean.dummy1
                         - name: Pause
                         - icon: pause
-                        - show_state: 
+                        - show_state: false
                         - color: gray
                         - opacity: 0.4
                         - tap_action:
@@ -307,9 +312,11 @@ cards:
                         - name: Spot Clean
                         - label: Move robot first!
                         - icon: hubspot
-                        - show_state: 
+                        - show_state: false
                         - color: gray
+                        - ha-card-background: var(--homekit-card-on)
                         - off_name_color: black
+                        - off_label_color: gray
                         - off_icon_color: red
                         - opacity: 1.0
                         - tap_action:
@@ -332,7 +339,7 @@ cards:
                         - name: Spot Clean
                         - label: Move robot first!
                         - icon: hubspot
-                        - show_state: 
+                        - show_state: false
                         - color: gray
                         - opacity: 0.4
                         - tap_action:
@@ -385,9 +392,11 @@ cards:
                         - name: Return
                         - label: To the dock
                         - icon: power-socket-eu
-                        - show_state: 
+                        - show_state: false
                         - color: gray
+                        - ha-card-background: var(--homekit-card-on)
                         - off_name_color: black
+                        - off_label_color: gray
                         - off_icon_color: navy
                         - opacity: 1.0
                         - tap_action:
@@ -410,7 +419,7 @@ cards:
                         - name: Return
                         - label: To the dock
                         - icon: power-socket-eu
-                        - show_state: 
+                        - show_state: false
                         - color: gray
                         - opacity: 0.4
                         - tap_action:
@@ -462,8 +471,10 @@ cards:
                               - off_spin: true
                               - size: 15%
                               - show_state: false
+                              - ha-card-background: var(--homekit-card-on)
                               - off_icon_color: Dodgerblue
                               - off_name_color: black
+                              - off_label_color: gray
                               - opacity: 1.0
                               - tap_action:
                                   action: call-service
@@ -489,7 +500,6 @@ cards:
                               - size: 15%
                               - show_state: false
                               - color: gray
-                              - off_name_color: black
                               - opacity: 0.4
                               - tap_action:
                                   action: call-service
@@ -515,8 +525,10 @@ cards:
                               - size: 20%
                               - off_spin: true
                               - show_state: false
+                              - ha-card-background: var(--homekit-card-on)
                               - off_icon_color: Dodgerblue
                               - off_name_color: black
+                              - off_label_color: gray
                               - opacity: 1.0
                               - tap_action:
                                   action: call-service
@@ -542,7 +554,6 @@ cards:
                               - size: 20%
                               - show_state: false
                               - color: gray
-                              - off_name_color: black
                               - opacity: 0.4
                               - tap_action:
                                   action: call-service
@@ -567,8 +578,10 @@ cards:
                               - icon: fan
                               - off_spin: true
                               - show_state: false
+                              - ha-card-background: var(--homekit-card-on)
                               - off_icon_color: Dodgerblue
                               - off_name_color: black
+                              - off_label_color: gray
                               - opacity: 1.0
                               - tap_action:
                                   action: call-service
@@ -593,7 +606,6 @@ cards:
                               - icon: fan
                               - show_state: false
                               - color: gray
-                              - off_name_color: black
                               - opacity: 0.4
                               - tap_action:
                                   action: call-service
@@ -630,8 +642,10 @@ cards:
                               - icon: sync
                               - off_spin: true
                               - show_state: false
+                              - ha-card-background: var(--homekit-card-on)
                               - off_icon_color: orange
                               - off_name_color: black
+                              - off_label_color: gray
                               - opacity: 1.0
                               - tap_action:
                                   action: call-service
@@ -656,7 +670,6 @@ cards:
                               - icon: sync
                               - show_state: false
                               - color: gray
-                              - off_name_color: black
                               - opacity: 0.4
                               - tap_action:
                                   action: call-service
@@ -681,8 +694,10 @@ cards:
                               - icon: checkbox-multiple-blank-circle-outline
                               - off_spin: true
                               - show_state: false
+                              - ha-card-background: var(--homekit-card-on)
                               - off_icon_color: navy
                               - off_name_color: black
+                              - off_label_color: gray
                               - opacity: 1.0
                               - tap_action:
                                   action: call-service
@@ -707,7 +722,6 @@ cards:
                               - icon: checkbox-multiple-blank-circle-outline
                               - show_state: false
                               - color: gray
-                              - off_name_color: black
                               - opacity: 0.4
                               - tap_action:
                                   action: call-service

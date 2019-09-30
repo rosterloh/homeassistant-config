@@ -13,11 +13,6 @@ cards:
         template: header
         variables:
           - content: '## Richard Osterloh'
-      - type: custom:decluttering-card
-        template: person-more-info
-        variables:
-          - name: richard
-          - name-s: richard's
       - type: custom:flex-table-card
         title: Trains to Euston
         icon: mdi:train
@@ -40,3 +35,10 @@ cards:
             modify: 'if (x.estimated ) { (parseInt(x.estimated) * 60 + parseInt((x.estimated).slice(3,5))) - (parseInt(x.scheduled) * 60 + parseInt((x.scheduled).slice(3,5))) } else { " " }'
             suffix: 'm'
             align: right
+      - type: custom:decluttering-card
+        template: person-more-info
+        variables:
+          - name: richard
+          - name-s: richard's
+          - sensor_battery_state: binary_sensor.richard_phone_charging
+          - sensor_battery_level: sensor.richard_phone_battery

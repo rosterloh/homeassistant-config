@@ -8,7 +8,7 @@ cch:
 
 # Decluttering Templates
 decluttering_templates:
-  !include lovelace/templates/decluttering-templates.yaml
+  !include_dir_named lovelace/templates
 
 # Views
 # The following 5 views are swipable, the order
@@ -47,3 +47,5 @@ views:
   - !include lovelace/views/themes.yaml
   - !include lovelace/views/weather.yaml
   - !include lovelace/views/printer.yaml
+#  - !include lovelace/views/developer-tools.yaml
+ 
