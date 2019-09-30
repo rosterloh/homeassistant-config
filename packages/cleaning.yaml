@@ -11,6 +11,7 @@
 #################################################################
 
 input_select:
+
   dishwasher_status:
     name: Dishwasher Status
     options:
@@ -19,7 +20,7 @@ input_select:
       - Drying
       - Clean
       - Power OFF
-    initial: Idle
+
   washing_machine_status:
     name: Washing Machine Status
     options:
@@ -28,7 +29,6 @@ input_select:
       - Finishing
       - Clean
       - Power OFF
-    initial: Idle
 
 #################################################################
 #                                                               #

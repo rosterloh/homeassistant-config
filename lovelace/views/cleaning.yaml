@@ -1,77 +1,93 @@
-title: Cleaning
-path:  cleaning
-cards:
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: quick-access-menu
-        variables:
-          - name1: Vacuum
-          - icon1: robot-vacuum
-          - path1: vacuum
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '## Cleaning Lists'
-      - type: custom:swipe-card
-        parameters:
-          effect: 'coverflow'
-          grabCursor: true
-        cards:
-          - type: vertical-stack
-            cards:
-              - type: custom:decluttering-card
-                template: header
-                variables:
-                  - content: '#### Cleaning >'
-              - type: custom:decluttering-card
-                template: header
-                variables:
-                  - content: '##### Checklist'
-              - type: horizontal-stack
-                cards:
-                  - !include ../includes/blank-card.yaml
-                  - type: 'custom:vertical-stack-in-card'
-                    cards:
-                      - type: custom:decluttering-card
-                        template: check-button
-                        variables:
-                          - title: Vaccuming
-                          - entity: sensor.vacuuming
-                          - value 1: 3 days
-                          - value 2: 6 days
-                          - value 3: 9 days
-                      - type: custom:decluttering-card
-                        template: check-button
-                        variables:
-                          - title: Toilet
-                          - entity: sensor.toilet_clean
-                          - value 1: 3 days
-                          - value 2: 6 days
-                          - value 3: 9 days
-                      - type: custom:decluttering-card
-                        template: check-button
-                        variables:
-                          - title: Bed
-                          - entity: sensor.bed_verschonen
-                          - value 1: 5 days
-                          - value 2: 9 days
-                          - value 3: 13 days
-                      - type: custom:decluttering-card
-                        template: check-button
-                        variables:
-                          - title: Matress
-                          - entity: sensor.matress
-                          - value 1: 3 months
-                          - value 2: 6 months
-                          - value 3: 9 months
-                      - type: custom:decluttering-card
-                        template: check-button
-                        variables:
-                          - title: Wash Car
-                          - entity: sensor.wash_car
-                          - value 1: 1 months
-                          - value 2: 3 months
-                          - value 3: 6 months
-                  - !include ../includes/blank-card.yaml
-              - !include ../includes/bottom-card.yaml
+- title: Cleaning
+  path:  cleaning
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Vacuum
+            - icon1: mdi:robot-vacuum
+            - path1: vacuum
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Cleaning Lists'
+        - type: custom:swipe-card
+          parameters:
+            effect: 'coverflow'
+            grabCursor: true
+          cards:
+            - type: vertical-stack
+              cards:
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '#### Cleaning >'
+                - type: custom:decluttering-card
+                  template: header
+                  variables:
+                    - content: '##### Checklist'
+                - type: horizontal-stack
+                  cards:
+                    - !include ../includes/blank-card.yaml
+                    - type: 'custom:vertical-stack-in-card'
+                      cards:
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Vaccuming
+                            - entity: sensor.vacuuming
+                            - value 1: 3 days
+                            - value 2: 6 days
+                            - value 3: 9 days
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Windows
+                            - entity: sensor.windows
+                            - value 1: 7 days
+                            - value 2: 14 days
+                            - value 3: 21 days
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Toilet
+                            - entity: sensor.toilet_clean
+                            - value 1: 3 days
+                            - value 2: 6 days
+                            - value 3: 9 days
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Bathroom
+                            - entity: sensor.bathroom
+                            - value 1: 7 days
+                            - value 2: 14 days
+                            - value 3: 21 days
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Bed
+                            - entity: sensor.bed_verschonen
+                            - value 1: 5 days
+                            - value 2: 9 days
+                            - value 3: 13 days
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Matress
+                            - entity: sensor.matress
+                            - value 1: 3 months
+                            - value 2: 6 months
+                            - value 3: 9 months
+                        - type: custom:decluttering-card
+                          template: check-button
+                          variables:
+                            - title: Wash Car
+                            - entity: sensor.wash_car
+                            - value 1: 1 months
+                            - value 2: 3 months
+                            - value 3: 6 months
+                    - !include ../includes/blank-card.yaml
+                - !include ../includes/bottom-card.yaml

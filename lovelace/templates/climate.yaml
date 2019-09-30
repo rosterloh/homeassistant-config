@@ -34,8 +34,9 @@ card:
   type: 'custom:thermostat-card'
   style: |
     ha-card {
-      border-radius: var(--border-radius);
-      background: var(--homekit-card-off);
+      border-radius: {{ states('input_select.border_radius') }};
+      background: var(--card-color-off);
+      box-shadow: {{ states('input_select.box_shadow') }};
       opacity: 0.8;
     }
   ambient_temperature: '[[ambient_temperature]]'

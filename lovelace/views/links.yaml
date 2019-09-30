@@ -1,17 +1,17 @@
-title: Links
-path:  links
-cards:    
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: quick-access-menu
-        variables:
-          - name1: Location
-          - icon1: map
-          - path1: location
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '## Links'
-          - !include ../includes/blank-card.yaml
-      - !include ../includes/bottom-card.yaml
+- title: Links
+  path:  links
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Location
+            - icon1: mdi:map
+            - path1: location
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Links'
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

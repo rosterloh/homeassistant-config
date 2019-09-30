@@ -24,21 +24,21 @@ default:
   # Left Button
   - entity1: input_boolean.dummy1
   - name1: Scenes
-  - icon1: arrange-send-backward
+  - icon1: mdi:arrange-send-backward
   - path1: scenes
   - lovelace1: lovelace
 
    # Middle Button
   - entity2: input_boolean.dummy1
   - name2: Menu
-  - icon2: menu
+  - icon2: mdi:menu
   - path2: menu
   - lovelace2: lovelace
 
   # Right Button
   - entity3: input_boolean.dummy1
   - name3: Home 
-  - icon3: home
+  - icon3: mdi:home
   - path3: home 
   - lovelace3: lovelace
 
@@ -79,15 +79,13 @@ card:
             - icon: '[[icon1]]'
             - size: 15%
             - aspect_ratio: 2/1
-            - border-radius: 0px
+            - border-radius: "[[[ return states['input_select.qam_border_radius'].state ]]]" # Changed/Added in 0.13.0
             - show_label: false
             - show_state: false
             - justify-self-name: center
             - padding-left-name: 0px
-            - color: var(--icon-color-off)
             - margin-right: 0px
             - opacity: 0.8
-            - off_name_color: var(--name-color-off)
             - tap_action:
                 action: navigate
                 navigation_path: /[[lovelace1]]/[[path1]]
@@ -104,15 +102,13 @@ card:
             - icon: '[[icon2]]'
             - size: 15%
             - aspect_ratio: 2/1
-            - border-radius: 0px
+            - border-radius: "[[[ return states['input_select.qam_border_radius'].state ]]]" # Changed/Added in 0.13.0
             - show_label: false
             - show_state: false
             - justify-self-name: center
             - padding-left-name: 0px
-            - color: var(--icon-color-off)
             - margin-right: 0px
             - opacity: 0.8
-            - off_name_color: var(--name-color-off)
             - tap_action:
                 action: navigate
                 navigation_path: /[[lovelace2]]/[[path2]]
@@ -129,16 +125,14 @@ card:
             - icon: '[[icon3]]'
             - size: 15%
             - aspect_ratio: 2/1
-            - border-radius: 0px
+            - border-radius: "[[[ return states['input_select.qam_border_radius'].state ]]]" # Changed/Added in 0.13.0
             - show_label: '[[show_label]]'
             - show_name: '[[show_name]]'
             - show_state: '[[show_state]]'
             - justify-self-name: center
             - padding-left-name: '[[padding]]'
-            - color: var(--icon-color-off)
             - margin-right: 0px
             - opacity: 0.8
-            - off_name_color: var(--name-color-off)
             - tap_action:
                 action: navigate
                 navigation_path: /[[lovelace3]]/[[path3]]

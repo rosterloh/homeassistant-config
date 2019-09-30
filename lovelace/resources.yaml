@@ -18,6 +18,8 @@
     type: js
   - url: /community_plugin/light-entity-card/light-entity-card.js
     type: js
+  - url: /community_plugin/lovelace-animated-background/animated-background.js
+    type: module
   - url: /community_plugin/lovelace-auto-entities/auto-entities.js
     type: js
   - url: /community_plugin/lovelace-card-loader/card-loader.js
@@ -36,6 +38,8 @@
     type: js
   - url: /community_plugin/lovelace-swipe-card/swipe-card.js
     type: module
+  - url: /community_plugin/lovelace-valetudo-map-card/valetudo-map-card.js
+    type: js
   - url: /community_plugin/lovelace-weather-card-chart/weather-card-chart.js
     type: module
   - url: /community_plugin/lovelace-xiaomi-vacuum-map-card/xiaomi-vacuum-map-card.js

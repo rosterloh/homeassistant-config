@@ -39,42 +39,13 @@ card:
         effect: 'coverflow'
         grabCursor: true
       cards:
+        
         - type: vertical-stack
           cards:
             - type: custom:decluttering-card
               template: header
               variables:
-                - content: '#### Agenda >'
-            - type: custom:decluttering-card
-              template: header
-              variables:
-                - content: "##### [[name-s]] Agenda"
-            - type: horizontal-stack
-              cards:
-                - !include ../includes/blank-card.yaml
-                - type: custom:calendar-card
-                  style: |
-                    ha-card {
-                      background: var(--homekit-card-off);
-                      --paper-item-icon-color: var(--icon-color-off);
-                      color: var(--name-color-off);
-                      border-radius: var(--border-radius);
-                      font-family: Helvetica;
-                      font-size: 12px;
-                      opacity: 0.8;
-                    }
-                  numberOfDays: 5
-                  entities:
-                    - calendar.[[name]]
-                    - calendar.family
-                  showColors: true
-                - !include ../includes/blank-card.yaml
-        - type: vertical-stack
-          cards:
-            - type: custom:decluttering-card
-              template: header
-              variables:
-                - content: '#### < Location >'
+                - content: '#### Location >'
             - type: custom:decluttering-card
               template: header
               variables:
@@ -85,10 +56,11 @@ card:
                 - type: map
                   style: |
                     ha-card {
-                      background: var(--homekit-card-off);
+                      background: var(--card-color-off);
                       --paper-item-icon-color: var(--icon-color-off);
                       color: var(--name-color-off);
-                      border-radius: var(--border-radius);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
                       font-family: Helvetica;
                       font-size: 12px;
                       opacity: 0.8;
@@ -98,6 +70,37 @@ card:
                   default_zoom: 15
                   entities:
                     - person.[[name]]
+                - !include ../includes/blank-card.yaml
+        - type: vertical-stack
+          cards:
+            - type: custom:decluttering-card
+              template: header
+              variables:
+                - content: '#### < Agenda >'
+            - type: custom:decluttering-card
+              template: header
+              variables:
+                - content: "##### [[name-s]] Agenda"
+            - type: horizontal-stack
+              cards:
+                - !include ../includes/blank-card.yaml
+                - type: custom:calendar-card
+                  style: |
+                    ha-card {
+                      background: var(--card-color-off);
+                      --paper-item-icon-color: var(--icon-color-off);
+                      color: var(--name-color-off);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                      font-family: Helvetica;
+                      font-size: 12px;
+                      opacity: 0.8;
+                      overflow: hidden;
+                    }Days: 5
+                  entities:
+                    - calendar.[[name]]
+                    - calendar.family
+                  showColors: true
                 - !include ../includes/blank-card.yaml
         - type: vertical-stack
           cards: 
@@ -115,13 +118,15 @@ card:
                 - type: entities
                   style: |
                     ha-card {
-                      background: var(--homekit-card-off);
+                      background: var(--card-color-off);
                       --paper-item-icon-color: var(--icon-color-off);
                       color: var(--name-color-off);
-                      border-radius: var(--border-radius);
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
                       font-family: Helvetica;
                       font-size: 12px;
                       opacity: 0.8;
+                      overflow: hidden;
                     }
                   entities:
                     - entity: '[[sensor_battery_level]]'

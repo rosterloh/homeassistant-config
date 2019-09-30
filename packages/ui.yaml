@@ -11,10 +11,12 @@
 #################################################################
 
 input_boolean:
+  # Other
   dummy1:
     initial: off
   dummy2:
     initial: off
+  # Scenes
   scene_day_lights:
   scene_night_lights:
   scene_evening_lights:
@@ -26,7 +28,9 @@ input_boolean:
   scene_finished_cooking:
   scene_goodnight:
   scene_lights_out:
+  # Frontpage Alarm Button
   simple_alarm:
+  # Notification input_booleans
   notification_bedroom_door:
   notification_front_door:
   notification_livingroom_door:
@@ -42,6 +46,268 @@ input_boolean:
   notification_vacuum:
   notification_anniversary:
   notification_birthday:
+  notification_motion_hall:
+  notification_current_lights:
+  notification_current_devices:
+  notification_current_radiators:
+  notification_current_sensors:
+
+#################################################################
+#                                                               #
+#                         Input Select                          #
+#                                                               #
+#################################################################
+
+input_select:
+  # Dynamic Button Config
+  border_radius:
+    name: Border Radius
+    options:
+      - 0px
+      - 6px
+      - 12px
+      - 18px
+
+  border_radius_selector:
+    name: Border Radius Selector
+    options:
+      - None 
+      - Small
+      - Standard
+      - Large
+
+  qam_border_radius:
+    name: Quick Access Menu Border Radius
+    options:
+      - 0px
+      - 3px
+      - 6px
+      - 9px
+
+  qam_border_radius_selector:
+    name: Quick Access Menu Border Radius Selector
+    options:
+      - None
+      - Small
+      - Standard
+      - Large
+
+  box_shadow:
+    name: Box Shadow
+    options:
+      - none
+      - 1px 1px 1px 0px rgba(0,0,0,0.75)
+      - 2px 2px 2px 0px rgba(0,0,0,0.75)
+      - 3px 3px 3px 0px rgba(0,0,0,0.75)
+      - 5px 5px 5px 0px rgba(0,0,0,0.75)
+      - 7px 7px 7px 0px rgba(0,0,0,0.75)
+      
+  box_shadow_selector:
+    name: Box Shadow Selector
+    options:
+      - None
+      - Small
+      - Standard
+      - Medium
+      - Large
+      - Huge
+
+#################################################################
+#                                                               #
+#                           Sensors                             #
+#                                                               #
+#################################################################
+
+sensor:
+
+####################################################
+#                                                  #
+#                  Template                        #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      current_lights_on:
+        friendly_name: All Lights Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+          {% if is_state('light.plafond', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.eettafel', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.tafellamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.vloerlamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.woonkamer_led_lampen', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.gateway_light_7811dcdef324', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.nachtkastje_stephanie', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.nachtkastje_jimmy', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.slaapkamer_led_lampen', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.officeled', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.kleine_kamer', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.keuken', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.keukenspots', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.bijkeuken', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.entree_lamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.gang_lamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.koogeek_sw_056ce9', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.toiletlamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.berging', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.balkonlamp', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.slaapkamer_kast', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('light.slaapkamer_bed', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {{total}}
+  # Template All Devices
+  - platform: template
+    sensors:
+      current_devices_on:
+        friendly_name: All Devices Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+          {% if is_state('switch.ventilator', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.receiver', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.samsung_tv', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.receiver_slaapkamer', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.tv_slaapkamer', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.pc_van_stephanie', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.pc_van_jimmy', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.printer', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.xbox_one', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.waterkoker', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.afzuigkap', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.cappumaker', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.vaatwasser', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.air_fryer', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.wasmachine', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.droger', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('switch.oven', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {{total}}
+  # Template All Sensors
+  - platform: template
+    sensors:
+      current_sensors_on:
+        friendly_name: All Sensors Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+          {% if is_state('binary_sensor.voordeur', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.woonkamer_deur', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.slaapkamer_deur', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.motion_bijkeuken', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.motion_toilet', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.tradfri_motion_sensor', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.dafang_motion_sensor', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.fire_30', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {{total}}
+  # Template All Radiator Valves
+  - platform: template
+    sensors:
+      current_radiator_valves_on:
+        friendly_name: All Radiator Valves Currently On
+        unit_of_measurement: 'On'
+        value_template: >
+          {% set total = 0 %}
+          {% if is_state('climate.tado_smart_radiator_thermostat_va1671957504', 'heat') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('climate.tado_smart_radiator_thermostat_va2898201344', 'heat') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {{total}}
 
 #################################################################
 #                                                               #
@@ -117,3 +383,160 @@ automation:
       data:
         entity_id: input_select.vacuum
         option: Information
+  # Input Select Beautifier
+  - alias: input select beautifier 1 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: None
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: none
+  - alias: input select beautifier 2 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: Small
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: 1px 1px 1px 0px rgba(0,0,0,0.75)
+  - alias: input select beautifier 3 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: Standard
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: 2px 2px 2px 0px rgba(0,0,0,0.75)
+  - alias: input select beautifier 4 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: Medium
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: 3px 3px 3px 0px rgba(0,0,0,0.75)
+  - alias: input select beautifier 5 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: Large
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: 5px 5px 5px 0px rgba(0,0,0,0.75)
+  - alias: input select beautifier 6 box-shadow
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.box_shadow_selector
+      to: Huge
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.box_shadow
+        option: 7px 7px 7px 0px rgba(0,0,0,0.75)
+
+  - alias: input select beautifier 1 border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.border_radius_selector
+      to: None
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.border_radius
+        option: 0px
+  - alias: input select beautifier 2 border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.border_radius_selector
+      to: Small
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.border_radius
+        option: 6px
+  - alias: input select beautifier 3 border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.border_radius_selector
+      to: Standard
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.border_radius
+        option: 12px
+  - alias: input select beautifier 4 border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.border_radius_selector
+      to: Large
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.border_radius
+        option: 18px
+
+  - alias: input select beautifier 1 qam-border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.qam_border_radius_selector
+      to: None
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.qam_border_radius
+        option: 0px
+  - alias: input select beautifier 2 qam-border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.qam_border_radius_selector
+      to: Small
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.qam_border_radius
+        option: 3px
+  - alias: input select beautifier 3 qam-border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.qam_border_radius_selector
+      to: Standard
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.qam_border_radius
+        option: 6px
+  - alias: input select beautifier 4 qam-border-radius
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: input_select.qam_border_radius_selector
+      to: Large
+    action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.qam_border_radius
+        option: 9px 

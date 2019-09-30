@@ -1,197 +1,197 @@
-title: Climate
-path: climate
-cards:
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: quick-access-menu
-        variables:
-          - name1: Weather
-          - icon1: weather-sunny
-          - path1: weather
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '## Climate Control'
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Thermostat'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:decluttering-card
-            template: climate
-            variables:
-              - entity: climate.downstairs
-              - ambient_temperature: sensor.front_door_motion_temperature
-#          - type: custom:decluttering-card
-#            template: climate
-#            variables:
-#              - entity: climate.tado_smart_radiator_thermostat_va1671957504
-#              - ambient_temperature: sensor.printer_am2301_temperature
-#          - !include ../includes/blank-card.yaml
-#      - type: horizontal-stack
-#        cards:
-#          - !include ../includes/blank-card.yaml
-#          - type: custom:decluttering-card
-#            template: button
-#            variables:
-#              - entity: input_boolean.tado_woonkamer
-#              - name: Downstairs
-#              - icon: radiator
-#              - aspect_ratio: 2/1
-#              - show_label: false
-#              - margin-right: 120px
-#              - size: 15%
-#          - type: custom:decluttering-card
-#            template: button
-#            variables:
-#              - entity: input_boolean.tado_kleine_kamer
-#              - name: Kleine Kamer
-#              - icon: radiator
-#              - aspect_ratio: 2/1
-#              - show_label: false
-#              - margin-right: 120px
-#              - size: 15%
-          - !include ../includes/blank-card.yaml
+- title: Climate
+  path: climate
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Weather
+            - icon1: mdi:weather-sunny
+            - path1: weather
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Climate Control'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Thermostat'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: climate
+              variables:
+                - entity: climate.downstairs
+                - ambient_temperature: sensor.front_door_motion_temperature
+  #          - type: custom:decluttering-card
+  #            template: climate
+  #            variables:
+  #              - entity: climate.tado_smart_radiator_thermostat_va1671957504
+  #              - ambient_temperature: sensor.printer_am2301_temperature
+  #          - !include ../includes/blank-card.yaml
+  #      - type: horizontal-stack
+  #        cards:
+  #          - !include ../includes/blank-card.yaml
+  #          - type: custom:decluttering-card
+  #            template: button
+  #            variables:
+  #              - entity: input_boolean.tado_woonkamer
+  #              - name: Downstairs
+  #              - icon: radiator
+  #              - aspect_ratio: 2/1
+  #              - show_label: false
+  #              - margin-right: 120px
+  #              - size: 15%
+  #          - type: custom:decluttering-card
+  #            template: button
+  #            variables:
+  #              - entity: input_boolean.tado_kleine_kamer
+  #              - name: Kleine Kamer
+  #              - icon: radiator
+  #              - aspect_ratio: 2/1
+  #              - show_label: false
+  #              - margin-right: 120px
+  #              - size: 15%
+            - !include ../includes/blank-card.yaml
 
-### The following piece is for tablets only
-  - type: custom:state-switch
-    entity: user
-    states:
-      Home Assistant:
-        type: vertical-stack
-        cards:
-          - type: markdown 
-            style: |
-              ha-card {
-                background: none;
-                color: white;
-                box-shadow: none;
-                text-align: end;
-                font-size: 45px;
-                height: 155px;
-              }
-            content: '# [[ sensor.time.state ]]'
-### End of tablet code.
+  ### The following piece is for tablets only
+    - type: custom:state-switch
+      entity: user
+      states:
+        Home Assistant:
+          type: vertical-stack
+          cards:
+            - type: markdown 
+              style: |
+                ha-card {
+                  background: none;
+                  color: white;
+                  box-shadow: none;
+                  text-align: end;
+                  font-size: 45px;
+                  height: 155px;
+                }
+              content: '# [[ sensor.time.state ]]'
+  ### End of tablet code.
 
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Temperature'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml 
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities: 
-                  - downstairs_thermostat_temperature
-                  - front_door_motion_temperature
-              - name: Downstairs
-              - line_color: '#ffb414'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - bme680_temperature
-              - name: Workshop
-              - line_color: '#ffb414'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - lumi_lumi_weather_036b913a_1_1026
-              - name: Aqara
-              - line_color: '#ffb414'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - !include ../includes/blank-card.yaml 
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Humidity'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml 
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - downstairs_thermostat_humidity
-              - name: Downstairs
-              - line_color: '#1427ff'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities: 
-                  - bme680_humidity
-              - name: Workshop
-              - line_color: '#1427ff'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - lumi_lumi_weather_036b913a_1_1029
-              - name: Aqara
-              - line_color: '#1427ff'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - !include ../includes/blank-card.yaml
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Air Pressure'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml 
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - bme680_pressure
-              - name: Workshop
-              - line_color: '#00d8ff'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:decluttering-card
-            template: mini-graph
-            variables:
-              - entities:
-                  - lumi_lumi_weather_036b913a_1_1027
-              - name: Aqara
-              - line_color: '#00d8ff'
-              - font_size: 53
-              - decimals: 1
-              - graph: line
-              - extrema: true
-          - type: custom:button-card
-            color_type: blank-card
-            aspect_ratio: 1/1
-          - !include ../includes/blank-card.yaml
-      - !include ../includes/bottom-card.yaml
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Temperature'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml 
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities: 
+                    - downstairs_thermostat_temperature
+                    - front_door_motion_temperature
+                - name: Downstairs
+                - line_color: '#ffb414'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - bme680_temperature
+                - name: Workshop
+                - line_color: '#ffb414'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - lumi_lumi_weather_036b913a_1_1026
+                - name: Aqara
+                - line_color: '#ffb414'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - !include ../includes/blank-card.yaml 
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Humidity'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml 
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - downstairs_thermostat_humidity
+                - name: Downstairs
+                - line_color: '#1427ff'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities: 
+                    - bme680_humidity
+                - name: Workshop
+                - line_color: '#1427ff'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - lumi_lumi_weather_036b913a_1_1029
+                - name: Aqara
+                - line_color: '#1427ff'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Air Pressure'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml 
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - bme680_pressure
+                - name: Workshop
+                - line_color: '#00d8ff'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:decluttering-card
+              template: mini-graph
+              variables:
+                - entities:
+                    - lumi_lumi_weather_036b913a_1_1027
+                - name: Aqara
+                - line_color: '#00d8ff'
+                - font_size: 53
+                - decimals: 1
+                - graph: line
+                - extrema: true
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

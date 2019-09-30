@@ -41,11 +41,8 @@ card:
   entity: '[[entity]]'
   style: |
     ha-card {
-      border-radius: var(--border-radius);
-      background: rgba(0,0,0,0.0);
-      padding-bottom: 2px;
-      padding-top: 2px;
-      font-family: Helvetica;
+      border-radius: {{ states('input_select.border_radius') }};
+      box-shadow: {{ states('input_select.box_shadow') }};
     }
   severity:
     - value: '[[value 1]]'

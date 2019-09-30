@@ -2,7 +2,6 @@
     title: Workshop Plants
     style:
       color: white
-      border-radius: var(--border-radius)
       background: var(--background-image)
     card:
       type: vertical-stack
@@ -21,7 +20,6 @@
     title: Workshop LEDs
     style:
       color: white
-      border-radius: var(--border-radius)
       background: var(--background-image)
     card:
       type: vertical-stack
@@ -40,7 +38,6 @@
     title: Workshop Light
     style:
       color: white
-      border-radius: var(--border-radius)
       background: var(--background-image)
     card:
       type: vertical-stack

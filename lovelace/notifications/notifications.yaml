@@ -51,7 +51,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_alles_rustig
-            - icon: check-box-outline
+            - icon: mdi:check-box-outline
             - name: All is good, there are no notifications
             - card_color: 'rgba(157, 0, 255, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -69,7 +69,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_smoke_detector
-            - icon: smoke-detector
+            - icon: mdi:smoke-detector
             - name: There is smoke in the workshop!!
             - card_color: 'rgba(255, 0, 0, 0.5)'
             - spin: true
@@ -88,7 +88,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_alarm
-            - icon: alert
+            - icon: mdi:alert
             - name: ALERT! The alarm has gone off, ALERT!
             - card_color: 'rgba(255, 0, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -108,7 +108,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_alarm
-            - icon: alert
+            - icon: mdi:alert
             - name: WARNING! The alarm is on!
             - card_color: 'rgba(255, 0, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -128,7 +128,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_alarm
-            - icon: alert
+            - icon: mdi:alert
             - name: There is no-one at home, turn on the alarm!
             - card_color: 'rgba(255, 110, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -146,7 +146,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_alarm
-            - icon: clock-alert-outline
+            - icon: mdi:clock-alert-outline
             - name: The alarm is turning on, leave the house!
             - card_color: 'rgba(255, 90, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -164,7 +164,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_extractor
-            - icon: fan
+            - icon: mdi:fan
             - name: The extractor is on!
             - card_color: 'rgba(0, 245, 224, 0.5)'
             - spin: true
@@ -183,7 +183,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_voordeur
-            - icon: door
+            - icon: mdi:door
             - name: The front door is open!
             - card_color: 'rgba(160, 40, 40, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -201,7 +201,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_livingroom_door
-            - icon: door
+            - icon: mdi:door
             - name: The livingroom door is open!
             - card_color: 'rgba(193, 2, 214, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -219,7 +219,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_workshop_door
-            - icon: door
+            - icon: mdi:door
             - name: The workshop door is open!
             - card_color: 'rgba(13, 266, 20, 0.5)'
         - !include ../includes/blank-card.yaml     
@@ -237,7 +237,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_washing_machine
-            - icon: washing-machine
+            - icon: mdi:washing-machine
             - name: The washing machine is finished!
             - card_color: 'rgba(225, 237, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -255,7 +255,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_dishwasher
-            - icon: dishwasher
+            - icon: mdi:dishwasher
             - name: The dishwasher is finished!
             - card_color: 'rgba(9, 195, 242, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -273,7 +273,7 @@ cards:
 #          template: notification
 #          variables:
 #            - entity: input_boolean.notification_juno
-#            - icon: cat-side
+#            - icon: mdi:cat-side
 #            - name: Juno is not home!
 #            - card_color: 'rgba(0, 255, 251, 0.5)'
 #        - !include ../includes/blank-card.yaml
@@ -291,7 +291,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_motion_entrance
-            - icon: motion-sensor
+            - icon: mdi:motion-sensor
             - name: The is motion at the entrance
             - card_color: 'rgba(161, 255, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -309,7 +309,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_motion_bijkeuken
-            - icon: motion-sensor
+            - icon: mdi:motion-sensor
             - name: There is someone in the workshop
             - card_color: 'rgba(193, 0, 29, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -327,7 +327,7 @@ cards:
 #          template: notification
 #          variables:
 #            - entity: input_boolean.notification_motion_toilet
-#            - icon: motion-sensor
+#            - icon: mdi:motion-sensor
 #            - name: There is motion in the toilet
 #            - card_color: 'rgba(0, 221, 255, 0.5)'
 #        - !include ../includes/blank-card.yaml
@@ -345,7 +345,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_vacuum
-            - icon: robot-vacuum
+            - icon: mdi:robot-vacuum
             - name: Albert is cleaning
             - card_color: 'rgba(56, 43, 230, 0.5)'
             - spin: true
@@ -364,7 +364,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_vacuum
-            - icon: robot-vacuum
+            - icon: mdi:robot-vacuum
             - name: Albert is idle
             - card_color: 'rgba(56, 43, 230, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -382,7 +382,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_vacuum
-            - icon: robot-vacuum
+            - icon: mdi:robot-vacuum
             - name: Albert is paused
             - card_color: 'rgba(56, 43, 230, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -400,10 +400,28 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_vacuum
-            - icon: robot-vacuum
+            - icon: mdi:robot-vacuum
             - name: Albert is returning to the dock
             - card_color: 'rgba(56, 43, 230, 0.5)'
             - spin: true
+        - !include ../includes/blank-card.yaml
+
+  # Motion Hall
+  - type: conditional
+    conditions:
+      - entity: binary_sensor.tradfri_motion_sensor
+        state: "on"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_motion_gang
+            - icon: mdi:motion-sensor
+            - name: There is motion in the hall
+            - card_color: 'rgba(225, 255, 0, 0.5)'
         - !include ../includes/blank-card.yaml
 
   # Vacuum Notification (Error Sensor)
@@ -419,7 +437,7 @@ cards:
           template: notification
           variables:
             - entity: input_boolean.notification_vacuum
-            - icon: robot-vacuum
+            - icon: mdi:robot-vacuum
             - name: Albert has an error
             - card_color: 'rgba(255, 255, 0, 0.5)'
         - !include ../includes/blank-card.yaml
@@ -437,18 +455,18 @@ cards:
 #          template: notification
 #          variables:
 #            - entity: input_boolean.notification_anniversary
-#            - icon: steering
-#            - name: "[[[ return `Vandaag zijn we ${states['sensor.anniversary_trouwdag'].attributes.years} jaar getrouwd!` ]]]"
+#            - icon: mdi:steering
+#            - name: "[[[ return `Today is your ${states['sensor.anniversary_trouwdag'].attributes.years}th anniversary!` ]]]"
 #            - card_color: 'rgba(255, 0, 115, 0.5)'
 #            - spin: true
 #        - !include ../includes/blank-card.yaml
 
   ## Birthdays
 
-  # Koos van Duuren
+  # John Doe
 #  - type: conditional
 #    conditions:
-#      - entity: sensor.birthday_koos_van_duuren
+#      - entity: sensor.birthday_john_doe
 #        state: '0'
 #    card:
 #      type: horizontal-stack
@@ -458,9 +476,75 @@ cards:
 #          template: notification
 #          variables:
 #            - entity: input_boolean.notification_birthday
-#            - icon: gift-outline
-#            - name: "[[[ return `Koos van Duuren is vandaag ${states['sensor.birthday_koos_van_duuren'].attributes.years} geworden!` ]]]"
+#            - icon: mdi:gift-outline
+#            - name: "[[[ return `It is John Doe's ${states['sensor.birthday_koos_van_duuren'].attributes.years}th birthday today!` ]]]"
 #            - card_color: 'rgba(4, 255, 0, 0.5)'
 #        - !include ../includes/blank-card.yaml
+
+# Notifications below only show when the Home Alarm is set to anything other than "disarmed"
+# These notifications do not serve any purpose when the alarm is disarmed as these will not be shown. Why? Well because if the
+# alarm is disarmed then the amount of lights/devices that are currently on are displayed in the buttons in the form of a 
+# notification badge, this makes a second notification in the notifications panel unnecessary and so these will only show when
+# the alarm is set to anything other than "disarmed".
+
+  # Current Lights
+  - type: conditional
+    conditions:
+      - entity: sensor.current_lights_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_lights
+            - icon: mdi:lightbulb
+            - name: "[[[ if (states['sensor.current_lights_on'].state < 2) return `There is 1 light on`; else return `There are ${states['sensor.current_lights_on'].state} lights on`  ]]]"
+            - card_color: 'rgba(79, 255, 161, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Current Devices
+  - type: conditional
+    conditions:
+      - entity: sensor.current_devices_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_devices
+            - icon: mdi:power-plug
+            - name: "[[[ if (states['sensor.current_devices_on'].state < 2) return `There is 1 device on`; else return `There are ${states['sensor.current_devices_on'].state} devices on` ]]]"
+            - card_color: 'rgba(18, 180, 255, 0.5)'
+        - !include ../includes/blank-card.yaml
+
+  # Current Radiator Valves
+  - type: conditional
+    conditions:
+      - entity: sensor.current_radiator_valves_on
+        state_not: "0"
+      - entity: alarm_control_panel.home_alarm
+        state_not: "disarmed"
+    card:
+      type: horizontal-stack
+      cards:
+        - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: notification
+          variables:
+            - entity: input_boolean.notification_current_radiators
+            - icon: mdi:thermostat
+            - name: "[[[ if (states['sensor.current_radiator_valves_on'].state < 2) return `There is 1 radiator on`; else return `There are ${states['sensor.current_radiator_valves_on'].state} radiators on`  ]]]"
+            - card_color: 'rgba(255, 0, 76, 0.5)'
+        - !include ../includes/blank-card.yaml
 
   - !include ../includes/bottom-card.yaml 

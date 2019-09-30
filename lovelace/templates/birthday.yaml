@@ -43,11 +43,11 @@ card:
         - type: custom:decluttering-card
           template: notification_template
           variables:
-            - icon_color: var(--upcoming-color)
-            - name_color: var(--upcoming-color)
-            - icon: phone
+            - icon_color: var(--icon-color-off)
+            - name_color: var(--label-color-off)
+            - icon: mdi:phone
             - name: Phone [[name]]
-            - card_color: var(--homekit-card-off)
+            - card_color: var(--card-color-off)
             - tap_action:
                 action: url
                 url: tel://'[[phone_number]]'
@@ -59,11 +59,11 @@ card:
         - type: custom:decluttering-card
           template: notification_template
           variables:
-            - icon_color: var(--upcoming-color)
-            - name_color: var(--upcoming-color)
-            - icon: message-processing
+            - icon_color: var(--icon-color-off)
+            - name_color: var(--label-color-off)
+            - icon: mdi:message-processing
             - name: Stuur [[name]] een tekstbericht
-            - card_color: var(--homekit-card-off)
+            - card_color: var(--card-color-off)
             - tap_action:
                 action: url
                 url: sms://'[[phone_number]]'
@@ -75,11 +75,11 @@ card:
         - type: custom:decluttering-card
           template: notification_template
           variables:
-            - icon_color: var(--upcoming-color)
-            - name_color: var(--upcoming-color)
-            - icon: whatsapp
-            - name: Wish [[name]] on Whatsapp
-            - card_color: var(--homekit-card-off)
+            - icon_color: var(--icon-color-off)
+            - name_color: var(--label-color-off)
+            - icon: mdi:whatsapp
+            - name: Wish [[name]] on WhatsApp
+            - card_color: var(--card-color-off)
             - tap_action:
                 action: url
                 url: whatsapp://send?text=Happy%birthday!

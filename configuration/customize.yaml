@@ -1,0 +1,29 @@
+zone.tring:
+  radius: 600
+zone.london:
+  latitude: 51.5077439
+  longitude: -0.1245964
+  radius: 7000
+zone.work:
+  latitude: 51.5236013
+  longitude: -0.0853201
+  radius: 50
+zone.home:
+  latitude: 51.826841
+  longitude: -0.636825
+  radius: 100
+person.jess:
+  entity_picture: /local/img/jess_small.jpg
+person.richard:
+  entity_picture: /local/img/richard_small.jpg
+person.juno:
+  entity_picture: /local/img/juno.jpg
+
+# Media Players
+media_player.living_room_tv:
+  device_class: tv
+
+# Template Sensors
+sensor.vacuum_battery:
+  device_class: battery
+  unit_of_measurement: '%'

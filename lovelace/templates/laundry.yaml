@@ -44,7 +44,8 @@ card:
   type: picture-elements
   style: |
     ha-card {
-      border-radius: var(--border-radius);
+      border-radius: {{ states('input_select.border_radius') }};
+      box-shadow: {{ states('input_select.box_shadow') }};
       overflow: hidden;
     }
   image: /local/img/[[image]]

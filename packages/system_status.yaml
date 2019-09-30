@@ -6,39 +6,6 @@
 
 #################################################################
 #                                                               #
-#                          Customize                            #
-#                                                               #
-#################################################################
-
-homeassistant:
-  customize:
-    sensor.disk_use:
-      friendly_name: Disk Use
-    sensor.speedtest_ping:
-      friendly_name: Ping
-      icon: mdi:pulse
-    sensor.speedtest_download:
-      friendly_name: Download
-      icon: mdi:arrow-down-bold
-    sensor.speedtest_upload:
-      friendly_name: Upload
-      icon: mdi:arrow-up-bold
-    sensor.pihole_ads_percentage_blocked_today:
-      friendly_name: Percentage of Ad Traffic Blocked
-      unit_of_measurement: '%'
-      icon: mdi:ticket-percent
-    sensor.pihole_domains_blocked:
-      friendly_name: Total Domains Blocked
-      icon: mdi:do-not-disturb
-    sensor.pihole_dns_queries_today:
-      friendly_name: DNS Queries Today
-      icon: mdi:note-text
-    sensor.pihole_dns_unique_domains:
-      friendly_name: Unique Domains
-      icon: mdi:approval
-
-#################################################################
-#                                                               #
 #                       Device Tracker                          #
 #                                                               #
 #################################################################
@@ -245,6 +212,27 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
+
+####################################################
+#                                                  #
+#                 Sensor - SNMP                    #
+#                                                  #
+####################################################
+
+  - platform: snmp
+    name: 'Printer Pages'
+    host: 192.168.1.3
+    baseoid: 1.3.6.1.2.1.43.10.2.1.4.1.1
+    accept_errors: true
+    scan_interval: 3600
+
+  - platform: snmp
+    name: 'Printer Ink - Black'
+    host: 192.168.1.3
+    baseoid: 1.3.6.1.2.1.43.11.1.1.9.1.1
+    accept_errors: true
+    scan_interval: 86400
+    unit_of_measurement: '%'
 
 #################################################################
 #                                                               #

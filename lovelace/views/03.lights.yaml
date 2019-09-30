@@ -1,0 +1,154 @@
+- title: Lights
+  path:  lights
+  popup_cards:
+    !include ../popup-cards/light-popup.yaml
+  cards:
+    - type: vertical-stack 
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Lights'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Living Room'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: group.living_room_overhead
+                - name: Ceiling
+                - icon: mdi:ceiling-light
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.living_room_lamp
+                - name: Lamps
+                - icon: mdi:lamp
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Workshop'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.gledopto_gl_c_007_1d3ab8f9_11
+                - name: LEDs
+                - icon: mdi:led-strip
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.philips_lct007_1047db70_11
+                - name: Bulb
+                - icon: mdi:ceiling-light
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.aerogarden_plant_leds
+                - name: Plant Lights
+                - icon: mdi:sprout
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - !include ../includes/blank-card.yaml
+
+  ### The following piece is for tablets only, You can leave this out if not needed.
+    - type: custom:state-switch
+      entity: user
+      states:
+        Home Assistant:
+          type: vertical-stack
+          cards:
+            - type: markdown 
+              style: |
+                ha-card {
+                  background: none;
+                  color: white;
+                  box-shadow: none;
+                  text-align: end;
+                  font-size: 45px;
+                  height: 155px;
+                }
+              content: '# [[ sensor.time.state ]]'
+  ### End of tablet code.
+
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Kitchen'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.kitchen_table
+                - name: Ceiling
+                - icon: mdi:ceiling-light
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Hall'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.entrance
+                - name: Entrance
+                - icon: mdi:ceiling-light
+                - size: 30%
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:decluttering-card
+              template: button
+              variables:
+                - entity: light.front_door
+                - name: Hallway
+                - icon: mdi:ceiling-light
+                - size: 30%
+                - label: !include ../includes/brightness-label.yaml
+                - grid:
+                    !include ../includes/light-devices-grid.yaml
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

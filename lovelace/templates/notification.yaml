@@ -25,16 +25,17 @@ default:
   - entity: input_boolean.dummy1
 
    # Style Config
-  - border-radius: var(--border-radius)
-  - icon: home
+  - border-radius: "[[[ return states['input_select.border_radius'].state ]]]"
+  - icon: mdi:home
   - lock: false
   - size: 100%
-  - card_color: var(--homekit-card-off)
+  - card_color: var(--card-color-off)
   - margin-right: 0px
   - margin-left: 15px
   - spin: false
   - icon_color: white
   - name_color: white
+  - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
 
   # Content (I only use name in my config, use label if you want to display more or prefer the label color)
   - label: yourcontenthere
@@ -53,7 +54,7 @@ card:
   type: custom:button-card
   name: '[[name]]'
   deep_press: true
-  icon: 'mdi:[[icon]]'
+  icon: '[[icon]]'
   size: '[[size]]'
   lock: '[[lock]]'
   aspect_ratio: 7/1
@@ -70,6 +71,7 @@ card:
     card:
       - border-radius: '[[border-radius]]'
       - --ha-card-background: '[[card_color]]'
+      - box-shadow: '[[box-shadow]]'
     name:
       - font-size: 13px
       - font-family: Helvetica

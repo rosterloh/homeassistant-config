@@ -33,7 +33,7 @@ default:
 
   # Icon (this is the icon of the second button on the first row, this is a button to use with template sensors
   # you can remove that button if you don't intend to use template sensors with your entities!)
-  icon: washing-machine
+  icon: mdi:washing-machine
 
 #### #### #### #### #### #### #### #### #### #### #### #
 
@@ -52,7 +52,7 @@ card:
           template: button
           variables:
             - name: Power
-            - icon: power
+            - icon: mdi:power
             - tap_action: 
                 action: toggle
                 haptic: light
@@ -75,7 +75,7 @@ card:
           variables:
             - name: Wifi
             - label: Signal Strength
-            - icon: wifi
+            - icon: mdi:wifi
             - tap_action: 
                 action: none
             - entity: sensor.[[device_name]]_status
@@ -93,7 +93,7 @@ card:
           template: button
           variables:
             - name: Power
-            - icon: alpha-w-box
+            - icon: mdi:alpha-w-box
             - tap_action: 
                 action: toggle
                 haptic: light
@@ -104,7 +104,7 @@ card:
           template: button
           variables:
             - name: Current
-            - icon: alpha-a-box
+            - icon: mdi:alpha-a-box
             - tap_action: 
                 action: none
                 haptic: light
@@ -115,7 +115,7 @@ card:
           template: button
           variables:
             - name: Voltage
-            - icon: alpha-v-box
+            - icon: mdi:alpha-v-box
             - tap_action: 
                 action: none
             - entity: sensor.[[device_name]]_energy_voltage
@@ -129,7 +129,7 @@ card:
           template: button
           variables:
             - name: Apparent
-            - icon: flash-auto
+            - icon: mdi:flash-auto
             - tap_action: 
                 action: toggle
                 haptic: light
@@ -140,7 +140,7 @@ card:
           template: button
           variables:
             - name: Reactive
-            - icon: flash-red-eye
+            - icon: mdi:flash-red-eye
             - tap_action: 
                 action: none
                 haptic: light
@@ -151,7 +151,7 @@ card:
           template: button
           variables:
             - name: Factor
-            - icon: file-excel-box
+            - icon: mdi:file-excel-box
             - tap_action: 
                 action: none
             - entity: sensor.[[device_name]]_energy_factor
@@ -175,7 +175,7 @@ card:
             - entity: sensor.[[device_name]]_energy_today
             - opacity: 0.6
             - show_label: false
-            - icon: eye
+            - icon: mdi:eye
         - type: custom:decluttering-card
           template: button
           variables:
@@ -186,7 +186,7 @@ card:
             - entity: sensor.[[device_name]]_energy_yesterday
             - opacity: 0.6
             - show_label: false
-            - icon: eye
+            - icon: mdi:eye
         - type: custom:decluttering-card
           template: button
           variables:
@@ -196,6 +196,6 @@ card:
             - entity: sensor.[[device_name]]_energy_total
             - opacity: 0.6
             - show_label: false
-            - icon: eye
+            - icon: mdi:eye
         - !include ../includes/blank-card.yaml
     - !include ../includes/bottom-card.yaml

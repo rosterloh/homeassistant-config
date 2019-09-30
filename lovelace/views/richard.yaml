@@ -1,44 +1,66 @@
-title: Richard
-path:  richard
-cards:
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: quick-access-menu
-        variables:
-          - name1: Prusa
-          - icon1: download-network 
-          - path1: octoprint 
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '## Richard Osterloh'
-      - type: custom:flex-table-card
-        title: Trains to Euston
-        icon: mdi:train
-        max_rows: 6
-        entities:
-          include: sensor.next_train_to_eus
-        columns:
-          - name: Time
-            attr_as_list: next_trains
-            modify: x.scheduled
-          - name: Est
-            attr_as_list: next_trains
-            modify: x.estimated
-          - name: Status
-            attr_as_list: next_trains
-            prefix: '<style> cc { color: red; } </style>'
-            modify: 'if (x.status == "LATE") { "<cc>" + x.status + "</cc>" } else { x.status }'
-          - name: Delay
-            attr_as_list: next_trains
-            modify: 'if (x.estimated ) { (parseInt(x.estimated) * 60 + parseInt((x.estimated).slice(3,5))) - (parseInt(x.scheduled) * 60 + parseInt((x.scheduled).slice(3,5))) } else { " " }'
-            suffix: 'm'
-            align: right
-      - type: custom:decluttering-card
-        template: person-more-info
-        variables:
-          - name: richard
-          - name-s: richard's
-          - sensor_battery_state: binary_sensor.richard_phone_charging
-          - sensor_battery_level: sensor.richard_phone_battery
+- title: Richard
+  path:  richard
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Prusa
+            - icon1: mdi:download-network 
+            - path1: octoprint 
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Richard Osterloh'
+        - type: custom:flex-table-card
+          title: Trains to Euston
+          icon: mdi:train
+          max_rows: 6
+          entities:
+            include: sensor.next_train_to_eus
+          columns:
+            - name: Time
+              attr_as_list: next_trains
+              modify: x.scheduled
+            - name: Est
+              attr_as_list: next_trains
+              modify: x.estimated
+            - name: Status
+              attr_as_list: next_trains
+              prefix: '<style> cc { color: red; } </style>'
+              modify: 'if (x.status == "LATE") { "<cc>" + x.status + "</cc>" } else { x.status }'
+            - name: Delay
+              attr_as_list: next_trains
+              modify: 'if (x.estimated ) { (parseInt(x.estimated) * 60 + parseInt((x.estimated).slice(3,5))) - (parseInt(x.scheduled) * 60 + parseInt((x.scheduled).slice(3,5))) } else { " " }'
+              suffix: 'm'
+              align: right
+        - type: custom:flex-table-card
+          title: Trains to Tring
+          icon: mdi:train
+          max_rows: 6
+          entities:
+            include: sensor.next_train_to_tri
+          columns:
+            - name: Time
+              attr_as_list: next_trains
+              modify: x.scheduled
+            - name: Est
+              attr_as_list: next_trains
+              modify: x.estimated
+            - name: Status
+              attr_as_list: next_trains
+              prefix: '<style> cc { color: red; } </style>'
+              modify: 'if (x.status == "LATE") { "<cc>" + x.status + "</cc>" } else { x.status }'
+            - name: Delay
+              attr_as_list: next_trains
+              modify: 'if (x.estimated ) { (parseInt(x.estimated) * 60 + parseInt((x.estimated).slice(3,5))) - (parseInt(x.scheduled) * 60 + parseInt((x.scheduled).slice(3,5))) } else { " " }'
+              suffix: 'm'
+              align: right
+        - type: custom:decluttering-card
+          template: person-more-info
+          variables:
+            - name: richard
+            - name-s: richard's
+            - sensor_battery_state: binary_sensor.richard_phone_charging
+            - sensor_battery_level: sensor.richard_phone_battery

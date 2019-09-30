@@ -1,0 +1,106 @@
+- title: Automations
+  path:  automations
+  cards:
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu 
+          variables:
+            - name1: Lights
+            - icon1: mdi:floor-lamp
+            - path1: lights
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '## Automations'
+        - type: custom:decluttering-card
+          template: header 
+          variables:
+            - content: '##### Turn Automations on/off'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: group.watch_movie_automation
+                - name: Dim Light
+                - icon: mdi:movie
+                - label: Movie
+                - show_state: true
+                - grid:
+                    - grid-template-areas: '"i" "n" "l" "s"' 
+                    - grid-template-columns: 1fr 
+                    - grid-template-rows: 1fr min-content min-content               
+                - tap_action:
+                    action: toggle
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: group.door_notifications
+                - name: Door
+                - icon: mdi:door
+                - label: Notifications
+                - show_state: true
+                - grid:
+                    - grid-template-areas: '"i" "n" "l" "s"' 
+                    - grid-template-columns: 1fr 
+                    - grid-template-rows: 1fr min-content min-content              
+                - tap_action:
+                    action: toggle
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: group.dishwasher_start
+                - name: Dishwasher On
+                - icon: mdi:dishwasher
+                - label: After Laundry
+                - show_state: true
+                - grid:
+                    - grid-template-areas: '"i" "n" "l" "s"' 
+                    - grid-template-columns: 1fr 
+                    - grid-template-rows: 1fr min-content min-content              
+                - tap_action:
+                    action: toggle
+                    haptic: light
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: automation.motion_detected_no_one_home
+                - name: Movement
+                - label: Notification
+                - icon: mdi:walk
+                - show_state: true
+                - grid:
+                    - grid-template-areas: '"i" "n" "l" "s"' 
+                    - grid-template-columns: 1fr 
+                    - grid-template-rows: 1fr min-content min-content              
+                - tap_action:
+                    action: toggle
+                    haptic: light
+            - type: custom:decluttering-card
+              template: button 
+              variables:
+                - entity: group.all_automations
+                - name: Automations
+                - icon: mdi:alpha-a-box
+                - label: All
+                - show_state: true
+                - grid:
+                    - grid-template-areas: '"i" "n" "l" "s"' 
+                    - grid-template-columns: 1fr 
+                    - grid-template-rows: 1fr min-content min-content              
+                - tap_action:
+                    action: toggle
+                    haptic: light
+            - type: custom:button-card
+              color_type: blank-card
+              aspect_ratio: 1/1
+            - !include ../includes/blank-card.yaml
+        - !include ../includes/bottom-card.yaml

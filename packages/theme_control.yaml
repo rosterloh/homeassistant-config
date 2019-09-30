@@ -11,22 +11,30 @@
 #################################################################
 
 input_select:
+
   theme_selector:
     name: Theme Selector 
     options:
-      - Homekit Blue Light
-      - Homekit Blue Dark
-      - Homekit Gray Light
-      - Homekit Gray Dark
-      - Homekit Orange
-      - Standard Blue Light
-      - Standard Blue Dark
-      - Standard Gray Light
-      - Standard Gray Dark
-      - Standard Orange
-      - Automatic (default)
-    initial: Automatic (default)
-    
+      - Silver
+      - Space Gray
+      - Sweet Pink
+      - Disable (use theme per user)
+      - Auto (default)
+    initial: Auto (default)
+
+#################################################################
+#                                                               #
+#                           Groups                              #
+#                                                               #
+#################################################################
+
+group:
+
+  theme_selector:
+    entities:
+    - automation.set_light_theme_for_the_day
+    - automation.set_light_theme_for_the_night
+
 #################################################################
 #                                                               #
 #                          Automations                          #
@@ -46,7 +54,7 @@ automation:
     action:
       service: frontend.set_theme
       data:
-        name: Homekit Gray Light
+        name: Silver
 
   - alias: 'Set theme dark at startup'
     initial_state: 'true'
@@ -60,152 +68,78 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Dark
+          name: Space Gray
 
   - alias: 'theme selector input_select 1'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Homekit Gray Light'
+        to: 'Silver'
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Light
+          name: Silver
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
+
   - alias: 'theme selector input_select 2'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Homekit Gray Dark'
+        to: 'Space Gray'
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Dark
+          name: Space Gray
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
+
   - alias: 'theme selector input_select 3'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Homekit Blue Light'
+        to: 'Sweet Pink'
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Blue Light
+          name: Sweet Pink
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
+
   - alias: 'theme selector input_select 4'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Homekit Blue Dark'
+        to: 'Auto (default)'
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Blue Dark
+          name: Space Gray
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
+
   - alias: 'theme selector input_select 5'
     initial_state: true
     trigger:
       - platform: state
         entity_id: input_select.theme_selector
-        to: 'Standard Blue Light'
+        to: 'Disable'
     action:
       - service: frontend.set_theme
         data:
-          name: Standard Blue Light
+          name: Disable
       - service: homeassistant.turn_off
         data:
           entity_id: group.theme_selector
-  - alias: 'theme selector input_select 6'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Blue Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Blue Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  - alias: 'theme selector input_select 7'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Automatic (default)'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  - alias: 'theme selector input_select 8'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Gray Light'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Gray Light
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  - alias: 'theme selector input_select 9'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Gray Dark'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Gray Dark
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  - alias: 'theme selector input_select 10'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Homekit Orange'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Homekit Orange
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  - alias: 'theme selector input_select 11'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Standard Orange'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Standard Orange
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-  # Theme Day/Night Cycle
+
   - alias: 'Set dark theme for the night'
     initial_state: true
     trigger:
@@ -215,7 +149,8 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Dark
+          name: Space Gray
+
   - alias: 'Set light theme for the day'
     initial_state: true
     trigger:
@@ -225,4 +160,4 @@ automation:
     action:
       - service: frontend.set_theme
         data:
-          name: Homekit Gray Light
+          name: Silver

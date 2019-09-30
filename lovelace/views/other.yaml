@@ -1,103 +1,107 @@
-title: Other
-path:  other
-cards:    
-  - type: vertical-stack
-    cards:
-      - type: custom:decluttering-card
-        template: quick-access-menu
-        variables:
-          - name1: Links
-          - icon1: link-variant
-          - path1: links
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '## Other'
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Uncategorized'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: glance
-            style: |
-              ha-card {
-                background: var(--homekit-card-off);
-                --paper-item-icon-color: var(--icon-color-off);
-                color: var(--name-color-off);
-                border-radius: var(--border-radius);
-              }
-            entities:
-              - entity: sensor.ssl_certificate_expiry
-          - !include ../includes/blank-card.yaml
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### System'
-      - type: horizontal-stack
-        cards:
-          - !include ../includes/blank-card.yaml
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.processor_use
-            name: CPU
-            line_color: '#2980b9'
-            line_width: 2
-            hours_to_show: 24
-          - type: vertical-stack
-            cards:
-              - type: custom:bar-card
-                entity: sensor.disk_use_percent_home
-                title: HDD
-                title_position: inside
-                align: split
-                show_icon: true
-                color: '#00ba6a'
-              - type: custom:bar-card
-                entity: sensor.memory_use_percent
-                title: RAM
-                title_position: inside
-                align: split
-                show_icon: true
-          - type: glance
-            entities:
-              - sensor.count_automations
-              - sensor.count_lights
-              - sensor.count_scripts
-              - sensor.count_sensors
-              - sensor.count_switches
-          - type: entities
-            entities:
-              - sensor.last_boot
-      - type: custom:decluttering-card
-        template: header
-        variables:
-          - content: '##### Network'
-      - type: horizontal-stack
-        cards:
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.speedtest_download
-            name: Download
-            line_color: '#2980b9'
-            line_width: 6
-            hours_to_show: 24
-            icon: mdi:download-network
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.speedtest_upload
-            name: Upload
-            line_color: '#2980b9'
-            line_width: 6
-            hours_to_show: 24
-            icon: mdi:upload-network
-          - type: custom:mini-graph-card
-            entities:
-              - sensor.speedtest_ping
-            name: Ping
-            line_color: '#dbdfe2'
-            line_width: 6
-            hours_to_show: 24
-            icon: mdi:server-network
-          - !include ../includes/blank-card.yaml
+- title: Other
+  path:  other
+  cards:    
+    - type: vertical-stack
+      cards:
+        - type: custom:decluttering-card
+          template: quick-access-menu
+          variables:
+            - name1: Links
+            - icon1: mdi:link-variant
+            - path1: links
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '## Other'
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Uncategorized'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: glance
+              style: |
+                ha-card {
+                  background: var(--card-color-off);
+                  --paper-item-icon-color: var(--icon-color-off);
+                  color: var(--name-color-off);
+                  border-radius: {{ states('input_select.border_radius') }};
+                  box-shadow: {{ states('input_select.box_shadow') }};
+                  font-family: Helvetica;
+                  font-size: 12px;
+                  opacity: 0.8;
+                }
+              entities:
+                - entity: sensor.ssl_certificate_expiry
+            - !include ../includes/blank-card.yaml
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### System'
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.processor_use
+              name: CPU
+              line_color: '#2980b9'
+              line_width: 2
+              hours_to_show: 24
+            - type: vertical-stack
+              cards:
+                - type: custom:bar-card
+                  entity: sensor.disk_use_percent_home
+                  title: HDD
+                  title_position: inside
+                  align: split
+                  show_icon: true
+                  color: '#00ba6a'
+                - type: custom:bar-card
+                  entity: sensor.memory_use_percent
+                  title: RAM
+                  title_position: inside
+                  align: split
+                  show_icon: true
+            - type: glance
+              entities:
+                - sensor.count_automations
+                - sensor.count_lights
+                - sensor.count_scripts
+                - sensor.count_sensors
+                - sensor.count_switches
+            - type: entities
+              entities:
+                - sensor.last_boot
+        - type: custom:decluttering-card
+          template: header
+          variables:
+            - content: '##### Network'
+        - type: horizontal-stack
+          cards:
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.speedtest_download
+              name: Download
+              line_color: '#2980b9'
+              line_width: 6
+              hours_to_show: 24
+              icon: mdi:download-network
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.speedtest_upload
+              name: Upload
+              line_color: '#2980b9'
+              line_width: 6
+              hours_to_show: 24
+              icon: mdi:upload-network
+            - type: custom:mini-graph-card
+              entities:
+                - sensor.speedtest_ping
+              name: Ping
+              line_color: '#dbdfe2'
+              line_width: 6
+              hours_to_show: 24
+              icon: mdi:server-network
+            - !include ../includes/blank-card.yaml
