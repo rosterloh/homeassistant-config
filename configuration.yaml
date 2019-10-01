@@ -45,6 +45,8 @@ ssdp:
 updater:
 zeroconf:
 
+shell_command: !include configuration/shell_command.yaml
+
 google_assistant:
   project_id: !secret google_assistant_project
   api_key: !secret google_assistant_api_key
@@ -72,3 +74,7 @@ panel_iframe:
     title: Pi-hole
     icon: mdi:block-helper
     url: !secret pihole_address
+  deconz:
+    title: deconz
+    icon: mdi:leak
+    url: !secret deconz_address
