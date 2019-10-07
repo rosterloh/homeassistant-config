@@ -50,7 +50,7 @@
             - type: custom:decluttering-card
               template: button
               variables:
-                - entity: light.gledopto_gl_c_007_1d3ab8f9_11
+                - entity: light.workshop_leds
                 - name: LEDs
                 - icon: mdi:led-strip
                 - label: !include ../includes/brightness-label.yaml
@@ -59,7 +59,7 @@
             - type: custom:decluttering-card
               template: button
               variables:
-                - entity: light.philips_lct007_1047db70_11
+                - entity: light.workshop_bulb
                 - name: Bulb
                 - icon: mdi:ceiling-light
                 - label: !include ../includes/brightness-label.yaml

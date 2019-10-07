@@ -89,8 +89,8 @@
               template: mini-graph
               variables:
                 - entities: 
-                    - downstairs_thermostat_temperature
-                    - front_door_motion_temperature
+                    - sensor.downstairs_thermostat_temperature
+                    - sensor.front_door_motion_temperature
                 - name: Downstairs
                 - line_color: '#ffb414'
                 - font_size: 53
@@ -101,7 +101,8 @@
               template: mini-graph
               variables:
                 - entities:
-                    - bme680_temperature
+                    - sensor.bme680_temperature
+                    - sensor.workshop_temperature
                 - name: Workshop
                 - line_color: '#ffb414'
                 - font_size: 53
@@ -112,7 +113,7 @@
               template: mini-graph
               variables:
                 - entities:
-                    - lumi_lumi_weather_036b913a_1_1026
+                    - sensor.lumi_lumi_weather_036b913a_1_1026
                 - name: Aqara
                 - line_color: '#ffb414'
                 - font_size: 53
@@ -131,7 +132,7 @@
               template: mini-graph
               variables:
                 - entities:
-                    - downstairs_thermostat_humidity
+                    - sensor.downstairs_thermostat_humidity
                 - name: Downstairs
                 - line_color: '#1427ff'
                 - font_size: 53
@@ -142,7 +143,8 @@
               template: mini-graph
               variables:
                 - entities: 
-                    - bme680_humidity
+                    - sensor.bme680_humidity
+                    - sensor.workshop_humidity
                 - name: Workshop
                 - line_color: '#1427ff'
                 - font_size: 53
@@ -153,7 +155,7 @@
               template: mini-graph
               variables:
                 - entities:
-                    - lumi_lumi_weather_036b913a_1_1029
+                    - sensor.lumi_lumi_weather_036b913a_1_1029
                 - name: Aqara
                 - line_color: '#1427ff'
                 - font_size: 53
@@ -172,7 +174,8 @@
               template: mini-graph
               variables:
                 - entities:
-                    - bme680_pressure
+                    - sensor.bme680_pressure
+                    - sensor.workshop_pressure
                 - name: Workshop
                 - line_color: '#00d8ff'
                 - font_size: 53
@@ -183,7 +186,7 @@
               template: mini-graph
               variables:
                 - entities:
-                    - lumi_lumi_weather_036b913a_1_1027
+                    - sensor.lumi_lumi_weather_036b913a_1_1027
                 - name: Aqara
                 - line_color: '#00d8ff'
                 - font_size: 53

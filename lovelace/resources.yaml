@@ -26,8 +26,6 @@
     type: module
   - url: /community_plugin/lovelace-card-tools/card-tools.js
     type: js
-  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
-    type: module
   - url: /community_plugin/lovelace-more-info-card/more-info-card.js
     type: js
   - url: /community_plugin/lovelace-popup-card/popup-card.js

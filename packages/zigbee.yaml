@@ -4,10 +4,10 @@
 #                                                               #
 #################################################################
 
-zha:
-  radio_type: deconz
-  usb_path: /dev/ttyACM0
-  database_path: /config/zigbee.db
+#zha:
+#  radio_type: deconz
+#  usb_path: /dev/ttyACM0
+#  database_path: /config/zigbee.db
  
 #################################################################
 #                                                               #

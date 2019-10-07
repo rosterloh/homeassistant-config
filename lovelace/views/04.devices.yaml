@@ -1,4 +1,4 @@
- - title: Devices
+- title: Devices
   path: devices
   popup_cards:
     !include ../popup-cards/device-popup.yaml

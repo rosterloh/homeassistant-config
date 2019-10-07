@@ -267,7 +267,7 @@ card:
           - opacity: '[[opacity]]'
         icon:
           - color: '[[off_icon_color]]'
-          name:
+        name:
           - color: '[[off_name_color]]'
         state:
           - color: '[[off_state_color]]'
