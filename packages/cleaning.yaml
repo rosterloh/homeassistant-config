@@ -32,6 +32,20 @@ input_select:
 
 #################################################################
 #                                                               #
+#                            Groups                             #
+#                                                               #
+#################################################################
+
+group:
+
+  energy_kwh:
+    name: Energy Sensors
+    entities:
+      - sensor.dishwasher_energy_today
+      - sensor.washing_machine_energy_today
+
+#################################################################
+#                                                               #
 #                           Sensors                             #
 #                                                               #
 #################################################################
@@ -333,7 +347,7 @@ automation:
         - condition: template
           value_template: >
             {% if states.automation.send_alert_when_dishwasher_is_clean.last_triggered is not none %}
-              {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.send_alert_when_dishwasher_is_clean.attributes.last_triggered) | int > 3600 %} true {% else %} false
+              {% if as_timestamp(now()) | int - as_timestamp(states.automation.send_alert_when_dishwasher_is_clean.attributes.last_triggered) | int > 3600 %} true {% else %} false
               {% endif %}
             {% else %}
             false
@@ -385,7 +399,7 @@ automation:
         - condition: template
           value_template: >
             {% if states.automation.send_alert_when_washing_machine_is_finished.last_triggered is not none %}
-              {% if as_timestamp(now()) | int   -  as_timestamp(states.automation.send_alert_when_washing_machine_is_finished.attributes.last_triggered) | int > 1800 %} true {% else %} false
+              {% if as_timestamp(now()) | int - as_timestamp(states.automation.send_alert_when_washing_machine_is_finished.attributes.last_triggered) | int > 1800 %} true {% else %} false
               {% endif %}
             {% else %}
             false

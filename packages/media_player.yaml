@@ -32,17 +32,35 @@ scene:
 
   - name: Livingroom dim
     entities:
-      light.dimmable_light_1: false
-      light.dimmable_light_2: false
+      light.dimmable_light_1:
+        state: on
+        transition: 5
+        brightness_pct: 0
+      light.dimmable_light_2:
+        state: on
+        transition: 5
+        brightness_pct: 0
       light.dimmable_light_3:
         state: on
         transition: 2
         brightness_pct: 15
         color_temp: 280
-      light.dimmable_light_4: false
-      light.dimmable_light_5: false
-      light.dimmable_light_6: false
-      light.dimmable_light_7: false
+      light.dimmable_light_4:
+        state: on
+        transition: 5
+        brightness_pct: 0
+      light.dimmable_light_5:
+        state: on
+        transition: 5
+        brightness_pct: 0
+      light.dimmable_light_6:
+        state: on
+        transition: 5
+        brightness_pct: 0
+      light.dimmable_light_7:
+        state: on
+        transition: 5
+        brightness_pct: 0
       light.dimmable_light_8:
         state: on
         transition: 2

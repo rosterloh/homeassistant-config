@@ -35,7 +35,7 @@ config:
 conversation:
 discovery:
 frontend:
-  themes: !include_dir_named configuration/themes
+  themes: !include_dir_named configuration/themes/
 history:
 logbook:
 map:

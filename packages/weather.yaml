@@ -56,26 +56,34 @@ sensor:
       - 2
       - 3
       - 4
+      - 5
     monitored_conditions:
-      - icon
       - summary
-      - precip_type
-      - precip_probability
-      - precip_accumulation
-      - precip_intensity
-      - precip_intensity_max
-      - uv_index
-      - daily_summary
-      - wind_speed
-      - cloud_cover
-      - icon
-      - temperature_low
-      - temperature_high
-      - hourly_summary
-      - humidity
       - temperature
-    scan_interval:
-      minutes: 15
+      - humidity
+      - pressure
+      - apparent_temperature
+      - precip_probability
+      - icon
+      - precip_intensity
+      - precip_accumulation
+      - dew_point
+      - wind_speed
+      - wind_gust
+      - wind_bearing
+      - cloud_cover
+      - visibility
+      - hourly_summary
+      - daily_summary
+      - temperature_high
+      - temperature_low
+      - apparent_temperature_high
+      - apparent_temperature_low
+      - moon_phase
+      - sunrise_time
+      - sunset_time
+      - ozone
+      - precip_type
 
 ####################################################
 #                                                  #

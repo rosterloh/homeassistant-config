@@ -83,7 +83,7 @@ paper-grey-200: 'var(--mdc-grey-darken-4)'
 # Paper card
 paper-card-header-color: 'var(--light-primary-color)'
 # ha-card-background-color: 'var(--light-primary-color)'
-paper-card-background-color: 'rgba(100, 100, 100, 1.0)'
+paper-card-background-color: 'linear-gradient(to bottom right, #646464, #464646)'
 paper-dialog-background-color: 'rgba(100, 100, 100, 1.0)'
 paper-item-icon-color: 'var(--primary-text-color)'
 paper-item-icon-active-color: '#b58e31'

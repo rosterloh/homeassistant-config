@@ -6,14 +6,14 @@
         - type: custom:decluttering-card
           template: quick-access-menu
           variables:
-            - name1: About
-            - icon1: mdi:information
-            - lovelace1: developer-tools
-            - path1: info
-            - name2: Dashboard
-            - icon2: mdi:cogs
+            - name1: System Tools
+            - icon1: mdi:cogs
+            - lovelace1: config
+            - path1: dashboard
+            - name2: Developer Tools
+            - icon2: mdi:screwdriver
             - lovelace2: config
-            - path2: dashboard
+            - path2: developer-tools/info
         - type: custom:decluttering-card
           template: header
           variables:
@@ -262,22 +262,6 @@
               template: button
               variables:
                 - entity: input_boolean.dummy1
-                - name: Other
-                - icon: mdi:information
-                - show_state: false
-                - opacity: 0.8
-                - tap_action:
-                    action: navigate
-                    navigation_path: /lovelace/other
-                    haptic: light
-                - hold_action:
-                    action: navigate
-                    navigation_path: /lovelace/other
-                    haptic: light
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: input_boolean.dummy1
                 - name: Scenes
                 - label: Presets
                 - icon: mdi:arrange-send-backward
@@ -291,10 +275,6 @@
                     action: navigate
                     navigation_path: /lovelace/scenes
                     haptic: light
-            - !include ../includes/blank-card.yaml
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
             - type: custom:decluttering-card
               template: button
               variables:
@@ -312,6 +292,10 @@
                     action: navigate
                     navigation_path: /lovelace/security
                     haptic: light
+            - !include ../includes/blank-card.yaml
+        - type: horizontal-stack
+          cards:
+            - !include ../includes/blank-card.yaml
             - type: custom:decluttering-card
               template: button
               variables:
@@ -346,10 +330,6 @@
                     action: navigate
                     navigation_path: /lovelace/vacuum
                     haptic: light
-            - !include ../includes/blank-card.yaml
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
             - type: custom:decluttering-card
               template: button
               variables:
@@ -367,68 +347,6 @@
                     action: navigate
                     navigation_path: /lovelace/weather
                     haptic: light
-            - type: 'custom:button-card'
-              color_type: blank-card
-              aspect_ratio: 1/1
-            - type: 'custom:button-card'
-              color_type: blank-card
-              aspect_ratio: 1/1
             - !include ../includes/blank-card.yaml
 
-    - type: vertical-stack
-      cards:
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '##### System Tools'
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: input_boolean.dummy1
-                - name: Dashboard
-                - label: HA Settings
-                - icon: mdi:settings
-                - show_state: false
-                - opacity: 0.8
-                - tap_action:
-                    action: navigate
-                    navigation_path: /config/dashboard/
-                    haptic: light
-                - hold_action:
-                    action: none
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: input_boolean.dummy1
-                - name: Developer
-                - label: Tools
-                - icon: mdi:screwdriver
-                - show_state: false
-                - opacity: 0.8
-                - tap_action:
-                    action: navigate
-                    navigation_path: /developer-tools/info/
-                    haptic: light
-                - hold_action:
-                    action: none
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: input_boolean.dummy1
-                - name: Restart
-                - label: Restart HA
-                - icon: mdi:restart
-                - lock: true
-                - show_state: false
-                - opacity: 0.8
-                - hold_action:
-                    action: call-service
-                    service: homeassistant.restart
-                    haptic: light
-                - tap_action:
-                    action: none
-            - !include ../includes/blank-card.yaml
         - !include ../includes/bottom-card.yaml

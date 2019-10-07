@@ -41,6 +41,24 @@ script:
 
 #################################################################
 #                                                               #
+#                           Camera                              #
+#                                                               #
+#################################################################
+
+#camera:
+
+#  - platform: generic
+#    name: Richard Location
+#    still_image_url: !secret googleapi_richard
+#    limit_refetch_to_url_change: false
+
+#  - platform: generic
+#    name: Jess Location
+#    still_image_url: !secret googleapi_jess
+#    limit_refetch_to_url_change: true
+
+#################################################################
+#                                                               #
 #                         Automation                            #
 #                                                               #
 #################################################################

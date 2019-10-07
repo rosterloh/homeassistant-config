@@ -24,12 +24,19 @@ default:
   # Button Options
   - lock: false
   - aspect_ratio: 1/1
-  - opacity: 0.4
+  - opacity: 0.5
   - opacity_on: 1.0
   - border-radius: "[[[ return states['input_select.border_radius'].state ]]]"
   - ha-card-background: var(--card-color-off)
   - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
   
+# - border-radius: var(--border-radius)
+# - ha-card-background: var(--card-color-off)
+# - box-shadow: none
+
+  # Name
+  - name: # (removed config so it can use the default entity name if no name is set in decluttering-cards)
+
   # Label
   - label: '&nbsp;'
 
@@ -42,7 +49,7 @@ default:
   - spin: false
   - off_variable: spin
   - off_spin: false
-  - icon: mdi:home
+  - icon: # (removed config so it can use the default entity icon if no icon is set in decluttering-cards)
 
   # Show Options
   - show_name: true
@@ -152,6 +159,9 @@ card:
           - --ha-card-background: '[[on_card_color]]'
           - opacity: '[[opacity_on]]'
           - box-shadow: none
+          - border-style: solid
+          - border-width: 1px
+          - border-color: black
         name:
           - color: '[[on_name_color]]'
         state:
@@ -194,15 +204,15 @@ card:
         card:
           - opacity: 0.2
         name:
-          - color: var(--name-color-na)
+          - color: var(--name-color-off)
         label:
-          - color: var(--label-color-na)
+          - color: var(--label-color-off)
         state:
-          - color: var(--state-color-na)
+          - color: var(--state-color-off)
         icon:
-          - color: var(--icon-color-na)
+          - color: var(--icon-color-off)
         lock:
-          - color: var(--lock-color-na)
+          - color: var(--lock-color-off)
     - value: "disarmed"
       styles:
         card:

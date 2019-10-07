@@ -12,18 +12,65 @@ zone.home:
   latitude: 51.826841
   longitude: -0.636825
   radius: 100
-person.jess:
-  entity_picture: /local/img/jess_small.jpg
-person.richard:
-  entity_picture: /local/img/richard_small.jpg
+
+# Lights
+light.workshop_leds:
+  friendly_name: Workshop LEDs
+  icon: mdi:led-strip
+light.aerogarden_plant_leds:
+  friendly_name: Plant Lights
+  icon: mdi:sprout
+
+# Person
+#person.jess:
+#  entity_picture: /local/img/jess_small.jpg
+#person.richard:
+#  entity_picture: /local/img/richard_small.jpg
 person.juno:
   entity_picture: /local/img/juno.jpg
 
 # Media Players
 media_player.living_room_tv:
+  friendly_name: Livingroom LG TV
   device_class: tv
+
+# Sensors
+binary_sensor.window_door_sensor:
+  friendly_name: Door Sensor
+  icon: mdi:door
+binary_sensor.workshop_door:
+  friendly_name: Workshop Door Sensor
+  icon: mdi:door
 
 # Template Sensors
 sensor.vacuum_battery:
-  device_class: battery
+  friendly_name: Xiaomi Vacuum Battery Level
   unit_of_measurement: '%'
+sensor.vacuum_total_cleaned_area:
+  friendly_name: Xiaomi Vacuum Total Cleaned Area
+  unit_of_measurement: 'm2'
+sensor.vacuum_cleaning_count:
+  friendly_name: Xiaomi Vacuum Cleaning Count
+  unit_of_measurement: 'times'
+sensor.vacuum_total_cleaning_time:
+  friendly_name: Xiaomi Vacuum Total Cleaning Time
+  unit_of_measurement: 'minutes'
+sensor.vacuum_main_brush_left:
+  friendly_name: Xiaomi Vacuum Main Brush Left
+  unit_of_measurement: 'hours'
+sensor.vacuum_side_brush_left:
+  friendly_name: Xiaomi Vacuum Side Brush Left
+  unit_of_measurement: 'hours'
+sensor.vacuum_filter_left:
+  friendly_name: Xiaomi Vacuum Filter Left
+  unit_of_measurement: 'hours'
+sensor.vacuum_sensor_dirty_left:
+  friendly_name: Xiaomi Vacuum Sensor Dirty Left
+  unit_of_measurement: 'hours'
+sensor.vacuum_cleaner_error_sensor:
+  friendly_name: Xiaomi Vacuum Error Sensor
+sensor.vacuum_cleaner_status_sensor:
+  friendly_name: Xiaomi Vacuum Status Sensor
+sensor.xiaomi_vacuum_fan_speed_state:
+  friendly_name: Xiaomi Vacuum Fan Speed State
+

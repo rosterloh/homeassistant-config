@@ -22,8 +22,6 @@
               template: button
               variables:
                 - entity: group.living_room_overhead
-                - name: Ceiling
-                - icon: mdi:ceiling-light
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
                     !include ../includes/light-devices-grid.yaml
@@ -31,8 +29,6 @@
               template: button
               variables:
                 - entity: light.living_room_lamp
-                - name: Lamps
-                - icon: mdi:lamp
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
                     !include ../includes/light-devices-grid.yaml
@@ -51,8 +47,6 @@
               template: button
               variables:
                 - entity: light.workshop_leds
-                - name: LEDs
-                - icon: mdi:led-strip
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
                     !include ../includes/light-devices-grid.yaml
@@ -60,40 +54,16 @@
               template: button
               variables:
                 - entity: light.workshop_bulb
-                - name: Bulb
-                - icon: mdi:ceiling-light
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
                     !include ../includes/light-devices-grid.yaml
             - type: custom:decluttering-card
               template: button
               variables:
-                - entity: light.aerogarden_plant_leds
-                - name: Plant Lights
-                - icon: mdi:sprout
+                - entity: light.aerogarden_plant_leds                
                 - grid:
                     !include ../includes/light-devices-grid.yaml
             - !include ../includes/blank-card.yaml
-
-  ### The following piece is for tablets only, You can leave this out if not needed.
-    - type: custom:state-switch
-      entity: user
-      states:
-        Home Assistant:
-          type: vertical-stack
-          cards:
-            - type: markdown 
-              style: |
-                ha-card {
-                  background: none;
-                  color: white;
-                  box-shadow: none;
-                  text-align: end;
-                  font-size: 45px;
-                  height: 155px;
-                }
-              content: '# [[ sensor.time.state ]]'
-  ### End of tablet code.
 
     - type: vertical-stack
       cards:
@@ -108,8 +78,6 @@
               template: button
               variables:
                 - entity: light.kitchen_table
-                - name: Ceiling
-                - icon: mdi:ceiling-light
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
                     !include ../includes/light-devices-grid.yaml
@@ -131,8 +99,6 @@
               template: button
               variables:
                 - entity: light.entrance
-                - name: Entrance
-                - icon: mdi:ceiling-light
                 - size: 30%
                 - label: !include ../includes/brightness-label.yaml
                 - grid:
@@ -141,8 +107,6 @@
               template: button
               variables:
                 - entity: light.front_door
-                - name: Hallway
-                - icon: mdi:ceiling-light
                 - size: 30%
                 - label: !include ../includes/brightness-label.yaml
                 - grid:

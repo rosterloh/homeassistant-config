@@ -41,6 +41,12 @@ sensor:
     destination: zone.home
     region: 'EU'
 
+  - platform: waze_travel_time
+    name: Travel Time Richard to Home
+    origin: person.richard
+    destination: zone.home
+    region: 'EU'
+
 ####################################################
 #                                                  #
 #                  Template                        #

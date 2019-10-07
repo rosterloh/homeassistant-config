@@ -101,6 +101,9 @@ sensor:
         friendly_name: Vacuum Cleaner Status Sensor
         value_template: >-
           {{ states.vacuum.albert.attributes.status }}
+      xiaomi_vacuum_fan_speed_state:
+        value_template: >-
+          {{ states.vacuum.albert.attributes.fan_speed }}
 
 ####################################################
 #                                                  #
@@ -198,63 +201,45 @@ automation:
        data:
          option: Balanced
          entity_id: input_select.xiaomi_vacuum
-
-  - id: vacuum_fan_speed_quiet
-    alias: Vacuum Fan Speed Quiet
+  # Xiaomi Fan Speed
+  - alias: xiaomi vacuum set fan speed
+    initial_state: 'true'
     trigger:
-      - platform: state
-        entity_id: input_select.xiaomi_vacuum
-        to: 'Quiet'
+    - platform: state
+      entity_id: input_select.xiaomi_vacuum
     action:
-     - service: vacuum.set_fan_speed
-       data:
-         entity_id: vacuum.albert
-         fan_speed: 101
-
-  - id: vacuum_fan_speed_balanced
-    alias: Vacuum Fan Speed Balanced
+      service: vacuum.set_fan_speed
+      data_template:
+        entity_id: vacuum.albert
+        fan_speed: >
+          {% if is_state('input_select.xiaomi_vacuum', 'Quiet') %}
+            Quiet
+          {% elif is_state('input_select.xiaomi_vacuum', 'Balanced') %}
+            Balanced
+          {% elif is_state('input_select.xiaomi_vacuum', 'Turbo') %}
+            Turbo
+          {% elif is_state('input_select.xiaomi_vacuum', 'Max') %}
+            Max
+          {% elif is_state('input_select.xiaomi_vacuum', 'Mop') %}
+            105
+          {% endif %}
+  # Xiaomi Fan Speed Input Select
+  - alias: xiaomi vacuum set fan speed
+    initial_state: 'true'
     trigger:
-      - platform: state
-        entity_id: input_select.xiaomi_vacuum
-        to: 'Balanced'
+    - platform: state
+      entity_id: sensor.xiaomi_vacuum_fan_speed_state
     action:
-     - service: vacuum.set_fan_speed
-       data:
-         entity_id: vacuum.albert
-         fan_speed: 102
-
-  - id: vacuum_fan_speed_turbo
-    alias: Vacuum Fan Speed Turbo
-    trigger:
-      - platform: state
+      service: input_select.select_option
+      data_template:
         entity_id: input_select.xiaomi_vacuum
-        to: 'Turbo'
-    action:
-     - service: vacuum.set_fan_speed
-       data:
-         entity_id: vacuum.albert
-         fan_speed: 103
-
-  - id: vacuum_fan_speed_max
-    alias: Vacuum Fan Speed Max
-    trigger:
-      - platform: state
-        entity_id: input_select.xiaomi_vacuum
-        to: 'Max'
-    action:
-     - service: vacuum.set_fan_speed
-       data:
-         entity_id: vacuum.albert
-         fan_speed: 104
-
-  - id: vacuum_fan_speed_mop
-    alias: Vacuum Fan Speed Mop
-    trigger:
-      - platform: state
-        entity_id: input_select.xiaomi_vacuum
-        to: 'Mop'
-    action:
-     - service: vacuum.set_fan_speed
-       data:
-         entity_id: vacuum.albert
-         fan_speed: 105 
+        option: >
+          {% if is_state('sensor.xiaomi_vacuum_fan_speed_state', 'Quiet') %}
+            Quiet
+          {% elif is_state('sensor.xiaomi_vacuum_fan_speed_state', 'Balanced') %}
+            Balanced
+          {% elif is_state('sensor.xiaomi_vacuum_fan_speed_state', 'Turbo') %}
+            Turbo
+          {% elif is_state('sensor.xiaomi_vacuum_fan_speed_state', 'Max') %}
+            Max
+          {% endif %}

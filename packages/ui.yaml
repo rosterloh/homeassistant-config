@@ -59,7 +59,8 @@ input_boolean:
 #################################################################
 
 input_select:
-  # Dynamic Button Config
+  # Border Radius used in border-radius templates,
+  # you can adjust border size to be selected here
   border_radius:
     name: Border Radius
     options:
@@ -68,6 +69,7 @@ input_select:
       - 12px
       - 18px
 
+  # Border Radius selector to show in the interface
   border_radius_selector:
     name: Border Radius Selector
     options:
@@ -76,6 +78,8 @@ input_select:
       - Standard
       - Large
 
+  # Quick Access Menu Border Radius used in border-radius
+  # templates, you can adjust border size to be selected here
   qam_border_radius:
     name: Quick Access Menu Border Radius
     options:
@@ -84,6 +88,7 @@ input_select:
       - 6px
       - 9px
 
+  # Quick Access Menu Border Radius selector to show in the interface
   qam_border_radius_selector:
     name: Quick Access Menu Border Radius Selector
     options:
@@ -92,6 +97,8 @@ input_select:
       - Standard
       - Large
 
+  # Box Shadow used in box-shadow templates, you can adjust
+  # how the box shadow looks in here
   box_shadow:
     name: Box Shadow
     options:
@@ -101,7 +108,8 @@ input_select:
       - 3px 3px 3px 0px rgba(0,0,0,0.75)
       - 5px 5px 5px 0px rgba(0,0,0,0.75)
       - 7px 7px 7px 0px rgba(0,0,0,0.75)
-      
+  
+  # Box Shadow selector to show in the interface
   box_shadow_selector:
     name: Box Shadow Selector
     options:
@@ -133,70 +141,49 @@ sensor:
         unit_of_measurement: 'On'
         value_template: >
           {% set total = 0 %}
-          {% if is_state('light.plafond', 'on') %}
+          {% if is_state('light.aerogarden_plant_leds', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.eettafel', 'on') %}
+          {% if is_state('light.workshop_leds', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.tafellamp', 'on') %}
+          {% if is_state('light.workshop_bulb', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.vloerlamp', 'on') %}
+          {% if is_state('light.dimmable_light_1', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.woonkamer_led_lampen', 'on') %}
+          {% if is_state('light.dimmable_light_2', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.gateway_light_7811dcdef324', 'on') %}
+          {% if is_state('light.dimmable_light_3', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.nachtkastje_stephanie', 'on') %}
+          {% if is_state('light.dimmable_light_4', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.nachtkastje_jimmy', 'on') %}
+          {% if is_state('light.dimmable_light_5', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.slaapkamer_led_lampen', 'on') %}
+          {% if is_state('light.dimmable_light_6', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.officeled', 'on') %}
+          {% if is_state('light.dimmable_light_7', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.kleine_kamer', 'on') %}
+          {% if is_state('light.dimmable_light_8', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.keuken', 'on') %}
+          {% if is_state('light.hallway', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.keukenspots', 'on') %}
+          {% if is_state('light.front_door', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.bijkeuken', 'on') %}
+          {% if is_state('light.kitchen_table', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('light.entree_lamp', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.gang_lamp', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.koogeek_sw_056ce9', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.toiletlamp', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.berging', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.balkonlamp', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.slaapkamer_kast', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.slaapkamer_bed', 'on') %}
+          {% if is_state('light.living_room_lamp', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
           {{total}}
@@ -208,55 +195,10 @@ sensor:
         unit_of_measurement: 'On'
         value_template: >
           {% set total = 0 %}
-          {% if is_state('switch.ventilator', 'on') %}
+          {% if is_state('switch.prusa_printer', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('switch.receiver', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.samsung_tv', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.receiver_slaapkamer', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.tv_slaapkamer', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.pc_van_stephanie', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.pc_van_jimmy', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.printer', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.xbox_one', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.waterkoker', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.afzuigkap', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.cappumaker', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.vaatwasser', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.air_fryer', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.wasmachine', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.droger', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.oven', 'on') %}
+          {% if is_state('switch.aerogarden_plant_pump', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
           {{total}}
@@ -268,28 +210,37 @@ sensor:
         unit_of_measurement: 'On'
         value_template: >
           {% set total = 0 %}
-          {% if is_state('binary_sensor.voordeur', 'on') %}
+          {% if is_state('binary_sensor.backyard_camera_motion_detected', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.woonkamer_deur', 'on') %}
+          {% if is_state('binary_sensor.backyard_camera_person_detected', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.slaapkamer_deur', 'on') %}
+          {% if is_state('binary_sensor.clip_sensor_toogle_on_off', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.motion_bijkeuken', 'on') %}
+          {% if is_state('binary_sensor.front_door_camera_motion_detected', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.motion_toilet', 'on') %}
+          {% if is_state('binary_sensor.in_bed', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.tradfri_motion_sensor', 'on') %}
+          {% if is_state('binary_sensor.jess_phone_charging', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.dafang_motion_sensor', 'on') %}
+          {% if is_state('binary_sensor.richard_phone_charging', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
-          {% if is_state('binary_sensor.fire_30', 'on') %}
+          {% if is_state('binary_sensor.window_door_sensor', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.workshop_door', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.workshop_motion_motion', 'on') %}
+            {% set total = total + 1 %}
+          {% endif %}
+          {% if is_state('binary_sensor.workshop_presence', 'on') %}
             {% set total = total + 1 %}
           {% endif %}
           {{total}}
@@ -317,226 +268,69 @@ sensor:
 
 automation:
 
-# Reset Menu's after x Seconds (used with input_select on e.g. other view)
-  - alias: 'reset input_select_richard'
+  # Border Radius Selector
+  - alias: input select beautifier box-shadow
     initial_state: 'true'
     trigger:
     - platform: state
-      entity_id: input_select.general
+      entity_id: input_select.box_shadow_selector
     action:
-    - delay:
-        seconds: 20
     - service: input_select.select_option
-      data:
-        entity_id: input_select.general
-        option: Home
+      data_template:
+        entity_id: input_select.box_shadow
+        option: >
+          {% if is_state('input_select.box_shadow_selector', 'None') %}
+            none
+          {% elif is_state('input_select.box_shadow_selector', 'Small') %}
+            1px 1px 1px 0px rgba(0,0,0,0.75)
+          {% elif is_state('input_select.box_shadow_selector', 'Standard') %}
+            2px 2px 2px 0px rgba(0,0,0,0.75)
+          {% elif is_state('input_select.box_shadow_selector', 'Medium') %}
+            3px 3px 3px 0px rgba(0,0,0,0.75)
+          {% elif is_state('input_select.box_shadow_selector', 'Large') %}
+            5px 5px 5px 0px rgba(0,0,0,0.75)
+          {% elif is_state('input_select.box_shadow_selector', 'Huge') %}
+            7px 7px 7px 0px rgba(0,0,0,0.75)
+          {% endif %}
 
-  - alias: 'reset input_select_jess'
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.general2
-    action:
-    - delay:
-        seconds: 20
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.general2
-        option: Home
-
-  - alias: 'reset main menu richard'
-    initial_state: 'false'
-    trigger:
-    - platform: state
-      entity_id: input_boolean.lovelace_menu_richard
-      to: "on"
-    action:
-    - delay:
-        seconds: 45
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.lovelace_menu_richard
-
-  - alias: 'reset main menu jess'
-    initial_state: 'false'
-    trigger:
-    - platform: state
-      entity_id: input_boolean.lovelace_menu_jess
-      to: "on"
-    action:
-    - delay:
-        seconds: 45
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.lovelace_menu_jess
-
-  - alias: 'reset input_select_vacuum'
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.vacuum
-      to: 'Map'
-      for:
-        seconds: 30
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.vacuum
-        option: Information
-  # Input Select Beautifier
-  - alias: input select beautifier 1 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: None
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: none
-  - alias: input select beautifier 2 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: Small
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: 1px 1px 1px 0px rgba(0,0,0,0.75)
-  - alias: input select beautifier 3 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: Standard
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: 2px 2px 2px 0px rgba(0,0,0,0.75)
-  - alias: input select beautifier 4 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: Medium
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: 3px 3px 3px 0px rgba(0,0,0,0.75)
-  - alias: input select beautifier 5 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: Large
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: 5px 5px 5px 0px rgba(0,0,0,0.75)
-  - alias: input select beautifier 6 box-shadow
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.box_shadow_selector
-      to: Huge
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.box_shadow
-        option: 7px 7px 7px 0px rgba(0,0,0,0.75)
-
-  - alias: input select beautifier 1 border-radius
+  # Border Radius Selector
+  - alias: input select beautifier border-radius
     initial_state: 'true'
     trigger:
     - platform: state
       entity_id: input_select.border_radius_selector
-      to: None
     action:
-    - service: input_select.select_option
-      data:
+      service: input_select.select_option
+      data_template:
         entity_id: input_select.border_radius
-        option: 0px
-  - alias: input select beautifier 2 border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.border_radius_selector
-      to: Small
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.border_radius
-        option: 6px
-  - alias: input select beautifier 3 border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.border_radius_selector
-      to: Standard
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.border_radius
-        option: 12px
-  - alias: input select beautifier 4 border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.border_radius_selector
-      to: Large
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.border_radius
-        option: 18px
+        option: >
+          {% if is_state('input_select.border_radius_selector', 'None') %}
+            0px
+          {% elif is_state('input_select.border_radius_selector', 'Small') %}
+            6px
+          {% elif is_state('input_select.border_radius_selector', 'Standard') %}
+            12px
+          {% elif is_state('input_select.border_radius_selector', 'Large') %}
+            18px
+          {% endif %}
 
-  - alias: input select beautifier 1 qam-border-radius
+  # Quick Access Menu Border Radius Selector
+  - alias: input select beautifier qam border-radius
     initial_state: 'true'
     trigger:
     - platform: state
       entity_id: input_select.qam_border_radius_selector
-      to: None
     action:
-    - service: input_select.select_option
-      data:
+      service: input_select.select_option
+      data_template:
         entity_id: input_select.qam_border_radius
-        option: 0px
-  - alias: input select beautifier 2 qam-border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.qam_border_radius_selector
-      to: Small
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.qam_border_radius
-        option: 3px
-  - alias: input select beautifier 3 qam-border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.qam_border_radius_selector
-      to: Standard
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.qam_border_radius
-        option: 6px
-  - alias: input select beautifier 4 qam-border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.qam_border_radius_selector
-      to: Large
-    action:
-    - service: input_select.select_option
-      data:
-        entity_id: input_select.qam_border_radius
-        option: 9px 
+        option: >
+          {% if is_state('input_select.qam_border_radius_selector', 'None') %}
+            0px
+          {% elif is_state('input_select.qam_border_radius_selector', 'Small') %}
+            3px
+          {% elif is_state('input_select.qam_border_radius_selector', 'Standard') %}
+            6px
+          {% elif is_state('input_select.qam_border_radius_selector', 'Large') %}
+            9px
+          {% endif %}
