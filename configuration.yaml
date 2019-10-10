@@ -20,8 +20,8 @@ hacs:
 hassio:
 
 http:
-  ssl_certificate: /ssl/fullchain.pem
-  ssl_key: /ssl/privkey.pem
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
   base_url: https://rosterloh.synology.me:8123
   cors_allowed_origins:
     - https://rosterloh.synology.me
@@ -36,7 +36,6 @@ conversation:
 discovery:
 frontend:
   themes: !include_dir_named configuration/themes/
-history:
 logbook:
 map:
 mobile_app:
@@ -55,6 +54,20 @@ google_assistant:
     - light
     - vacuum
 
+history:
+  include:
+    domains:
+      - sensor
+      - switch
+      - media_player
+      - light
+      - binary_sensor
+      - cover
+  exclude:
+    entities:
+     - sensor.date
+     - sensor.time
+
 logger:
   default: error
 
@@ -64,16 +77,20 @@ recorder:
   purge_keep_days: 14
   exclude:
     domains:
-      - sun
+      - updater
       - automation
+      - device_tracker
+      - group
+      - scene
+      - script
     entities:
+      - sensor.date
+      - sensor.time
+      - sun.sun
       - sensor.xiaomi_map
+      - zone.home
 
 panel_iframe:
-  pihole:
-    title: Pi-hole
-    icon: mdi:block-helper
-    url: !secret pihole_address
   deconz:
     title: deconz
     icon: mdi:leak
