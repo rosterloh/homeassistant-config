@@ -91,9 +91,24 @@ default:
       - grid-template-columns: 1fr
       - grid-template-rows: 1fr min-content min-content
 
-  # Custom Fields (This should be left empty!)
+  # Custom Fields
+  - notification: "[[[ return '&nbsp'; ]]]"
   - custom_fields:
-  - notification:
+      notification:
+        - background-color: "[[[ return 'var(--card-color-off)'; ]]]"
+        - color: var(--notification-badge-color)
+        - border-radius: 50%
+        - overflow: visible
+        - position: absolute
+        - right: 7%
+        - top: 7%
+        - height: 22px
+        - width: 22px
+        - font-size: 11px
+        - line-height: 20px
+
+  - lock: false
+
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
@@ -103,7 +118,10 @@ card:
   icon: '[[icon]]'
   size: '[[size]]'
   color: '[[color]]'
-  lock: '[[lock]]'
+  lock:
+    enabled: '[[lock]]'
+    unlock: hold
+    duration: 5
   aspect_ratio: '[[aspect_ratio]]'
   entity: '[[entity]]'
   label: '[[label]]'
