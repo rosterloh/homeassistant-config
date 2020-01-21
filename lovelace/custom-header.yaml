@@ -1,0 +1,18 @@
+# Custom Header
+#
+# This addon is used to modify the header in Home Assistant.
+#
+# See: https://maykar.github.io/custom-header/#configuration/main
+#
+#### #### #### #### #### #### #### #### #### #### #### #### #### ####
+
+# Card Config
+compact_mode: true
+hide_header: true
+menu_hide: true
+options_hide: true
+voice_hide: true
+default_tab: 1
+hide_tabs: '4 to 28'
+chevrons: false
+background: 'rgba(0,0,0,0.3)'

@@ -42,10 +42,37 @@ shell_command: !include configuration/shell_command.yaml
 google_assistant:
   project_id: !secret google_assistant_project
   api_key: !secret google_assistant_api_key
-  exposed_domains:
-    - switch
-    - light
-    - vacuum
+  expose_by_default: false
+  entity_config:
+    sensor.bme680_temperature:
+      expose: true
+      room: Workshop
+    sensor.bme680_humidity:
+      expose: true
+      room: Workshop
+    sensor.workshop_temperature:
+      expose: true
+      room: Workshop
+    sensor.workshop_humidity:
+      expose: true
+      room: Workshop
+    light.aerogarden_plant_leds:
+      expose: true
+      room: Workshop
+    light.wled:
+      expose: true
+    light.workshop_bulb:
+      expose: true
+      room: Workshop
+    light.workshop_leds:
+      expose: true
+      room: Workshop
+    binary_sensor.workshop_door:
+      expose: true
+      room: Workshop
+    binary_sensor.workshop_presence:
+      expose: true
+      room: Workshop
 
 history:
   include:
@@ -82,9 +109,3 @@ recorder:
       - sun.sun
       - sensor.xiaomi_map
       - zone.home
-
-panel_iframe:
-  deconz:
-    title: deconz
-    icon: mdi:leak
-    url: !secret deconz_address

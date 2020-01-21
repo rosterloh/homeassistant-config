@@ -1,0 +1,13 @@
+- id: '1576664205412'
+  alias: Christmas Lights
+  description: ''
+  trigger:
+  - event: sunset
+    platform: sun
+  condition:
+  - condition: state
+    entity_id: person.jess
+    state: home
+  action:
+  - entity_id: light.wled
+    service: light.turn_on

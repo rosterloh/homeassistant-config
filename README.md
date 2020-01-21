@@ -1,6 +1,6 @@
 # [Home Assistant](https://home-assistant.io/) Configuration
 
-[![HA Version](https://img.shields.io/badge/Home%20Assistant-v0.101.0-informational?style=for-the-badge.svg)](https://github.com/home-assistant/home-assistant/releases)
+[![HA Version](https://img.shields.io/badge/Home%20Assistant-v0.104.2-informational?style=for-the-badge.svg)](https://github.com/home-assistant/home-assistant/releases)
 [![Last commit](https://img.shields.io/github/last-commit/rosterloh/homeassistant-config.svg?style=plasticr.svg)](https://github.com/rosterloh/homeassistant-config/commits/master)
 
 I have HA installed on a Raspberry Pi 3B+ running Hass.io

@@ -42,7 +42,7 @@ scene:
         brightness_pct: 0
       light.dimmable_light_3:
         state: on
-        transition: 2
+        transition: 5
         brightness_pct: 15
         color_temp: 280
       light.dimmable_light_4:
@@ -60,12 +60,12 @@ scene:
       light.dimmable_light_7:
         state: on
         transition: 5
-        brightness_pct: 0
+        brightness_pct: 15
+        color_temp: 280
       light.dimmable_light_8:
         state: on
-        transition: 2
-        brightness_pct: 25
-        color_temp: 280
+        transition: 5
+        brightness_pct: 0
 
 #################################################################
 #                                                               #

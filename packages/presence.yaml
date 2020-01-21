@@ -21,6 +21,19 @@ device_tracker:
   - platform: google_maps
     username: !secret google_username
 
+  - platform: huesensor
+
+#################################################################
+#                                                               #
+#                         Hue Sensors                           #
+#                                                               #
+#################################################################
+
+binary_sensor:
+  - platform: huesensor
+sensor:
+  - platform: huesensor
+
 #################################################################
 #                                                               #
 #                            Script                             #

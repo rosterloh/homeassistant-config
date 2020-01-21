@@ -31,17 +31,17 @@ sensor:
 #                                                               #
 #################################################################
 
-switch:
+#switch:
 
-  - platform: wake_on_lan
-    mac_address: "MAC_ADDRESS_HERE"
-    name: PC
-    host: "192.168.0.41"
-    turn_off:
-      service: hassio.addon_stdin
-      data:
-        addon: core_rpc_shutdown
-        input: pc
+#  - platform: wake_on_lan
+#    mac_address: "MAC_ADDRESS_HERE"
+#    name: PC
+#    host: "192.168.0.41"
+#    turn_off:
+#      service: hassio.addon_stdin
+#      data:
+#        addon: core_rpc_shutdown
+#        input: pc
 
 #################################################################
 #                                                               #

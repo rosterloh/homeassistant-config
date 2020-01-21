@@ -2,9 +2,9 @@
 resources:
   !include lovelace/resources.yaml
 
-# Compact Custom Header
-cch:
-  !include lovelace/compact-custom-header.yaml
+# Custom Header
+custom_header:
+  !include lovelace/custom-header.yaml
 
 # Decluttering Templates
 decluttering_templates:

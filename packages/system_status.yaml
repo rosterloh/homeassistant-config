@@ -70,9 +70,9 @@ speedtestdotnet:
 #                                                               #
 #################################################################
 
-pi_hole:
-    host: !secret pihole
-    ssl: true
+#pi_hole:
+#    host: !secret pihole
+#    ssl: true
 
 #################################################################
 #                                                               #
@@ -99,7 +99,7 @@ sensor:
 #                                                  #
 ####################################################
 
-  - platform: pi_hole
+#  - platform: pi_hole
 
 ####################################################
 #                                                  #
@@ -212,27 +212,6 @@ sensor:
               {% endif %}
             {%- endfor -%}
           {%- endfor -%}
-
-####################################################
-#                                                  #
-#                 Sensor - SNMP                    #
-#                                                  #
-####################################################
-
-  - platform: snmp
-    name: 'Printer Pages'
-    host: 192.168.1.3
-    baseoid: 1.3.6.1.2.1.43.10.2.1.4.1.1
-    accept_errors: true
-    scan_interval: 3600
-
-  - platform: snmp
-    name: 'Printer Ink - Black'
-    host: 192.168.1.3
-    baseoid: 1.3.6.1.2.1.43.11.1.1.9.1.1
-    accept_errors: true
-    scan_interval: 86400
-    unit_of_measurement: '%'
 
 #################################################################
 #                                                               #
