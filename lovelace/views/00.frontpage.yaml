@@ -1,7 +1,9 @@
+# lovelace_gen
+
 - title: Home
   path: home
   icon: mdi:home
-  cards:
+  cards: 
     - type: vertical-stack
       cards:
         - !include '../templates/frontpage_header.yaml'
@@ -11,40 +13,39 @@
               cards:
                 - !include
                   - '../templates/weather_card.yaml'
-                  - city_name: Pitstone
-                    entity: weather.dark_sky
+                  - city_name: {{ _global.frontpage[0] }}
+                    entity: {{ _global.frontpage[1] }}
                 - type: horizontal-stack
                   cards:
-                      # Person 1 (Left Photo)
                     - !include
                       - '../templates/picture_elements_frontpage.yaml'
-                      - entity: person.jess
-                        image: /local/img/jess.jpg
+                      - entity: {{ _global.frontpage[2] }}
+                        image: {{ _global.frontpage[3] }}
                         alignment: left
-                        travel_time_to_home: sensor.travel_time_jess_to_home
-                        travel_time_to_work: sensor.travel_time_jess_to_work
-                        battery_entity: sensor.jess_phone_battery
-                        navigation_path: /lovelace/jess
+                        email_sensor_entity: {{ _global.frontpage[4] }}
+                        travel_time_to_home: {{ _global.frontpage[5] }}
+                        travel_time_to_work: {{ _global.frontpage[6] }}
+                        battery_entity: {{ _global.frontpage[7] }}
+                        navigation_path: /lovelace/person_1
                         padding_mail: 35px 5px
-                      # Person 2 (Right Photo)
                     - !include
                       - '../templates/picture_elements_frontpage.yaml'
-                      - entity: person.richard
-                        image: /local/img/richard.jpg
+                      - entity: {{ _global.frontpage[8] }}
+                        image: {{ _global.frontpage[9] }}
                         alignment: right
-                        travel_time_to_home: sensor.travel_time_richard_to_home
-                        travel_time_to_work: sensor.travel_time_richard_to_work
-                        battery_entity: sensor.richard_phone_battery
-                        navigation_path: /lovelace/richard
+                        email_sensor_entity: {{ _global.frontpage[10] }}
+                        travel_time_to_home: {{ _global.frontpage[11] }}
+                        travel_time_to_work: {{ _global.frontpage[12] }}
+                        battery_entity: {{ _global.frontpage[13] }}
+                        navigation_path: /lovelace/person_2
                         padding_phone: 7px 1px
-                  # Person 3 (Middle Photo) if you don't need this, remove line 44 up to and including line 49!
                 - !include
                   - '../templates/wide_picture_elements_template.yaml'
-                  - entity: person.juno
-                    image: /local/img/juno.jpg
-                    navigation_path: /lovelace/cat
+                  - entity: {{ _global.frontpage[14] }}
+                    image: {{ _global.frontpage[15] }}
+                    navigation_path: /lovelace/person_3
                 - type: custom:state-switch
-                  entity: alarm_control_panel.home_alarm
+                  entity: {{ _global.frontpage[18] }}
                   default: default
                   states:
                     default:
@@ -52,76 +53,72 @@
                       cards:
                         - type: horizontal-stack
                           cards:
-                            # Button Row 1 (These are the default buttons and stay preferably unchanged, if you do want to change them then please learn how to use the template that includes a badge or change the template to '../templates/button_nav.yaml)'
                             - !include
-                              - '../templates/button_small_badge.yaml'
-                              - name: Climate
-                                label: Control
-                                icon: mdi:thermometer
+                              - '../templates/button_badge.yaml'
+                              - name: {{ _global.frontpage_button[0] }}
+                                label: {{ _global.frontpage_button[1] }}
+                                icon: {{ _global.frontpage_button[2] }}
                                 navigation_path: /lovelace/climate
                                 entity_badge: group.all_radiator_valves
                                 notification: "[[[ if (states['sensor.current_radiator_valves_on'].state > 0) return `${states['sensor.current_radiator_valves_on'].state}`; else return '&nbsp' ]]]"
-                                background_color: "[[[ if (states['sensor.current_radiator_valves_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                                background_color: "[[[ if (states['sensor.current_radiator_valves_on'].state == 0) return 'var(--paper-card-background-color)'; else return 'var(--paper-item-icon-color)'; ]]]"
                             - !include
-                              - '../templates/button_small_badge.yaml'
-                              - name: Light
-                                label: Control
-                                icon: mdi:floor-lamp
+                              - '../templates/button_badge.yaml'
+                              - name: {{ _global.frontpage_button[3] }}
+                                label: {{ _global.frontpage_button[4] }}
+                                icon: {{ _global.frontpage_button[5] }}
                                 navigation_path: /lovelace/lights
                                 entity_badge: group.all_lighting
                                 notification: "[[[ if (states['sensor.current_lights_on'].state > 0) return `${states['sensor.current_lights_on'].state}`; else return '&nbsp' ]]]" 
-                                background_color: "[[[ if (states['sensor.current_lights_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                                background_color: "[[[ if (states['sensor.current_lights_on'].state == 0) return 'var(--paper-card-background-color)'; else return 'var(--paper-item-icon-color)'; ]]]"
                             - !include
-                              - '../templates/button_small_badge.yaml'
-                              - name: Device
-                                label: Control
-                                icon: mdi:power-plug
+                              - '../templates/button_badge.yaml'
+                              - name: {{ _global.frontpage_button[6] }}
+                                label: {{ _global.frontpage_button[7] }}
+                                icon: {{ _global.frontpage_button[8] }}
                                 navigation_path: /lovelace/devices
                                 entity_badge: group.all_device_switches
                                 notification: "[[[ if (states['sensor.current_devices_on'].state > 0) return `${states['sensor.current_devices_on'].state}`; else return '&nbsp' ]]]" 
-                                background_color: "[[[ if (states['sensor.current_devices_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                                background_color: "[[[ if (states['sensor.current_devices_on'].state == 0) return 'var(--paper-card-background-color)'; else return 'var(--paper-item-icon-color)'; ]]]"
                             - !include
-                              - '../templates/button_small_badge.yaml'
-                              - name: Security
-                                label: Panel
-                                icon: mdi:cctv
+                              - '../templates/button_badge.yaml'
+                              - name: {{ _global.frontpage_button[9] }}
+                                label: {{ _global.frontpage_button[10] }}
+                                icon: {{ _global.frontpage_button[11] }}
                                 navigation_path: /lovelace/security
                                 entity_badge: group.all_binary_sensors
                                 notification: "[[[ if (states['sensor.current_binary_sensors_on'].state > 0) return `${states['sensor.current_binary_sensors_on'].state}`; else return '&nbsp' ]]]"
-                                background_color: "[[[ if (states['sensor.current_binary_sensors_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                                background_color: "[[[ if (states['sensor.current_binary_sensors_on'].state == 0) return 'var(--paper-card-background-color)'; else return 'var(--paper-item-icon-color)'; ]]]"
                         - type: horizontal-stack
                           cards:
-                            # Button Row 2 (This row can be changed at will, change name, label, icon and navigation_paths here)
                             - !include
                               - '../templates/button_nav.yaml'
-                              - name: Cleaning
-                                label: Lists
-                                icon: mdi:calendar-text
-                                navigation_path: /lovelace/cleaning
+                              - name: {{ _global.frontpage_button[12] }}
+                                label: {{ _global.frontpage_button[13] }}
+                                icon: {{ _global.frontpage_button[14] }}
+                                navigation_path: {{ _global.frontpage_button[15] }}
                                 margin_right: 40px
                             - !include
                               - '../templates/button_nav.yaml'
-                              - name: Scenes
-                                label: Presets
-                                icon: mdi:arrange-send-backward
-                                navigation_path: /lovelace/scenes
+                              - name: {{ _global.frontpage_button[16] }}
+                                label: {{ _global.frontpage_button[17] }}
+                                icon: {{ _global.frontpage_button[18] }}
+                                navigation_path: {{ _global.frontpage_button[19] }}
                                 margin_right: 40px
                             - !include
                               - '../templates/button_nav.yaml'
-                              - name: Vacuum
-                                label: Control
-                                icon: mdi:robot-vacuum
-                                navigation_path: /lovelace/vacuum
+                              - name: {{ _global.frontpage_button[20] }}
+                                label: {{ _global.frontpage_button[21] }}
+                                icon: {{ _global.frontpage_button[22] }}
+                                navigation_path: {{ _global.frontpage_button[23] }}
                                 margin_right: 40px
                             - !include
-                              - '../templates/button_small_badge.yaml'
-                              - name: Remote
-                                label: Control
-                                icon: mdi:remote
-                                navigation_path: /lovelace/remote
-                                entity_badge: group.all_tvs
-                                notification: "[[[ if (states['sensor.current_tvs_on'].state > 0) return `${states['sensor.current_tvs_on'].state}`; else return '&nbsp' ]]]"
-                                background_color: "[[[ if (states['sensor.current_tvs_on'].state == 0) return 'var(--card-color-off)'; else return 'var(--label-color-off)'; ]]]"
+                              - '../templates/button_nav.yaml'
+                              - name: {{ _global.frontpage_button[24] }}
+                                label: {{ _global.frontpage_button[25] }}
+                                icon: {{ _global.frontpage_button[26] }}
+                                navigation_path: {{ _global.frontpage_button[27] }}
+                                margin_right: 40px
                     armed_away:
                       type: horizontal-stack
                       cards:
@@ -134,8 +131,8 @@
                               overflow: hidden;
                             }
                           {% endraw %}
-                          entity: camera.front_door
-                          title: Camera's  
+                          entity: {{ _global.frontpage[19] }}
+                          title: Camera  
                           aspect_ratio: 16x9
                     armed_home:
                       type: horizontal-stack
@@ -149,6 +146,29 @@
                               overflow: hidden;
                             }
                           {% endraw %}
-                          entity: camera.front_door
-                          title: Camera's  
+                          entity: {{ _global.frontpage[19] }}
+                          title: Camera
                           aspect_ratio: 16x9
+#                        - type: horizontal-stack
+#                          cards:
+#                            # Button Row 3 (This is currently something temporary in my own config, change it as you please, if you want another 3-button row instead of 2-button just copy one button and paste it again)
+#                            - !include
+#                              - '../templates/button.yaml'
+#                              - entity: switch.temporary_1
+#                                name: Kerstboom
+#                                icon: fal:tree-christmas
+#                                aspect_ratio: 2/1
+#                                show_label: false
+#                                margin_right: 128px
+#                                size: 15%
+#                                opacity_off: 0.8
+#                            - !include
+#                              - '../templates/button.yaml'
+#                              - entity: switch.temporary_2
+#                                name: Kerst Ramen
+#                                icon: fal:lights-holiday
+#                                aspect_ratio: 2/1
+#                                show_label: false
+#                                margin_right: 128px
+#                                size: 15%
+#                                opacity_off: 0.8

@@ -1,0 +1,7 @@
+# Security Categories
+security:
+  - Cameras # Name for camera category
+  - Doors # Name for door category
+  - Windows # Name for window category
+  - Motion # Name for motion category
+  - Smoke # Smoke and/or other sensors

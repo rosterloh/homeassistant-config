@@ -4,8 +4,15 @@ homeassistant:
   whitelist_external_dirs:
     - /config
 
+customizer:
+  custom_ui: local
+
+lovelace_gen: !include_dir_merge_named global_config/
+
 lovelace:
   mode: yaml
+
+browser_mod:
 
 hacs:
   token: !secret hacs_github_access_token

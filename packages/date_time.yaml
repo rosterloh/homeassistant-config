@@ -45,3 +45,23 @@ sensor:
       - time_date
       - time_utc
       - beat
+
+####################################################
+#                                                  #
+#                Sensor - Template                 #
+#                                                  #
+####################################################
+
+  - platform: template
+    sensors:
+      time_template:
+        value_template: >-
+          {% if (as_timestamp(states.sun.sun.attributes.next_dusk)) - (as_timestamp(states.sun.sun.attributes.next_setting)) < 0 %}
+            Good Evening
+          {% elif (as_timestamp(states.sun.sun.attributes.next_rising)) - (as_timestamp(states.sun.sun.attributes.next_dawn)) < 0 %}
+            Good Morning
+          {% elif (states.sun.sun.attributes.elevation) < -4 %}
+            Good Night
+          {% else %}
+            Good Day
+          {% endif %}  

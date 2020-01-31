@@ -1,165 +1,34 @@
+# lovelace_gen
+
 - title: Security
+  icon: mdi:cctv
   path: security
   cards:
     - type: vertical-stack
       cards:
-        - type: custom:decluttering-card
-          template: quick-access-menu
-          variables:
-            - name1: Alarm
-            - icon1: mdi:shield-home
-            - path1: alarm
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '## Security'
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: "##### Camera's"
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: picture-entity
-              style: |
-                ha-card {
-                  border-radius: {{ states('input_select.border_radius') }};
-                  box-shadow: {{ states('input_select.box_shadow') }};
-                  overflow: hidden;
-                }
-              entity: camera.front_door
-              title: Camera's  
-              aspect_ratio: 16x9
-            - !include ../includes/blank-card.yaml
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: picture-entity
-              style: |
-                ha-card {
-                  border-radius: {{ states('input_select.border_radius') }};
-                  box-shadow: {{ states('input_select.box_shadow') }};
-                  overflow: hidden;
-                }
-              entity: camera.backyard
-              title: Camera's
-              aspect_ratio: 16x9
-            - !include ../includes/blank-card.yaml
-
-    - type: vertical-stack
-      cards:
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '##### Doors'
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.front_door
-                - name: Front Door
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.livingroom_door
-                - name: Livingroom Door
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.workshop_door
-                - name: Workshop Door
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:door-open'; else return 'mdi:door'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - !include ../includes/blank-card.yaml
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '##### Motion'
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.front_door_camera_motion_detected
-                - name: Front Door
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.backyard_camera_motion_detected
-                - name: Back Yard
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.workshop_camera_motion_detected
-                - name: Workshop
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - !include ../includes/blank-card.yaml
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.front_door_motion_motion
-                - name: Entrance
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.workshop_motion_motion
-                - name: Kitchen
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - type: custom:decluttering-card
-              template: button
-              variables:
-                - entity: binary_sensor.workshop_presence
-                - name: Occupancy
-                - icon: "[[[ if (entity.state === 'on') return 'mdi:motion-sensor'; else return 'mdi:walk'; ]]]"
-                - show_last_changed: true
-                - tap_action: more-info
-            - !include ../includes/blank-card.yaml
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '##### Alarms'
-        - type: horizontal-stack
-          cards:
-            - !include ../includes/blank-card.yaml
-  #          - type: custom:decluttering-card
-  #            template: button
-  #            variables:
-  #              - entity: sensor.downstairs_nest_protect_smoke_status
-  #              - name: Smoke Detector
-  #              - icon: mdi:smoke-detector
-  #              - show_last_changed: true
-  #              - tap_action: more-info
-            - type: 'custom:button-card'
-              color_type: blank-card
-              aspect_ratio: 1/1
-            - type: 'custom:button-card'
-              color_type: blank-card
-              aspect_ratio: 1/1
-            - !include ../includes/blank-card.yaml
+        - !include
+          - '../templates/system_header.yaml'
+          - name: "[[[ if (states['alarm_control_panel.home_alarm'].state == 'disarmed') return `The alarm is disarmed!`; else return `The alarm is armed!` ]]]"
+            icon: mdi:alert
+            content: Security
+        - !include
+          - '../templates/auto_fill_camera_template.yaml'
+          - content: {{ _global.security[0] }}
+            group: group.all_cameras
+        - !include
+          - '../templates/auto_fill_security_template.yaml'
+          - content: {{ _global.security[1] }}
+            group: group.all_door_sensors
+        - !include
+          - '../templates/auto_fill_security_template.yaml'
+          - content: {{ _global.security[2] }}
+            group: group.all_window_sensors
+        - !include
+          - '../templates/auto_fill_security_template.yaml'
+          - content: {{ _global.security[3] }}
+            group: group.all_motion_sensors
+        - !include
+          - '../templates/auto_fill_security_template.yaml'
+          - content: {{ _global.security[4] }}
+            group: group.all_smoke_detectors
         - !include ../includes/bottom-card.yaml

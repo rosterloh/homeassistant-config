@@ -36,16 +36,22 @@ sensor:
 ####################################################
 
   - platform: waze_travel_time
-    name: Travel Time Jess to Home
+    name: Travel Time Jess
     origin: person.jess
     destination: zone.home
-    region: 'EU'
+    region: EU
 
   - platform: waze_travel_time
-    name: Travel Time Richard to Home
+    name: Travel Time Richard
     origin: person.richard
     destination: zone.home
-    region: 'EU'
+    region: EU
+
+  - platform: waze_travel_time
+    name: Travel Time Richard Work
+    origin: person.richard
+    destination: zone.london
+    region: EU
 
 ####################################################
 #                                                  #

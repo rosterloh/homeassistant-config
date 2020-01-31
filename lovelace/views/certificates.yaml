@@ -1,0 +1,10 @@
+- title: Certificates
+  path: certificates
+  cards:
+    - type: vertical-stack
+      cards:
+        - !include
+          - '../templates/system_header.yaml'
+          - name: Create your own view here
+            icon: mdi:certificate-outline
+            content: Certificates

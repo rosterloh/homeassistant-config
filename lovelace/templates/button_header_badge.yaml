@@ -1,3 +1,5 @@
+# lovelace_gen
+
 # Card
 type: custom:button-card
 style: |
@@ -5,8 +7,9 @@ style: |
     margin-top: 12px;
   }
 name: Button
-icon: mdi:menu
-size: 80%
+icon: {{ icon|default('mdi:menu') }}
+deep_press: {{ deep_press|default('true') }}
+size: {{ size|default('80%') }}
 color: auto
 entity: input_boolean.dummy1
 show_name: false
@@ -18,26 +21,18 @@ tap_action:
   service_data:
     title: ' '
     style:
-      position: fixed
-      z-index: 999
-      top: 0
-      left: 0
-      height: 100%
-      width: 100%
-      display: block
-      align-items: center
-      justify-content: center
       background: rgba(0, 0, 0, 0.5)
-      flex-direction: column
-      margin: 0
       "--iron-icon-fill-color": "#FFF"
       "--iron-icon": "#FFF"
+      --paper-item-icon-color: white !important
+      --primary-text-color: white !important
+      --text-primary-color: white !important
       color: white !important
     card:
       type: vertical-stack
       cards:
         - !include
-          - popup_device_counters.yaml
+          - {{ template|default('popup_device_counters.yaml') }}
           - entity: {{ entity }}
   haptic: light
 hold_action:
@@ -46,28 +41,18 @@ hold_action:
   service_data:
     title: ' '
     style:
-      position: fixed
-      z-index: 999
-      top: 0
-      left: 0
-      height: 100%
-      width: 100%
-      display: block
-      align-items: center
-      justify-content: center
       background: rgba(0, 0, 0, 0.5)
-      flex-direction: column
-      margin: 0
       "--iron-icon-fill-color": "#FFF"
       "--iron-icon": "#FFF"
       --paper-item-icon-color: white !important
       --primary-text-color: white !important
       --text-primary-color: white !important
+      color: white !important
     card:
       type: vertical-stack
       cards:
         - !include
-          - popup_device_counters.yaml
+          - {{ template|default('popup_device_counters.yaml') }}
           - entity: {{ entity }}
   haptic: heavy
 styles:
@@ -97,4 +82,4 @@ custom_fields:
   notification: "{{ badge }}"
 state:
   - value: "off"
-    spin: false
+    spin: {{ spin_off|default('false') }}
