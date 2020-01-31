@@ -1,0 +1,13 @@
+# Deep Press
+deep_press:
+  - 'false' # Change to true if you don't need/want deep-press in your setup. Don't use this on iphones without 3d touch!
+
+# Rooms (These are used in Lights and Devices views)
+rooms:
+  - Living Room
+  - Kitchen
+  - Bedroom
+  - Office
+  - Hallway
+  - Laundry Room
+  - Other

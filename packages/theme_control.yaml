@@ -17,23 +17,8 @@ input_select:
     options:
       - Silver
       - Space Gray
-      - Sweet Pink
-      - Disable (use theme per user)
-      - Auto (default)
-    initial: Auto (default)
-
-#################################################################
-#                                                               #
-#                           Groups                              #
-#                                                               #
-#################################################################
-
-group:
-
-  theme_selector:
-    entities:
-    - automation.set_light_theme_for_the_day
-    - automation.set_light_theme_for_the_night
+      - Disable
+      - Auto
 
 #################################################################
 #                                                               #
@@ -42,122 +27,30 @@ group:
 #################################################################
 
 automation:
-  - alias: 'Set theme light at startup'
+  # Theme Selector
+  - alias: 'themes'
     initial_state: 'true'
     trigger:
+      - platform: state
+        entity_id: input_select.theme_selector
       - platform: homeassistant
         event: start
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: 'above_horizon'
-    action:
-      service: frontend.set_theme
-      data:
-        name: Silver
-
-  - alias: 'Set theme dark at startup'
-    initial_state: 'true'
-    trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      condition: state
-      entity_id: sun.sun
-      state: 'below_horizon'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Space Gray
-
-  - alias: 'theme selector input_select 1'
-    initial_state: true
-    trigger:
       - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Silver'
+        entity_id: sun.sun
     action:
       - service: frontend.set_theme
-        data:
-          name: Silver
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 2'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Space Gray'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Space Gray
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 3'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Sweet Pink'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Sweet Pink
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 4'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Auto (default)'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Space Gray
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'theme selector input_select 5'
-    initial_state: true
-    trigger:
-      - platform: state
-        entity_id: input_select.theme_selector
-        to: 'Disable'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Disable
-      - service: homeassistant.turn_off
-        data:
-          entity_id: group.theme_selector
-
-  - alias: 'Set dark theme for the night'
-    initial_state: true
-    trigger:
-      - platform: sun
-        event: sunset
-        offset: '+00:00:00'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Space Gray
-
-  - alias: 'Set light theme for the day'
-    initial_state: true
-    trigger:
-      - platform: sun
-        event: sunrise
-        offset: '+00:00:00'
-    action:
-      - service: frontend.set_theme
-        data:
-          name: Silver
+        data_template:
+          name: >
+            {% if is_state('input_select.theme_selector', 'Silver') %}
+              Silver
+            {% elif is_state('input_select.theme_selector', 'Space Gray') %}
+              Space Gray
+            {% elif is_state('input_select.theme_selector', 'Disable (use theme per user)') %}
+              Disable
+            {% elif (is_state('sun.sun', 'above_horizon')) and (is_state('input_select.theme_selector', 'Auto'))  %}
+              Silver
+            {% elif (is_state('sun.sun', 'below_horizon')) and (is_state('input_select.theme_selector', 'Auto'))  %}
+              Space Gray
+            {% elif is_state('input_select.theme_selector', 'Auto') %}
+              Space Gray
+            {% endif %}

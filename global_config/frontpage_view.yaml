@@ -1,0 +1,77 @@
+# Frontpage Config
+frontpage:
+  ## Weather
+  - Pitstone # City Name
+  - weather.dark_sky # Weather Entity (for best results you should have this, if you don't have one create one easily with the darksky sensor https://www.home-assistant.io/integrations/weather.darksky/)
+  ## Left Photo
+  - person.jess # Person 1 Entity Left Photo (create a person entity, do not use device_trackers directly, but add them to a person entity and use the person entity here!)
+  - /local/images/jess.jpg # Location File Person 1 Left Photo
+  - sensor.email_sensor_jess # Email Sensor Person 1 (for best results you should have this, find an email integration for your own use https://www.home-assistant.io/integrations/imap/)
+  - sensor.travel_time_jess # Travel Time to Home Sensor Person 1 (for best results you should have this, use the waze sensor to do this https://www.home-assistant.io/integrations/waze_travel_time/)
+  - sensor.travel_time_jess_work # Travel Time to Work Sensor Person 1 (for best results you should have this, use the waze sensor to do this https://www.home-assistant.io/integrations/waze_travel_time/)
+  - sensor.battery_level # Smartphone Battery Level Sensor Person 1 (for best results you should have this, installing the offical HA app on either iOS or Android should be sufficient to get these sensors)
+  ## Right Photo
+  - person.richard # Person 2 Entity Right Photo
+  - /local/images/richard.jpg # Location File Person 2 Right Photo
+  - sensor.email_sensor_richard # Email Sensor Person 2 (for best results you should have this, find an email integration for your own use https://www.home-assistant.io/integrations/imap/)
+  - sensor.travel_time_richard # Travel Time to Home Sensor Person 2 (for best results you should have this, use the waze sensor to do this https://www.home-assistant.io/integrations/waze_travel_time/)
+  - sensor.travel_time_richard_work # Travel Time to Work Sensor Person 2 (for best results you should have this, use the waze sensor to do this https://www.home-assistant.io/integrations/waze_travel_time/)
+  - sensor.battery_level_2 # Smartphone Battery Level Sensor Person 2 (for best results you should have this, installing the offical HA app on either iOS or Android should be sufficient to get these sensors)
+
+  # The following 4 configuration options depend on either if you use the default setup with a photo in the middle or if you want to use the 4 persons large_small layout which can be found in the addons of my repo.
+  ## Middle Left Photo (or middle photo when used with the default layout)
+  - person.juno # Person 3 Entity Middle Photo
+  - /local/images/juno.jpg # Location File Person 3 Middle Photo
+  ## Middle Right Photo (this is only used with the large_small frontpage layout! For 4 large photos use the four persons global_config addon found on my repo)
+  - person.juno # Person 4 Entity Middle Photo
+  - /local/images/juno.jpg # Location File Person 3 Middle Photo
+
+  # Continue from here if you had skipped the middle photos part!
+  ## Alarm Entity
+  - alarm_control_panel.home_alarm # Alarm Control Panel Entity (for best results you WANT this! it will work without it however creating a homemade alarm is super easy https://www.home-assistant.io/integrations/manual/)
+  ## Camera Entity
+  - camera.front_door_camera # Choose your most valuable camera when you are not at home as this will be displayed on the frontpage when all users are gone!
+
+# Button config, the first row is hardcoded for the simple reason that they have a template sensor entity coded in them. If you want to rearrange those buttons anyway, you should edit the 00.frontpage.yaml file.
+# You can however change the names and icons used on the frontpage all within this file!
+# NOTE: Editing the frontpage.yaml file will make it impossible for you to update that file with my updates, only do this if you know your way around HA, else leave it at the defaults!
+frontpage_button:
+  ## First Row, the Paths of these buttons are locked and can only be renamed or given another icon!
+  ### Button 1
+  - Climate # Name of the button
+  - Control # Label of the button
+  - fal:thermometer-three-quarters # Icon of the button
+  ### Button 2
+  - Light # Name of the button
+  - Control # Label of the button
+  - fal:lamp-floor # Icon of the button
+  ### Button 3
+  - Device # Name of the button
+  - Control # Label of the button
+  - fal:light-switch-on # Icon of the button
+  ### Button 4
+  - Security # Name of the button
+  - Panel # Label of the button
+  - fal:cctv # Icon of the button
+
+  ## Second Row, This row is fully customizable
+  ### Button 1
+  - Cleaning # Name of the button
+  - List # Label of the button
+  - fal:calendar-edit # Icon of the button
+  - /lovelace/cleaning # Path of the icon
+    ### Button 2
+  - Scenes # Name of the button
+  - Presets # Label of the button
+  - fal:bring-forward # Icon of the button
+  - /lovelace/scenes # Path of the icon
+    ### Button 3
+  - Vacuum # Name of the button
+  - Control # Label of the button
+  - fal:vacuum-robot # Icon of the button
+  - /lovelace/vacuum # Path of the icon
+    ### Button 4
+  - Remote # Name of the button
+  - Control # Label of the button
+  - mdi:remote # Icon of the button
+  - /lovelace/remote # Path of the icon

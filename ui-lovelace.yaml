@@ -1,21 +1,8 @@
 # Custom Card Resources
-resources:
-  !include lovelace/resources.yaml
+resources: !include lovelace/resources.yaml
+custom_header: !include lovelace/custom-header.yaml
 
-# Custom Header
-custom_header:
-  !include lovelace/custom-header.yaml
-
-# Decluttering Templates
-decluttering_templates:
-  !include_dir_named lovelace/templates
-
-# Views
-# Files prefixed with a number are swipable.
-# The lowest number will always be the first view.
-# To hide more/less swipable views configure the 
-# views you want to show/hide in the CCH config
 title: Tun Furlong
 background: var(--background-image)
-views:
-  !include_dir_merge_list lovelace/views/
+popup_cards: !include lovelace/templates/legacy_popup_cards.yaml
+views: !include_dir_merge_list lovelace/views/

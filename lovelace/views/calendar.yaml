@@ -1,42 +1,10 @@
 - title: Calendar
   path: calendar
-  cards:
+  cards:   
     - type: vertical-stack
       cards:
-        - type: custom:decluttering-card
-          template: quick-access-menu
-          variables:
-            - name1: Links
-            - icon1: mdi:link-variant
-            - path1: links
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '## Important Dates'
-        - type: vertical-stack
-          cards:
-            - type: custom:decluttering-card
-              template: header
-              variables:
-                - content: '##### Important Dates'
-            - type: horizontal-stack
-              cards:
-                - !include ../includes/blank-card.yaml
-                - type: entities
-                  style: |
-                    ha-card {
-                      background: var(--card-color-off);
-                      --paper-item-icon-color: var(--icon-color-off);
-                      color: var(--name-color-off);
-                      border-radius: {{ states('input_select.border_radius') }};
-                      box-shadow: {{ states('input_select.box_shadow') }};
-                    }
-                  entities:
-                    - entity: sensor.anniversary
-                      icon: mdi:ring
-                      name: Anniversary
-                    - entity: sensor.birthday_juno
-                      icon: mdi:cat-side
-                      name: Juno
-                - !include ../includes/blank-card.yaml
-            - !include ../includes/bottom-card.yaml
+        - !include
+          - '../templates/system_header.yaml'
+          - name: Create your own view here
+            icon: mdi:calendar
+            content: Calendar

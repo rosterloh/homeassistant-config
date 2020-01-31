@@ -16,41 +16,10 @@ input_boolean:
     initial: off
   dummy2:
     initial: off
-  # Scenes
-  scene_day_lights:
-  scene_night_lights:
-  scene_evening_lights:
-  scene_cleaning:
-  scene_near_bed:
-  scene_washing:
-  scene_finished_washing:
-  scene_cooking:
-  scene_finished_cooking:
-  scene_goodnight:
-  scene_lights_out:
-  # Frontpage Alarm Button
-  simple_alarm:
-  # Notification input_booleans
-  notification_bedroom_door:
-  notification_front_door:
-  notification_livingroom_door:
-  notification_washing_machine:
-  notification_dishwasher:
-  notification_alarm:
-  notification_all_calm:
-  notification_smoke_detector:
-  notification_juno:
-  notification_motion_outside:
-  notification_motion_toilet:
-  notification_motion_workshop:
-  notification_vacuum:
-  notification_anniversary:
-  notification_birthday:
-  notification_motion_hall:
-  notification_current_lights:
-  notification_current_devices:
-  notification_current_radiators:
-  notification_current_sensors:
+
+  # Light Popup Options
+  light_options:
+    initial: off
 
 #################################################################
 #                                                               #
@@ -59,6 +28,15 @@ input_boolean:
 #################################################################
 
 input_select:
+  # Frontend Greeting (shown in the header of the frontpage)
+  frontend_greeting:
+    name: Frontend Greeting
+    options:
+      - Good Morning
+      - Good Afternoon
+      - Good Evening
+      - Good Night
+
   # Border Radius used in border-radius templates,
   # you can adjust border size to be selected here
   border_radius:
@@ -78,25 +56,6 @@ input_select:
       - Standard
       - Large
 
-  # Quick Access Menu Border Radius used in border-radius
-  # templates, you can adjust border size to be selected here
-  qam_border_radius:
-    name: Quick Access Menu Border Radius
-    options:
-      - 0px
-      - 3px
-      - 6px
-      - 9px
-
-  # Quick Access Menu Border Radius selector to show in the interface
-  qam_border_radius_selector:
-    name: Quick Access Menu Border Radius Selector
-    options:
-      - None
-      - Small
-      - Standard
-      - Large
-
   # Box Shadow used in box-shadow templates, you can adjust
   # how the box shadow looks in here
   box_shadow:
@@ -107,7 +66,6 @@ input_select:
       - 2px 2px 2px 0px rgba(0,0,0,0.75)
       - 3px 3px 3px 0px rgba(0,0,0,0.75)
       - 5px 5px 5px 0px rgba(0,0,0,0.75)
-      - 7px 7px 7px 0px rgba(0,0,0,0.75)
   
   # Box Shadow selector to show in the interface
   box_shadow_selector:
@@ -118,7 +76,54 @@ input_select:
       - Standard
       - Medium
       - Large
-      - Huge
+
+  # Person Menu 1 (used for personal views)
+  person_menu_1:
+    name: Person Menu 1 Selector
+    options:
+      - Overview
+      - Calendar
+      - Location
+      - Vehicle
+    initial: Overview
+
+  # Person Menu 2 (used for personal views)
+  person_menu_2:
+    name: Person Menu 2 Selector
+    options:
+      - Overview
+      - Calendar
+      - Location
+      - Vehicle
+    initial: Overview
+
+  # Person Menu 3 (used for personal views)
+  person_menu_3:
+    name: Person Menu 3 Selector
+    options:
+      - Overview
+      - Calendar
+      - Location
+      - Vehicle
+    initial: Overview
+
+  # Person Menu 4 (used for personal views)
+  person_menu_4:
+    name: Person Menu 4 Selector
+    options:
+      - Overview
+      - Calendar
+      - Location
+      - Vehicle
+    initial: Overview
+
+  # Remote Control Selector
+  remote_control:
+    name: Remote Control Selector
+    options:
+      - Livingroom
+      - Bedroom
+    initial: Livingroom
 
 #################################################################
 #                                                               #
@@ -134,131 +139,450 @@ sensor:
 #                                                  #
 ####################################################
 
+  # Template All Lights
   - platform: template
     sensors:
       current_lights_on:
         friendly_name: All Lights Currently On
-        unit_of_measurement: 'On'
-        value_template: >
-          {% set total = 0 %}
-          {% if is_state('light.aerogarden_plant_leds', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.workshop_leds', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.workshop_bulb', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_1', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_2', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_3', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_4', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_5', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_6', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_7', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.dimmable_light_8', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.hallway', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.front_door', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.kitchen_table', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('light.living_room_lamp', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {{total}}
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_lighting','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
   # Template All Devices
   - platform: template
     sensors:
       current_devices_on:
         friendly_name: All Devices Currently On
-        unit_of_measurement: 'On'
-        value_template: >
-          {% set total = 0 %}
-          {% if is_state('switch.prusa_printer', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('switch.aerogarden_plant_pump', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {{total}}
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_device_switches','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
   # Template All Sensors
   - platform: template
     sensors:
       current_sensors_on:
         friendly_name: All Sensors Currently On
-        unit_of_measurement: 'On'
-        value_template: >
-          {% set total = 0 %}
-          {% if is_state('binary_sensor.backyard_camera_motion_detected', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.backyard_camera_person_detected', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.clip_sensor_toogle_on_off', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.front_door_camera_motion_detected', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.in_bed', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.jess_phone_charging', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.richard_phone_charging', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.window_door_sensor', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.workshop_door', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.workshop_motion_motion', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('binary_sensor.workshop_presence', 'on') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {{total}}
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_motion_smoke_sensors','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All Sensors
+  - platform: template
+    sensors:
+      current_binary_sensors_on:
+        friendly_name: All Binary Sensors Currently On
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_binary_sensors','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All Doors
+  - platform: template
+    sensors:
+      current_doors_open:
+        friendly_name: All Doors Currently Open
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_door_sensors','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All Windows
+  - platform: template
+    sensors:
+      current_windows_open:
+        friendly_name: All Windows Currently Open
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_window_sensors','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
   # Template All Radiator Valves
   - platform: template
     sensors:
       current_radiator_valves_on:
         friendly_name: All Radiator Valves Currently On
-        unit_of_measurement: 'On'
-        value_template: >
-          {% set total = 0 %}
-          {% if is_state('climate.tado_smart_radiator_thermostat_va1671957504', 'heat') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {% if is_state('climate.tado_smart_radiator_thermostat_va2898201344', 'heat') %}
-            {% set total = total + 1 %}
-          {% endif %}
-          {{total}}
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_radiator_valves','entity_id'))|selectattr('state','eq','heat')|list|count }}
+  
+  # Template All Computers
+  - platform: template
+    sensors:
+      current_computers_on:
+        friendly_name: All Computers Currently On
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_computers','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All TV's
+  - platform: template
+    sensors:
+      current_tvs_on:
+        friendly_name: All TV's Currently On
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_tvs','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All Laundry Devices
+  - platform: template
+    sensors:
+      current_laundry_devices_on:
+        friendly_name: All Laundry Devices Currently On
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_laundry_devices','entity_id'))|selectattr('state','eq','on')|list|count }}
+  
+  # Template All Scenes
+  - platform: template
+    sensors:
+      current_scenes_on:
+        friendly_name: All Scenes
+        value_template: >-
+          {{ states|selectattr('entity_id','in',state_attr('group.all_scenes','entity_id'))|selectattr('state','eq','on')|list|count }} 
+
+#################################################################
+#                                                               #
+#                           Group                               #
+#                                                               #
+#################################################################
+
+group:
+  # General Groups containing most if not all of the entities needed.
+  ### All Lights (that are shown on the lights view)
+  all_lighting:
+    name: All Lights
+    entities:
+      - light.aerogarden_plant_leds
+      - light.workshop_leds
+      - light.workshop_bulb
+      - light.dimmable_light_1
+      - light.dimmable_light_2
+      - light.dimmable_light_3
+      - light.dimmable_light_4
+      - light.dimmable_light_5
+      - light.dimmable_light_6
+      - light.dimmable_light_7
+      - light.dimmable_light_8
+      - light.hallway
+      - light.front_door
+      - light.kitchen_table
+      - light.living_room_lamp
+      - light.wled
+
+  ### All Devices (that are shown on the devices view)
+  all_device_switches:
+    name: All Devices
+    entities:
+      - switch.aerogarden_plant_pump
+      - switch.tasmota
+      - switch.prusa_printer
+
+  ### All Binary Sensors (door/window/motion/smoke/gas etc)
+  all_binary_sensors:
+    name: All Binary Sensors
+    entities:
+      - binary_sensor.window_door_sensor
+      - binary_sensor.front_door_motion_motion
+      - binary_sensor.front_door_motion_motion_2
+      - binary_sensor.workshop_motion_motion
+      - binary_sensor.kitchen_motion_motion
+      - binary_sensor.workshop_door
+      - binary_sensor.workshop_motion_sensor
+
+  ### All Radiator Valves or Climate entities (ONLY climate entities can be used here!)
+  all_radiator_valves:
+    name: All Radiator Valves
+    entities:
+#      - climate.tado_smart_radiator_thermostat_va1671957504
+
+  ### All Computers (This isn't used yet, though you can just fill it in)
+  all_computers:
+    name: All Computers
+    entities:
+#      - switch.workshop_pc
+#      - switch.synology_nas
+
+  ### All TV's
+  all_tvs:
+    name: All Televisions
+    entities:
+#      - switch.lg_tv
+#      - switch.upstairs_tv
+
+  ### All Laundry Devices (e.g. washing-machine, tumble-dryer or dishwasher)
+  all_laundry_devices:
+    name: All Laundry Devices
+    entities:
+      - switch.dryer
+      - switch.washing_machine
+      - switch.dishwasher
+
+  ### Leave this group empty!! (DO NOT DELETE THIS)
+  empty_group: 
+    name: Empty Group
+    entities:
+
+  ### All Scenes (the way scenes work has been changed in the latest HA, this part is up for evaluation)
+  all_scenes:
+    name: All Scenes
+    entities:
+      - input_boolean.scene_day_lighting
+      - input_boolean.scene_evening_lighting
+      - input_boolean.scene_night_lighting
+      - input_boolean.scene_finished_cooking
+      - input_boolean.scene_finished_washing
+      - input_boolean.scene_good_night
+      - input_boolean.scene_lights_out
+      - group.scene_cooking_on
+      - group.scene_washing_on
+      - group.scene_near_bedtime
+      - group.scene_cleaning_on
+
+  ### All Temperature Sensors
+  all_temperature_sensors:
+    name: All Temperature Sensors
+    entities:
+      - sensor.bme680_temperature
+      - sensor.front_door_motion_temperature
+      - sensor.workshop_motion_temperature
+
+  ### All Humidity Sensors
+  all_humidity_sensors:
+    name: All Humidity Sensors
+    entities:
+      - sensor.bme680_humidity
+
+  ### All Air Pressure Sensors
+  all_air_pressure_sensors:
+    name: All Air Pressure Sensors
+    entities:
+      - sensor.bme680_pressure
+
+  # Light Groups
+  ## Living Room
+  ### RGB Lights
+  livingroom_rgb_lights:
+    name: Livingroom RGB Lights
+    entities:
+#      - light.woonkamer_led_lampen
+#      - light.gateway_light_7811dcdef324
+  ### Color Temperature Lights
+  livingroom_color_temp_lights:
+    name: Livingroom Color Temperature Lights
+    entities:
+#      - light.vloerlamp
+#      - light.tafellamp
+  ### Other Lights
+  livingroom_other_lights:
+    name: Livingroom Other Lights
+    entities:
+#      - light.plafond
+#      - light.eettafel
+
+  ## Bedroom
+  ### RGB Lights
+  bedroom_rgb_lights:
+    name: Bedroom RGB Lights
+    entities:
+#      - light.slaapkamer_led_lampen
+  ### Color Temperature Lights
+  bedroom_color_temp_lights:
+    name: Bedroom Color Temperature Lights
+    entities:
+  ### Other Lights
+  bedroom_other_lights:
+    name: Bedroom Other Lights
+    entities:
+#      - light.nachtkastje_jimmy
+#      - light.nachtkastje_stephanie
+#      - light.bed_lamp
+#      - light.kast_lamp
+
+  ## Office
+  ### RGB Lights
+  office_rgb_lights:
+    name: Office RGB Lights
+    entities:
+#      - light.computer_led
+  ### Color Temperature Lights
+  office_color_temp_lights:
+    name: Office Color Temperature Lights
+    entities:
+#      - light.kleine_kamer
+  ### Other Lights
+  office_other_lights:
+    name: Office Other Lights
+    entities:
+
+  ## Kitchen
+  ### RGB Lights
+  kitchen_rgb_lights:
+    name: Kitchen RGB Lights
+    entities:
+      - kitchen_table
+  ### Color Temperature Lights
+  kitchen_color_temp_lights:
+    name: Kitchen Color Temperature Lights
+    entities:
+  ### Other Lights
+  kitchen_other_lights:
+    name: Kitchen Other Lights
+    entities:
+#      - light.keuken
+
+  ## Hallway
+  ### RGB Lights
+  hallway_rgb_lights:
+    name: Hallway RGB Lights
+    entities:
+  ### Color Temperature Lights
+  hallway_color_temp_lights:
+    name: Hallway Color Temperature Lights
+    entities:
+  ### Other Lights
+  hallway_other_lights:
+    name: Hallway Other Lights
+    entities:
+#      - light.entree_lamp
+#      - light.gang_lamp
+
+  ## Other
+  ### RGB Lights
+  other_rgb_lights:
+    name: Other RGB Lights
+    entities:
+  ### Color Temperature Lights
+  other_color_temp_lights:
+    name: Other Color Temperature Lights
+    entities:
+#      - light.berging
+  ### Other Lights
+  other_lights:
+    name: Other Lights
+    entities:
+#      - switch.koogeek_sw_056ce9
+#      - light.toilet
+#      - light.balkon
+
+
+  # Device Groups
+  ## Living Room
+  ### Fans
+  livingroom_fans:
+    name: Livingroom Fans
+    entities:
+#      - switch.ventilator
+  ### Devices
+  livingroom_devices:
+    name: Livingroom Devices
+    entities:
+#      - switch.receiver
+#      - switch.samsung_tv
+#      - switch.xbox_one
+
+  ## Bedroom
+  ### Fans
+  bedroom_fans:
+    name: Bedroom Fans
+    entities:
+#      - switch.ventilator
+  ### Devices
+  bedroom_devices:
+    name: Bedroom Devices
+    entities:
+#      - switch.receiver_slaapkamer
+#      - switch.tv_slaapkamer
+
+  ## Office
+  ### Fans
+  office_fans:
+    name: Office Fans
+    entities:
+  ### Devices
+  office_devices:
+    name: Office Devices
+    entities:
+#      - switch.pc_van_stephanie
+#      - switch.pc_van_jimmy
+#      - switch.printer
+#      - switch.monitors_jimmy
+#      - switch.monitors_stephanie
+#      - switch.piano
+      
+  ## Kitchen
+  ### Fans
+  kitchen_fans:
+    name: Kitchen Fans
+    entities:
+#      - switch.afzuigkap
+  ### Devices
+  kitchen_devices:
+    name: Kitchen Devices
+    entities:
+#      - switch.waterkoker
+#      - switch.airfryer
+#      - switch.cappumaker
+#      - switch.oven
+#      - switch.vaatwasser
+
+  ## Hallway
+  ### Fans
+  hallway_fans:
+    name: Hallway Fans
+    entities:
+  ### Devices
+  hallway_devices:
+    name: Hallway Devices
+    entities:
+
+  ## Laundry Room
+  ### Fans
+  laundry_room_fans:
+    name: Laundry Room Fans
+    entities:
+  ### Devices
+  laundry_room_devices:
+    name: Laundry Room Devices
+    entities:
+#      - switch.wasmachine
+#      - switch.droger
+
+
+  # Security Groups
+  ### Camera's
+  all_cameras:
+    name: All Cameras
+    entities:
+#      - camera.gallerij_camera
+
+  ### Window Sensors
+  all_window_sensors:
+    name: All Window Sensors
+    entities:
+
+  ### Door Sensors
+  all_door_sensors:
+    name: All Door Sensors
+    entities:
+#      - binary_sensor.voordeur
+#      - binary_sensor.woonkamer_deur
+#      - binary_sensor.slaapkamer_deur
+
+  ### Motion Sensors
+  all_motion_sensors:
+    name: All Motion Sensors
+    entities:
+#      - binary_sensor.dafang_motion_sensor
+#      - binary_sensor.motion_bijkeuken
+#      - binary_sensor.motion_toilet
+#      - binary_sensor.motion_woonkamer
+#      - binary_sensor.motion_office
+#      - binary_sensor.motion_gang
+
+  ### Smoke Detectors
+  all_smoke_detectors:
+    name: All Smoke Detectors
+    entities:
+#      - binary_sensor.lumi_sensor_smoke
+
+  ### All Motion, Smoke, Fire and Gas Sensors
+  all_motion_smoke_sensors:
+    name: All Motion Sensors
+    entities:
+#      - binary_sensor.dafang_motion_sensor
+#      - binary_sensor.motion_bijkeuken
+#      - binary_sensor.motion_toilet
+#      - binary_sensor.lumi_sensor_smoke
+#      - binary_sensor.motion_woonkamer
+#      - binary_sensor.motion_office
+#      - binary_sensor.motion_gang
 
 #################################################################
 #                                                               #
@@ -267,15 +591,100 @@ sensor:
 #################################################################
 
 automation:
+  # Frontend Header Greeting (If you change this, change the input_select for this as well, use the same names!)
+  - alias: Frontend Greeting
+    trigger:
+      - platform: time_pattern
+        minutes: "/5"
+      - platform: homeassistant
+        event: start
+    action:
+      service: input_select.select_option
+      data_template:
+        entity_id: input_select.frontend_greeting
+        option: >
+          {% if (states.sensor.time.state > '00:00') and (states.sensor.time.state < '06:00') %}
+            Good Night
+          {% elif (states.sensor.time.state > '06:00') and (states.sensor.time.state < '12:00') %}
+            Good Morning
+          {% elif (states.sensor.time.state > '12:00') and (states.sensor.time.state < '18:00') %}
+            Good Afternoon
+          {% elif (states.sensor.time.state > '18:00') and (states.sensor.time.state < '23:59') %}
+            Good Evening
+          {% endif %}
 
-  # Border Radius Selector
+  # State Change Automations used for device counting
+  - alias: 'group state change'
+    id: 'State changed'
+    trigger:
+      platform: event
+      event_type: state_changed
+    condition: 
+      condition: or
+      conditions:
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_lighting','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_device_switches','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_radiator_valves','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_computers','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_tvs','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_binary_sensors','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_laundry_devices','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_door_sensors','entity_id') }}
+        - condition: template
+          value_template: >
+            {{ trigger.event.data.entity_id in state_attr('group.all_window_sensors','entity_id') }}
+    action:
+      service: homeassistant.update_entity
+      entity_id: 
+        - sensor.current_lights_on
+        - sensor.current_devices_on
+        - sensor.current_radiator_valves_on
+        - sensor.current_computers_on
+        - sensor.current_tvs_on
+        - sensor.current_laundry_devices_on
+        - sensor.current_sensors_on
+        - sensor.current_doors_open
+        - sensor.current_windows_open
+        - sensor.current_binary_sensors_on
+
+  # Popup More Info Boolean (used in popup windows to show the extra info view)
+  - alias: light options boolean
+    initial_state: 'true'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.light_options
+        to: "on"
+    action:
+      - delay:
+          seconds: 15
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.light_options
+
+  # Box Shadow Selector
   - alias: input select beautifier box-shadow
     initial_state: 'true'
     trigger:
     - platform: state
       entity_id: input_select.box_shadow_selector
     action:
-    - service: input_select.select_option
+      service: input_select.select_option
       data_template:
         entity_id: input_select.box_shadow
         option: >
@@ -289,10 +698,8 @@ automation:
             3px 3px 3px 0px rgba(0,0,0,0.75)
           {% elif is_state('input_select.box_shadow_selector', 'Large') %}
             5px 5px 5px 0px rgba(0,0,0,0.75)
-          {% elif is_state('input_select.box_shadow_selector', 'Huge') %}
-            7px 7px 7px 0px rgba(0,0,0,0.75)
           {% endif %}
-
+  
   # Border Radius Selector
   - alias: input select beautifier border-radius
     initial_state: 'true'
@@ -312,25 +719,4 @@ automation:
             12px
           {% elif is_state('input_select.border_radius_selector', 'Large') %}
             18px
-          {% endif %}
-
-  # Quick Access Menu Border Radius Selector
-  - alias: input select beautifier qam border-radius
-    initial_state: 'true'
-    trigger:
-    - platform: state
-      entity_id: input_select.qam_border_radius_selector
-    action:
-      service: input_select.select_option
-      data_template:
-        entity_id: input_select.qam_border_radius
-        option: >
-          {% if is_state('input_select.qam_border_radius_selector', 'None') %}
-            0px
-          {% elif is_state('input_select.qam_border_radius_selector', 'Small') %}
-            3px
-          {% elif is_state('input_select.qam_border_radius_selector', 'Standard') %}
-            6px
-          {% elif is_state('input_select.qam_border_radius_selector', 'Large') %}
-            9px
           {% endif %}

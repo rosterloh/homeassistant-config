@@ -1,27 +1,17 @@
 - title: Floorplan
-  path:  floorplan
+  path: floorplan
   cards:    
     - type: vertical-stack
       cards:
-        - type: custom:decluttering-card
-          template: quick-access-menu
-          variables:
-            - name1: Location
-            - icon1: mdi:map
-            - path1: location
-        - type: custom:decluttering-card
-          template: header
-          variables:
-            - content: '## Floorplan'
-        - type: vertical-stack
+        - !include
+          - '../templates/system_header.yaml'
+          - name: Tap and hold the image to download
+            icon: mdi:floor-plan
+            content: Floorplan
+        - type: custom:layout-card
           cards:
-            - type: custom:decluttering-card
-              template: header
-              variables:
-                - content: '###### Tap and hold the image to download'
-            - type: horizontal-stack
+            - type: custom:layout-card
               cards:
-                - !include ../includes/blank-card.yaml
                 - type: picture
                   style: |
                     ha-card {
@@ -29,5 +19,4 @@
                       box-shadow: {{ states('input_select.box_shadow') }};
                     }
                   aspect_ratio: 1.78
-                  image: /local/img/floorplan.png
-                - !include ../includes/blank-card.yaml
+                  image: /local/images/floorplan.jpg

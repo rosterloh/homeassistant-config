@@ -25,6 +25,18 @@ sensor:
         unit_of_measurement: '°C'
         friendly_name: Workshop Temperature
 
+####################################################
+#                                                  #
+#                  Average                         #
+#                                                  #
+####################################################
+
+- platform: average
+  name: 'Average Temperature'
+  precision: 1
+  entities:
+    - sensor.motion_workshop_temperature
+
 #################################################################
 #                                                               #
 #                           Switches                            #

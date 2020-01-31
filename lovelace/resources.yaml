@@ -21,19 +21,17 @@
   - url: /community_plugin/light-popup-card/light-popup-card.js
     type: module
   - url: /community_plugin/lovelace-auto-entities/auto-entities.js
-    type: js
-  - url: /community_plugin/lovelace-card-loader/card-loader.js
-    type: js
+    type: module
   - url: /community_plugin/lovelace-card-mod/card-mod.js
     type: module
   - url: /community_plugin/lovelace-card-tools/card-tools.js
-    type: js
+    type: module
   - url: /community_plugin/lovelace-gui-sandbox/gui-sandbox.js
     type: module
   - url: /community_plugin/lovelace-layout-card/layout-card.js
     type: module
   - url: /community_plugin/lovelace-more-info-card/more-info-card.js
-    type: js
+    type: module
   - url: /community_plugin/lovelace-popup-card/popup-card.js
     type: js
   - url: /community_plugin/lovelace-state-switch/state-switch.js
