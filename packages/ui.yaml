@@ -406,7 +406,7 @@ group:
   kitchen_rgb_lights:
     name: Kitchen RGB Lights
     entities:
-      - kitchen_table
+      - light.kitchen_table
   ### Color Temperature Lights
   kitchen_color_temp_lights:
     name: Kitchen Color Temperature Lights

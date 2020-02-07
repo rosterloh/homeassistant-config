@@ -19,8 +19,6 @@ media_player:
   - platform: webostv
     host: !secret lg_tv
     name: Living Room TV
-    filename: webostv.conf
-    timeout: 5
 
 #################################################################
 #                                                               #

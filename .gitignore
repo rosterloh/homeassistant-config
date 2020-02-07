@@ -15,5 +15,10 @@ esphome
 node-red
 plex.conf
 www/community
-custom_components/hacs
+custom_components/average
 custom_components/browser_mod
+custom_components/customizer
+custom_components/hacs
+custom_components/huesensor
+custom_components/lovelace_gen
+service_account.json

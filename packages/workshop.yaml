@@ -31,11 +31,11 @@ sensor:
 #                                                  #
 ####################################################
 
-- platform: average
-  name: 'Average Temperature'
-  precision: 1
-  entities:
-    - sensor.motion_workshop_temperature
+  - platform: average
+    name: 'Average Temperature'
+    precision: 1
+    entities:
+      - sensor.motion_workshop_temperature
 
 #################################################################
 #                                                               #
