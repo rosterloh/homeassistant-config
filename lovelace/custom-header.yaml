@@ -27,7 +27,6 @@ button_text:
   options: "&nbsp; {{ user }}"
 # exceptions:
 #   - conditions:
-#       user: Richard
+#       tab: Home
 #     config:
-#       button_text: 
-#         options: '&nbsp;Hi Richard'
+#       header_text: "{{ states('input_select.frontend_greeting') }}"

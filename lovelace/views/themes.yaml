@@ -1,18 +1,22 @@
-- title: Themes
+# lovelace_gen
+
+- title: {{ _global.themes_header.title|default('Themes') }}
   path: themes
-  cards:
+  icon: {{ _global.themes_header.icon|default('mdi:palette') }}
+  cards:    
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
           - name: "[[[ return `Currently active theme: ${states['input_select.theme_selector'].state}` ]]]"
-            icon: mdi:palette
-            content: Themes
+            icon: {{ _global.themes_header.icon|default('mdi:palette') }}
+            content: {{ _global.themes_header.title|default('Themes') }}
         - type: custom:layout-card
           cards:
             - type: custom:layout-card
               cards:
                 - type: markdown
+                  {% raw %}
                   style: |
                     ha-card {
                       background: rgba(0, 0, 0, 0.5);
@@ -21,14 +25,17 @@
                       font-size: 13px;
                       font-family: Helvetica;
                       color: white;
-                    }              
+                    }
+                  {% endraw %}
                   content: '<ha-icon icon="mdi:alert"></ha-icon> Warning! Themes that are selected through this menu are set globally for ALL users! Selecting other themes than automatic will disable day/night mode!'  
                 - type: entities
+                  {% raw %}
                   style: |
                     ha-card {
                       border-radius: {{ states('input_select.border_radius') }};
                       box-shadow: {{ states('input_select.box_shadow') }};
                     }
+                  {% endraw %}
                   entities: 
                     - entity: input_select.theme_selector
                       name: Theme
@@ -36,4 +43,3 @@
                       name: Border
                     - entity: input_select.box_shadow_selector
                       name: Shadow
-                - !include ../includes/bottom-card.yaml

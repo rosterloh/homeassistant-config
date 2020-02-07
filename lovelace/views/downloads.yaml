@@ -1,10 +1,13 @@
-- title: Downloads
+# lovelace_gen
+
+- title: {{ _global.downloads_header.title|default('Downloads') }}
   path: downloads
-  cards:    
+  icon: {{ _global.downloads_header.icon|default('mdi:download') }}
+  cards:
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Create your own view here
-            icon: mdi:download
-            content: Downloads
+          - name: {{ _global.downloads_header.subtitle|default('NZB and Torrent monitor') }}
+            icon: {{ _global.downloads_header.icon|default('mdi:download') }}
+            content: {{ _global.downloads_header.title|default('Downloads') }}

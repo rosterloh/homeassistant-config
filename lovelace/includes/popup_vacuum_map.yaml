@@ -13,7 +13,7 @@ cards:
         box-shadow: {{ states('input_select.box_shadow') }};
       }
     {% endraw %}
-    entity: {{ _global.vacuum[0] }}
-    map_{{ _global.vacuum[31] }}: {{ _global.vacuum[30] }}
+    entity: {{ _global.vacuum.entity_id|default('vacuum.xiaomi_vacuum_cleaner') }}
+    map_{{ _global.vacuum_map.map_type|default('map') }}: {{ _global.vacuum_map.map_image|default('/local/images/xiaomi-map.png') }}
     calibration_points:
       !include ../includes/vacuum_calibration.yaml

@@ -1,11 +1,13 @@
-- title: Automations
+# lovelace_gen
+
+- title: {{ _global.automations_header.title|default('Automations') }}
   path: automations
-  icon: mdi:alpha-a-box
-  cards:
+  icon: {{ _global.automations_header.icon|default('mdi:alpha-a-box') }}
+  cards:   
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Create your own view here
-            icon: mdi:alpha-a-box
-            content: Automations
+          - name: {{ _global.automations_header.subtitle|default('Turn automations on or off') }}
+            icon: {{ _global.automations_header.icon|default('mdi:alpha-a-box') }}
+            content: {{ _global.automations_header.title|default('Automations') }}

@@ -1,15 +1,16 @@
 # lovelace_gen
 
-- title: Weather
+- title: {{ _global.weather_header.title|default('Weather') }}
   path: weather
-  cards:
+  icon: {{ _global.weather_header.icon|default('mdi:information-outline') }}
+  cards:   
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
           - name: "[[[ return `${states['sensor.dark_sky_summary'].state}` ]]]"
-            icon: mdi:earth
-            content: Weather
+            icon: {{ _global.weather_header.icon|default('mdi:information-outline') }}
+            content: {{ _global.weather_header.title|default('Weather') }}
     - type: custom:layout-card
       cards:
         - type: custom:layout-card
@@ -26,11 +27,11 @@
                   overflow: hidden;
                 }
               {% endraw %}
-              air_pollution_level: sensor.u_s_air_pollution_level
-              air_quality_index: sensor.u_s_air_quality_index
-              main_pollutant: sensor.u_s_main_pollutant
-              temp: {{ _global.weather[0] }}
-              city: {{ _global.weather[1] }}
+              air_pollution_level: {{ _global.weather.air_pollution_level|default('sensor.u_s_air_pollution_level') }}
+              air_quality_index: {{ _global.weather.air_quality_index|default('sensor.u_s_air_quality_index') }}
+              main_pollutant: {{ _global.weather.main_pollutant|default('sensor.u_s_main_pollutant') }}
+              temp: {{ _global.weather.weather_entity|default('weather.dark_sky') }}
+              city: {{ _global.weather.city_name|default('Eindhoven') }}
             - type: custom:weather-card
               {% raw %}
               style: |
@@ -42,7 +43,7 @@
                   border-radius: {{ states('input_select.border_radius') }};
                 }
               {% endraw %}
-              entity: {{ _global.weather[0] }}
+              entity: {{ _global.weather.weather_entity|default('weather.dark_sky') }}
               current: true
               details: true
               forecast: true
@@ -51,8 +52,8 @@
                 - !include
                   - '../templates/button_weather_popup.yaml'
                   - entity: input_boolean.dummy1
-                    name: {{ _global.weather[2]}}
-                    icon: {{ _global.weather[3]}}
+                    name: {{ _global.weather.left_button_name|default('Buienradar') }}
+                    icon: {{ _global.weather.left_button_icon|default('mdi:weather-pouring')}}
                     size: 11%
                     aspect_ratio: 2/1
                     show_label: false
@@ -62,12 +63,12 @@
                 - !include
                   - '../templates/button_weather_popup.yaml'
                   - entity: input_boolean.dummy1
-                    name: {{ _global.weather[5]}}
-                    icon: {{ _global.weather[6]}}
+                    name: {{ _global.weather.right_button_name|default('Windy') }}
+                    icon: {{ _global.weather.right_button_icon|default('mdi:weather-windy')}}
                     size: 11%
                     aspect_ratio: 2/1
                     show_label: false
                     show_state: false
                     margin_right: 128px
                     template: weather_iframe_2.yaml
-        - !include ../includes/bottom-card.yaml
+      

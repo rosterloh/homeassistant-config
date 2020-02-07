@@ -1,16 +1,17 @@
 # lovelace_gen
 
-- title: Location
+- title: {{ _global.location_header.title|default('Location') }}
   path: location
-  cards:    
+  icon: {{ _global.location_header.icon|default('mdi:navigation') }}
+  cards:
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Where is everyone?
-            icon: mdi:map
+          - name: {{ _global.location_header.subtitle|default('Where is everyone?') }}
+            icon: {{ _global.location_header.icon|default('mdi:navigation') }}
             spin: true
-            content: Location
+            content: {{ _global.location_header.title|default('Location') }}
         - type: custom:layout-card
           cards:
             - type: custom:layout-card
@@ -32,7 +33,8 @@
                   aspect_ratio: 4x7
                   default_zoom: 15
                   entities:
-                    - {{ _global.location[0] }}
-                    - {{ _global.location[1] }}
-                    - {{ _global.location[2] }}
-        - !include ../includes/bottom-card.yaml
+                    - {{ _global.persons.person_1|default('person.none') }}
+                    - {{ _global.persons.person_2|default('person.none') }}
+                    - {{ _global.persons.person_3|default('person.none') }}
+                    - {{ _global.persons.person_4|default('person.none') }}
+        - !include ../includes/bottom-card.yaml  

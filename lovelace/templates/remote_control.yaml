@@ -36,7 +36,7 @@ cards:
         - entity: input_boolean.dummy1
           name: Volume
           label: Down
-          icon: mdi:volume-low
+          icon: fal:volume-down
           service: media_player.volume_down
           service_entity: {{ entity_media_player }}
           margin_right: 40px
@@ -46,7 +46,7 @@ cards:
         - entity: input_boolean.dummy1
           name: Volume
           label: Up
-          icon: mdi:volume-high
+          icon: fal:volume-up
           service: media_player.volume_up
           service_entity: {{ entity_media_player }}
           margin_right: 40px
@@ -55,7 +55,7 @@ cards:
         - button_service_call.yaml
         - entity: input_boolean.dummy1
           name: Mute
-          icon: mdi:volume-off
+          icon: fal:volume-mute
           service: media_player.volume_mute
           service_entity: {{ entity_media_player }}
           margin_right: 40px
@@ -64,7 +64,7 @@ cards:
         - button_service_call.yaml
         - entity: input_boolean.dummy1
           name: Source
-          icon: mdi:login-variant
+          icon: fal:sign-out-alt
           service_entity: {{ entity_media_player }}
           margin_right: 40px
           opacity_off: 0.8
@@ -84,7 +84,7 @@ cards:
           opacity_off: 0.7
       - !include
         - button_remote_control.yaml
-        - icon: mdi:menu-up
+        - icon: fas:arrow-alt-circle-up
           service_entity: {{ entity_remote_control }}
           command: up
           opacity_off: 0.7
@@ -104,19 +104,19 @@ cards:
           url_path: nflx://
       - !include
         - button_remote_control.yaml
-        - icon: mdi:menu-left
+        - icon: fas:arrow-alt-circle-left
           service_entity: {{ entity_remote_control }}
           command: left
           opacity_off: 0.7
       - !include
         - button_remote_control.yaml
-        - icon: mdi:crop-square
+        - icon: fal:square
           service_entity: {{ entity_remote_control }}
           command: select
           opacity_off: 0.7
       - !include
         - button_remote_control.yaml
-        - icon: mdi:menu-right
+        - icon: fas:arrow-alt-circle-right
           service_entity: {{ entity_remote_control }}
           command: right
           opacity_off: 0.7
@@ -124,20 +124,20 @@ cards:
         - button_url.yaml
         - entity: input_boolean.dummy1
           name: Music
-          icon: mdi:music-circle-outline
+          icon: fab:itunes
           margin_right: 40px
           opacity_off: 0.8
           icon_color_off: Deeppink
           url_path: music://
       - !include
         - button_remote_control.yaml
-        - icon: mdi:menu
+        - icon: fal:bars
           service_entity: {{ entity_remote_control }}
           command: menu
           opacity_off: 0.7
       - !include
         - button_remote_control.yaml
-        - icon: mdi:menu-down
+        - icon: fas:arrow-alt-circle-down
           service_entity: {{ entity_remote_control }}
           command: down
           opacity_off: 0.7
@@ -156,10 +156,10 @@ cards:
         {% raw %}
         style: |
           ha-card {
-            border-radius: {{ states('input_select.border_radius') }};
-            overflow: hidden;
+            border-radius: {{ states('input_select.border_radius') }} !important;
+            overflow: hidden !important;
             box-shadow: {{ states('input_select.box_shadow') }};
-            background: var(--card-color-off);
+            background: var(--paper-card-background-color);
           }
         {% endraw %}
         entity: {{ entity_media_player_alternative }}

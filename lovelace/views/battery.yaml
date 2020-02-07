@@ -1,13 +1,16 @@
-- title: Battery
+# lovelace_gen
+
+- title: {{ _global.battery_header.title|default('Battery') }}
   path: battery
+  icon: {{ _global.battery_header.icon|default('mdi:battery') }}
   cards: 
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Battery Percentage Overview
-            icon: mdi:battery
-            content: Battery
+          - name: {{ _global.battery_header.subtitle|default('Overview') }}
+            icon: {{ _global.battery_header.icon|default('mdi:battery') }}
+            content: {{ _global.battery_header.title|default('Battery') }}
         - type: custom:layout-card
           cards:
             - type: custom:auto-entities
@@ -37,4 +40,3 @@
                 max_columns: 3
                 justify_content: start
                 layout: horizontal
-            - !include ../includes/bottom-card.yaml

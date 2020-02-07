@@ -20,16 +20,16 @@ cards:
             --text-primary-color: white !important;
           }
         entities:
-          - entity: {{ _global.vacuum[19] }}
-          - entity: {{ _global.vacuum[20] }}
-          - entity: {{ _global.vacuum[21] }}
-          - entity: {{ _global.vacuum[22] }}
-          - entity: {{ _global.vacuum[23] }}
-          - entity: {{ _global.vacuum[24] }}
+          - entity: {{ _global.vacuum_sensor.status_sensor|default('sensor.vacuum_cleaner_status_sensor') }}
+          - entity: {{ _global.vacuum_sensor.error_sensor|default('sensor.vacuum_cleaner_error_sensor') }}
+          - entity: {{ _global.vacuum_sensor.battery|default('sensor.vacuum_battery') }}
+          - entity: {{ _global.vacuum_sensor.cleaning_count|default('sensor.vacuum_cleaning_count') }}
+          - entity: {{ _global.vacuum_sensor.total_cleaned_area|default('sensor.vacuum_total_cleaned_area') }}
+          - entity: {{ _global.vacuum_sensor.total_cleaning_time|default('sensor.vacuum_total_cleaning_time') }}
           - type: divider
-          - entity: {{ _global.vacuum[25] }}
-          - entity: {{ _global.vacuum[26] }}
-          - entity: {{ _global.vacuum[27] }}
-          - entity: {{ _global.vacuum[28] }}
+          - entity: {{ _global.vacuum_sensor.main_brush_time_left|default('sensor.vacuum_main_brush_left') }}
+          - entity: {{ _global.vacuum_sensor.side_brush_time_left|default('sensor.vacuum_side_brush_left') }}
+          - entity: {{ _global.vacuum_sensor.filter_time_left|default('sensor.vacuum_filter_left') }}
+          - entity: {{ _global.vacuum_sensor.sensor_dirty_time_left|default('sensor.vacuum_sensor_dirty_left') }}
           - type: divider
-          - entity: {{ _global.vacuum[29] }}
+          - entity: {{ _global.vacuum_sensor.fan_speed_state|default('sensor.xiaomi_vacuum_fan_speed_state') }}

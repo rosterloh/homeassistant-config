@@ -55,7 +55,7 @@ states:
           line-height: 32px
           padding: 0px 28px
       - type: icon
-        icon: mdi:cellphone-iphone
+        icon: mdi:cellphone
         style:
           top: 0
           '{{ alignment }}': 0
@@ -99,7 +99,7 @@ states:
           line-height: 32px
           padding: 56px 28px
       - type: icon
-        icon: mdi:office-building  
+        icon: mdi:office-building
         style:
           top: 0
           '{{ alignment }}': 0
@@ -159,7 +159,7 @@ states:
           line-height: 32px
           padding: 0px 28px
       - type: icon
-        icon: mdi:cellphone-iphone
+        icon: mdi:cellphone
         style:
           top: 0
           '{{ alignment }}': 0

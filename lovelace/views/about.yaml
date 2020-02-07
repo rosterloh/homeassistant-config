@@ -5,7 +5,7 @@
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Homekit Infused v.1.0 beta
+          - name: Homekit Infused v.1.0 RC
             icon: mdi:information-outline
             spin: true
             content: About
@@ -22,10 +22,10 @@
                       font-family: Helvetica;
                     }              
                   content: >
-                    <ha-icon icon="fab:youtube"></ha-icon> Follow me on [YouTube](https://www.youtube.com/channel/UCYfcLj3IuQ-1mrnqgCk8f0w)
+                    <ha-icon icon="mdi:youtube"></ha-icon> Follow me on [YouTube](https://www.youtube.com/channel/UCYfcLj3IuQ-1mrnqgCk8f0w)
              
         
-                    <ha-icon icon="fab:github-square"></ha-icon> Follow me on [Github](https://www.github.com/jimz011/homeassistant)
+                    <ha-icon icon="mdi:github-box"></ha-icon> Follow me on [Github](https://www.github.com/jimz011/homeassistant)
         
         
-                    <ha-icon icon="mdi:home-assistant"></ha-icon> Follow me on the [Home Assistant Community](https://community.home-assistant.io/t/homekit-infused-hki-v0-13-1-updated-30-09-2019-finally-the-wait-is-over/117086/1)
+                    <ha-icon icon="mdi:home-assistant"></ha-icon> Follow me on the [Home Assistant Community](https://community.home-assistant.io/t/homekit-infused-hki-v1-0-beta-updated-28-01-2020/117086)

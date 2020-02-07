@@ -1,0 +1,9 @@
+# Alarm View
+
+# Header
+alarm_header:
+#  title: Alarm
+#  icon: fal:sensor-alert
+
+# Config
+# Nothing to configure, the alarm entity gets taken from the global settings.

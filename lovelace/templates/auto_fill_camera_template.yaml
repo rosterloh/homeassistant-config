@@ -25,7 +25,7 @@ cards:
                 aspect_ratio: 16x9
                 entity: this.entity_id
         sort:
-          method: name
+          method: {{ _global.security_camera_sorting.method|default('name') }}
           numeric: true
         card:
           type: custom:layout-card

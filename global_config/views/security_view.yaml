@@ -1,0 +1,26 @@
+# Security View
+
+# Header
+security_header:
+#  title: Security
+#  icon: fal:sensor-alert
+
+# Camera Sorting (you can choose either between: domain, entity_id, name, state, last_changed, last_updated or last_triggered.)
+security_camera_sorting:
+#  method: name
+
+# Binary Sensors Sorting (you can choose either between: domain, entity_id, name, state, last_changed, last_updated or last_triggered.)
+security_binary_sensor_sorting:
+#  method: name
+
+# Security Categories
+security:
+#  camera_category_name: Camera`s
+#  door_category_name: Doors
+#  window_category_name: Windows
+#  motion_category_name: Motion
+#  other_category_name: Other
+
+# Config
+# The security config is done through a template and groups. To make the security view work, make sure that you have filled the hki_groups.yaml
+# file. Without those groups this view will not work!

@@ -1,8 +1,9 @@
 # lovelace_gen
 
-- title: Remote
+- title: {{ _global.remote_header.title|default('Remote') }}
   path: remote
-  cards:
+  icon: {{ _global.remote_header.icon|default('mdi:remote') }}
+  cards:    
     - type: vertical-stack
       cards:
         - !include
@@ -10,33 +11,4 @@
           - name: "[[[ return `${states['input_select.remote_control'].state}` ]]]"
             font_weight: bold
             entity: input_select.remote_control
-            content: Remote Control
-        - type: conditional
-          conditions:
-            - entity: input_select.remote_control
-              state: "Livingroom"
-          card:
-            type: custom:layout-card
-            cards:
-              - !include
-                - '../templates/remote_control.yaml'
-                - entity_tv: {{ _global.remote[0] }}
-                  entity_receiver: {{ _global.remote[1] }}
-                  entity_media_player: {{ _global.remote[2] }}
-                  entity_media_player_alternative: {{ _global.remote[3] }}
-                  entity_remote_control: {{ _global.remote[4] }}
-        - type: conditional
-          conditions:
-            - entity: input_select.remote_control
-              state: "Bedroom"
-          card:
-            type: custom:layout-card
-            cards:
-              - !include
-                - '../templates/remote_control.yaml'
-                - entity_tv: {{ _global.remote[5] }}
-                  entity_receiver: {{ _global.remote[6] }}
-                  entity_media_player: {{ _global.remote[7] }}
-                  entity_media_player_alternative: {{ _global.remote[8] }}
-                  entity_remote_control: {{ _global.remote[9] }}
-        - !include ../includes/bottom-card.yaml
+            content: {{ _global.remote_header.title|default('Remote') }}

@@ -4,7 +4,7 @@
 type: custom:button-card
 name: {{ name }}
 icon: {{ icon }}
-deep_press: {{ _global.deep_press[0] }}
+deep_press: {{ _global.deep_press.deep_press|default('false') }}
 size: {{ size|default('25%') }}
 aspect_ratio: {{ aspect_ratio|default('1/1') }}
 entity: {{ entity }}
@@ -129,4 +129,4 @@ state:
       label:
         - color: var(--primary-text-color)
       lock:
-        - color: var(--paper-item-icon-color)
+        - color: var(--paper-item-icon-color) 

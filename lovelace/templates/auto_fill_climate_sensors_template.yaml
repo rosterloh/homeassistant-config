@@ -16,6 +16,7 @@ cards:
                 - {{ template|default('button_popup_mini_graph.yaml') }}
                 - entity: this.entity_id
                   color: "{{ color }}"
+                  lock: {{ lock|default('false') }}
             - type: custom:button-card
               color_type: blank-card
               aspect_ratio: 1/1
@@ -23,7 +24,7 @@ cards:
               color_type: blank-card
               aspect_ratio: 1/1
         sort:
-          method: name
+          method: {{ _global.climate_sensor_sorting.method|default('name') }}
           numeric: true
         card:
           type: custom:layout-card

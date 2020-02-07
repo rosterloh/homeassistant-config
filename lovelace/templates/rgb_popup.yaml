@@ -18,6 +18,8 @@ cards:
             entity: {{ entity }}
             brightnessWidth: 110px
             brightnessHeight: 410px
+            fullscreen: false
+            supportedFeaturesTreshold: {{ _global.lights_popup.supportedFeaturesTreshold|default('9') }}
           - type: 'custom:button-card'
             color_type: blank-card
             styles:
@@ -83,3 +85,4 @@ cards:
                 margin-top: -40px;
               }
             entity: {{ entity }}
+  

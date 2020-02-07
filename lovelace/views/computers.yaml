@@ -1,10 +1,13 @@
-- title: Computers
+# lovelace_gen
+
+- title: {{ _global.computers_header.title|default('Computers') }}
   path: computers
-  cards:    
+  icon: {{ _global.computers_header.icon|default('mdi:desktop-tower-monitor') }}
+  cards: 
     - type: vertical-stack
       cards:
         - !include
           - '../templates/system_header.yaml'
-          - name: Create your own view here
-            icon: mdi:desktop-tower-monitor
-            content: Computers
+          - name: "[[[ if (states['sensor.current_computers_on'].state == 1) return `1 computer is turned on`; else return `${states['sensor.current_computers_on'].state} computers are turned on`  ]]]"
+            icon: {{ _global.computers_header.icon|default('mdi:desktop-tower-monitor') }}
+            content: {{ _global.computers_header.title|default('Computers') }}

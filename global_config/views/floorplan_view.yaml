@@ -1,0 +1,14 @@
+# Floorplan View
+
+# Header
+floorplan_header:
+#  title: Floorplan
+#  icon: mdi:floor-plan
+#  subtitle: Tap and hold image to download
+
+# Floorplan
+floorplan:
+#  image: /local/images/floorplan.jpg
+
+# Config
+# This template only supports images, if you want to use picture elements please edit the view directly!

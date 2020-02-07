@@ -8,7 +8,7 @@ style: |
   }
 name: "{{ name }}"
 icon: "{{ icon|default('mdi:home') }}"
-deep_press: {{ _global.deep_press[0] }}
+deep_press: {{ _global.deep_press.deep_press|default('false') }}
 size: 100%
 entity: {{ entity|default('input_boolean.dummy1') }}
 show_state: false

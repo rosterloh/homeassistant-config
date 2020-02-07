@@ -1,0 +1,10 @@
+# Battery View
+
+# Header
+battery_header:
+#  title: Battery
+#  icon: fal:battery-half
+#  subtitle: Overview
+
+# Config
+# Nothing to configure, the battery view fills up automatically!

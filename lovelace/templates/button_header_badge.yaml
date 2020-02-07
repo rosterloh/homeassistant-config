@@ -34,6 +34,8 @@ tap_action:
         - !include
           - {{ template|default('popup_device_counters.yaml') }}
           - entity: {{ entity }}
+    deviceID:
+      - this
   haptic: light
 hold_action:
   action: call-service
@@ -54,6 +56,8 @@ hold_action:
         - !include
           - {{ template|default('popup_device_counters.yaml') }}
           - entity: {{ entity }}
+    deviceID:
+      - this
   haptic: heavy
 styles:
   card:

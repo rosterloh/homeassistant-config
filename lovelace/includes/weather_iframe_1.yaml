@@ -11,12 +11,12 @@ cards:
         {% raw %}
         style: |
           ha-card {
-            border-radius: {{ states('input_select.border_radius') }};
+            border-radius: {{ states('input_select.border_radius') }} !important;
             box-shadow: {{ states('input_select.box_shadow') }};
-            overflow: hidden;
+            overflow: hidden !important;
             box-shadow: none;
           }
         {% endraw %}
         aspect_ratio: 150%
-        url: {{ _global.weather[4] }}
+        url: {{ _global.weather.left_button_iframe_url|default('https://buienradar.nl') }}
   - !include bottom-card.yaml

@@ -1,0 +1,346 @@
+# Homekit Infused Groups List, You will have to fill in this file for auto-filling to work.
+# Homekit Infused is based on this principle so you'd better fill this in. If you don't have
+# entities for a certain group, do NOT delete the group, just remove the entities, including
+# the dash '-'. Do NOT delete any of these groups! I have warned you!!!!!
+
+# Note: Some things might seem unlogical (or it feels like you already have created that group)
+# For everything is a reason, and if I ask you to put in the same entity in multiple groups then
+# you should do this as the groups will be read by lovelace (and the majority of the interface will
+# be built up accordingly)
+
+# General Groups containing most if not all of the entities needed.
+### All Lights (that are shown on the lights view)
+group:
+  all_lighting:
+    name: All Lights
+    entities:
+      - light.aerogarden_plant_leds
+      - light.workshop_leds
+      - light.workshop_bulb
+      - light.dimmable_light_1
+      - light.dimmable_light_2
+      - light.dimmable_light_3
+      - light.dimmable_light_4
+      - light.dimmable_light_5
+      - light.dimmable_light_6
+      - light.dimmable_light_7
+      - light.dimmable_light_8
+      - light.hallway
+      - light.front_door
+      - light.kitchen_table
+      - light.living_room_lamp
+      - light.wled
+  
+  ### All Devices (that are shown on the devices view)
+  all_device_switches:
+    name: All Devices
+    entities:
+      - switch.aerogarden_plant_pump
+      - switch.tasmota
+      - switch.prusa_printer
+  
+  ### All Binary Sensors (door/window/motion/smoke/gas etc)
+  all_binary_sensors:
+    name: All Binary Sensors
+    entities:
+      - binary_sensor.window_door_sensor
+      - binary_sensor.front_door_motion_motion
+      - binary_sensor.front_door_motion_motion_2
+      - binary_sensor.workshop_motion_motion
+      - binary_sensor.kitchen_motion_motion
+      - binary_sensor.workshop_door
+      - binary_sensor.workshop_motion_sensor
+  
+  ### All Radiator Valves or Climate entities (ONLY climate entities can be used here!, if you have a single thermostat put it here as well)
+  all_radiator_valves:
+    name: All Radiator Valves
+    entities:
+#      - climate.tado_smart_radiator_thermostat_va1671957504
+  
+  ### All Fans (Enter all your fans in here)
+  all_fans:
+    name: All Fans
+    entities:
+#      - switch.ventilator
+  
+  ### All Computers (This isn't used yet, though you can just fill it in)
+  all_computers:
+    name: All Computers
+    entities:
+#      - switch.workshop_pc
+#      - switch.synology_nas
+  
+  ### All TV's
+  all_tvs:
+    name: All Televisions
+    entities:
+#      - switch.livingroom_tv
+#      - switch.upstairs_tv
+  
+  ### All Laundry Devices (e.g. washing-machine, tumble-dryer or dishwasher)
+  all_laundry_devices:
+    name: All Laundry Devices
+    entities:
+      - switch.dryer
+      - switch.washing_machine
+      - switch.dishwasher
+  
+  ### Leave this group empty!! (DO NOT DELETE THIS)
+  empty_group: 
+    name: Empty Group
+    entities:
+  
+  ### All Scenes (the way scenes work has been changed in the latest HA, this part is up for evaluation)
+  all_scenes:
+    name: All Scenes
+    entities:
+      - input_boolean.scene_day_lighting
+      - input_boolean.scene_evening_lighting
+      - input_boolean.scene_night_lighting
+      - input_boolean.scene_finished_cooking
+      - input_boolean.scene_finished_washing
+      - input_boolean.scene_good_night
+      - input_boolean.scene_lights_out
+      - group.scene_cooking_on
+      - group.scene_washing_on
+      - group.scene_near_bedtime
+      - group.scene_cleaning_on
+  
+  ### All Temperature Sensors
+  all_temperature_sensors:
+    name: All Temperature Sensors
+    entities:
+      - sensor.bme680_temperature
+      - sensor.front_door_motion_temperature
+      - sensor.workshop_motion_temperature
+  
+  ### All Humidity Sensors
+  all_humidity_sensors:
+    name: All Humidity Sensors
+    entities:
+      - sensor.bme680_humidity
+  
+  ### All Air Pressure Sensors
+  all_air_pressure_sensors:
+    name: All Air Pressure Sensors
+    entities:
+      - sensor.bme680_pressure  
+  
+  # Light Groups
+  ## Living Room
+  ### RGB Lights
+  livingroom_rgb_lights:
+    name: Livingroom RGB Lights
+    entities:
+      - light.living_room_lamp
+  ### Color Temperature Lights
+  livingroom_color_temp_lights:
+    name: Livingroom Color Temperature Lights
+    entities:
+      - light.dimmable_light_1
+      - light.dimmable_light_2
+      - light.dimmable_light_3
+      - light.dimmable_light_4
+      - light.dimmable_light_5
+      - light.dimmable_light_6
+      - light.dimmable_light_7
+      - light.dimmable_light_8
+  ### Other Lights
+  livingroom_other_lights:
+    name: Livingroom Other Lights
+    entities:
+  
+  ## Bedroom
+  ### RGB Lights
+  bedroom_rgb_lights:
+    name: Bedroom RGB Lights
+    entities:
+  ### Color Temperature Lights
+  bedroom_color_temp_lights:
+    name: Bedroom Color Temperature Lights
+    entities:
+  ### Other Lights
+  bedroom_other_lights:
+    name: Bedroom Other Lights
+    entities:
+  
+  ## Office
+  ### RGB Lights
+  office_rgb_lights:
+    name: Office RGB Lights
+    entities:
+  ### Color Temperature Lights
+  office_color_temp_lights:
+    name: Office Color Temperature Lights
+    entities:
+  ### Other Lights
+  office_other_lights:
+    name: Office Other Lights
+    entities:
+  
+  ## Kitchen
+  ### RGB Lights
+  kitchen_rgb_lights:
+    name: Kitchen RGB Lights
+    entities:
+      - kitchen_table
+  ### Color Temperature Lights
+  kitchen_color_temp_lights:
+    name: Kitchen Color Temperature Lights
+    entities:
+  ### Other Lights
+  kitchen_other_lights:
+    name: Kitchen Other Lights
+    entities:
+  
+  ## Hallway
+  ### RGB Lights
+  hallway_rgb_lights:
+    name: Hallway RGB Lights
+    entities:
+      - light.front_door
+      - light.hallway
+  ### Color Temperature Lights
+  hallway_color_temp_lights:
+    name: Hallway Color Temperature Lights
+    entities:
+  ### Other Lights
+  hallway_other_lights:
+    name: Hallway Other Lights
+    entities:
+  
+  ## Other
+  ### RGB Lights
+  other_rgb_lights:
+    name: Other RGB Lights
+    entities:
+      - light.wled
+  ### Color Temperature Lights
+  other_color_temp_lights:
+    name: Other Color Temperature Lights
+    entities:
+  ### Other Lights
+  other_lights:
+    name: Other Lights
+    entities:
+  
+  
+  # Device Groups
+  ## Living Room
+  ### Fans
+  livingroom_fans:
+    name: Livingroom Fans
+    entities:
+#      - switch.ventilator
+  ### Devices
+  livingroom_devices:
+    name: Livingroom Devices
+    entities:
+#      - switch.receiver
+#      - switch.samsung_tv
+#      - switch.xbox_one
+  
+  ## Bedroom
+  ### Fans
+  bedroom_fans:
+    name: Bedroom Fans
+    entities:
+  ### Devices
+  bedroom_devices:
+    name: Bedroom Devices
+    entities:
+#      - switch.receiver_slaapkamer
+#      - switch.tv_slaapkamer
+  
+  ## Office
+  ### Fans
+  office_fans:
+    name: Office Fans
+    entities:
+  ### Devices
+  office_devices:
+    name: Office Devices
+    entities:
+#      - switch.printer
+#      - switch.monitors
+      
+  ## Kitchen
+  ### Fans
+  kitchen_fans:
+    name: Kitchen Fans
+    entities:
+#      - switch.ventilator
+  ### Devices
+  kitchen_devices:
+    name: Kitchen Devices
+    entities:
+#      - switch.kettle
+#      - switch.airfryer
+#      - switch.coffee_machine
+#      - switch.oven
+#      - switch.dishwasher
+  
+  ## Hallway
+  ### Fans
+  hallway_fans:
+    name: Hallway Fans
+    entities:
+  ### Devices
+  hallway_devices:
+    name: Hallway Devices
+    entities:
+  
+  ## Laundry Room
+  ### Fans
+  laundry_room_fans:
+    name: Laundry Room Fans
+    entities:
+  ### Devices
+  laundry_room_devices:
+    name: Laundry Room Devices
+    entities:
+#      - switch.washing_machine
+#      - switch.dryer
+  
+  
+  # Security Groups
+  ### Camera's
+  all_cameras:
+    name: All Cameras
+    entities:
+      - camera.front_door
+  
+  ### Window Sensors
+  all_window_sensors:
+    name: All Window Sensors
+    entities:
+  
+  ### Door Sensors
+  all_door_sensors:
+    name: All Door Sensors
+    entities:
+#      - binary_sensor.front_door
+#      - binary_sensor.livingroom_door
+#      - binary_sensor.bedroom_door
+  
+  ### Motion Sensors
+  all_motion_sensors:
+    name: All Motion Sensors
+    entities:
+      - binary_sensor.workshop_motion
+#      - binary_sensor.motion_toilet
+#      - binary_sensor.motion_livingroom
+#      - binary_sensor.motion_office
+#      - binary_sensor.motion_hallway
+  
+  ### Smoke Detectors
+  all_smoke_detectors:
+    name: All Smoke Detectors
+    entities:
+#      - binary_sensor.workshop_smoke
+  
+  ### All Motion, Smoke, Fire and Gas Sensors
+  all_motion_smoke_sensors:
+    name: All Motion Sensors
+    entities:
+      - binary_sensor.workshop_motion

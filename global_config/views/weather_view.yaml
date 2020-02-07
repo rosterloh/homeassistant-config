@@ -1,0 +1,21 @@
+# Weather View
+
+# Header
+weather_header:
+#  title: Weather
+#  icon: fal:info-circle
+
+# Config
+weather:
+#  weather_entity: weather.dark_sky
+  city_name: Pitstone
+#  air_pollution_level: sensor.u_s_air_pollution_level
+#  air_quality_index: sensor.u_s_air_quality_index
+#  main_pollutant: sensor.u_s_main_pollutant
+
+  left_button_name: MeteorRadar
+#  left_button_icon: fal:cloud-showers-heavy
+#  left_button_iframe_url: https://maps.meteoradar.co.uk/GratisRadar/825/912/verwacht?zoom=9 # First iFrame (Buienradar is for Dutch people only, enter another iframe if you wish)
+#  right_button_name: Windy
+#  right_button_icon: fal:wind
+  right_button_iframe_url: https://embed.windy.com/embed2.html?lat=51.794&lon=-0.660&zoom=11&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=&type=map&location=coordinates&detail=&detailLat=51.794&detailLon=-0.660&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1 # Second iFrame, Put your own coördinates in for your personalised view if you want to keep Windy

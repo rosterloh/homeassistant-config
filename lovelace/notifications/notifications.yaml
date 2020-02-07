@@ -197,10 +197,10 @@
     - '../templates/notification_template.yaml'
     - icon: fal:washer
       name: De wasmachine is klaar!
-# Vaatwasser
+# Dishwasher
 - type: conditional
   conditions:
-    - entity: input_select.vaatwasser_status
+    - entity: input_select.dishwasher_status
       state: Clean
     - entity: alarm_control_panel.home_alarm
       state: disarmed
@@ -208,17 +208,17 @@
     !include
     - '../templates/notification_template.yaml'
     - icon: mdi:dishwasher
-      name: De vaatwasser is klaar!
-# Hond
+      name: The dishwasher is finished!
+# Cat
 - type: conditional
   conditions:
-    - entity: person.tala
+    - entity: person.juno
       state_not: home
   card:
     !include
     - '../templates/notification_template.yaml'
-    - icon: fal:dog
-      name: Tala is niet thuis!
+    - icon: fal:cat
+      name: Juno is not home!
 # Motion Gallerij
 - type: conditional
   conditions:
@@ -259,16 +259,16 @@
     - '../templates/notification_template.yaml'
     - icon: fal:sensor-on
       name: Er is beweging op het toilet
-# Motion Gang
+# Motion Hallway
 - type: conditional
   conditions:
-    - entity: binary_sensor.motion_gang
+    - entity: binary_sensor.motion_hallway
       state: "on"
   card:
     !include
     - '../templates/notification_template.yaml'
     - icon: fal:sensor-on
-      name: Er is beweging in de gang
+      name: There is motion in the hallway
 # Motion Office
 - type: conditional
   conditions:
@@ -278,7 +278,7 @@
     !include
     - '../templates/notification_template.yaml'
     - icon: fal:sensor-on
-      name: Er is beweging in de kleine kamer
+      name: There is motion in the office
 # Vacuum Notification (Cleaning)
 - type: conditional
   conditions:
@@ -367,83 +367,19 @@
     - icon: fal:steering-wheel
       name: "[[[ return `APK Peugeot 207 SW verloopt op ${states['sensor.peugeot_207_expdate'].state}` ]]]"
       spin: true
+
 ## Birthdays
 
-# Koos van Duuren
-- type: conditional
-  conditions:
-    - entity: sensor.birthday_koos_van_duuren
-      state: '0'
-    - entity: alarm_control_panel.home_alarm
-      state: disarmed      
-  card:
-    !include
-    - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_birthday
-      icon: fal:gift
-      name: "[[[ return `Koos van Duuren is vandaag ${states['sensor.birthday_koos_van_duuren'].attributes.years} geworden!` ]]]"
-# Jimmy Schings
-- type: conditional
-  conditions:
-    - entity: sensor.birthday_jimmy_schings
-      state: '0'
-    - entity: alarm_control_panel.home_alarm
-      state: disarmed      
-  card:
-    !include
-    - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_birthday
-      icon: fal:gift
-      name: "[[[ return `Jimmy Schings is vandaag ${states['sensor.birthday_jimmy_schings'].attributes.years} geworden!` ]]]"
-# Stephanie Schings
-- type: conditional
-  conditions:
-    - entity: sensor.birthday_stephanie_schings
-      state: '0'
-    - entity: alarm_control_panel.home_alarm
-      state: disarmed      
-  card:
-    !include
-    - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_birthday
-      icon: fal:gift
-      name: "[[[ return `Stephanie Schings is vandaag ${states['sensor.birthday_stephanie_schings'].attributes.years} geworden!` ]]]"
-# Ralf Vogels
-- type: conditional
-  conditions:
-    - entity: sensor.birthday_ralf_vogels
-      state: '0'
-    - entity: alarm_control_panel.home_alarm
-      state: disarmed      
-  card:
-    !include
-    - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_birthday
-      icon: fal:gift
-      name: "[[[ return `Ralf Vogels is vandaag ${states['sensor.birthday_ralf_vogels'].attributes.years} geworden!` ]]]"
-# Jos Schings
-- type: conditional
-  conditions:
-    - entity: sensor.birthday_jos_schings
-      state: '0'
-    - entity: alarm_control_panel.home_alarm
-      state: disarmed      
-  card:
-    !include
-    - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_birthday
-      icon: fal:gift
-      name: "[[[ return `Jos Schings is vandaag ${states['sensor.birthday_jos_schings'].attributes.years} geworden!` ]]]"
 # Tala
 - type: conditional
   conditions:
-    - entity: sensor.birthday_tala
+    - entity: sensor.birthday_juno
       state: '0'
     - entity: alarm_control_panel.home_alarm
       state: disarmed      
   card:
     !include
     - '../templates/notification_template.yaml'
-    - entity: input_boolean.notification_tala
-      icon: mdi:dog-side
-      name: "[[[ return `Tala is vandaag ${states['sensor.birthday_jimmy_schings'].attributes.years} geworden!` ]]]"
+    - entity: input_boolean.notification_juno
+      icon: mdi:cat-side
+      name: "[[[ return `Juno is ${states['sensor.birthday_juno'].attributes.years} old today!` ]]]"
