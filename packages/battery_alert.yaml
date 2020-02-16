@@ -51,7 +51,7 @@ binary_sensor:
       richard_phone_charging:
         friendly_name: "Richard Phone Charging"
         value_template: >-
-          {{ state_attr('device_tracker.google_maps_117827202043451375424', 'battery_charging') }}
+          {{ state_attr('sensor.battery_level', 'is_charging') }}
           
       jess_phone_charging:
         friendly_name: "Jess Phone Charging"
@@ -61,7 +61,7 @@ binary_sensor:
       in_bed:
         friendly_name: "In bed"
         value_template: >-
-          {{ is_state('device_tracker.google_maps_117827202043451375424', 'home')
+          {{ is_state('device_tracker.pixel_2_xl', 'home')
              and is_state('device_tracker.google_maps_113157436158025112894', 'home')
              and states('binary_sensor.richard_phone_charging')
              and states('binary_sensor.jess_phone_charging') }}

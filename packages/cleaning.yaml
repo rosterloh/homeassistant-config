@@ -30,6 +30,18 @@ input_select:
       - Clean
       - Power OFF
 
+input_boolean:
+
+  scene_day_lighting:  
+  scene_night_lighting:
+  scene_evening_lighting:
+  scene_cleaning:
+  scene_near_bed:
+  scene_finished_washing:
+  scene_finished_cooking:
+  scene_good_night:
+  scene_lights_out:
+  
 #################################################################
 #                                                               #
 #                            Groups                             #
@@ -43,6 +55,8 @@ group:
     entities:
       - sensor.dishwasher_energy_today
       - sensor.washing_machine_energy_today
+
+  
 
 #################################################################
 #                                                               #

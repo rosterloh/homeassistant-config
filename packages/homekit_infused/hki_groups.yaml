@@ -55,26 +55,26 @@ group:
   all_radiator_valves:
     name: All Radiator Valves
     entities:
-#      - climate.tado_smart_radiator_thermostat_va1671957504
+      - climate.downstairs
   
   ### All Fans (Enter all your fans in here)
   all_fans:
     name: All Fans
     entities:
-#      - switch.ventilator
+      - switch.ventilator
   
   ### All Computers (This isn't used yet, though you can just fill it in)
   all_computers:
     name: All Computers
     entities:
-#      - switch.workshop_pc
+      - switch.workshop_pc
 #      - switch.synology_nas
   
   ### All TV's
   all_tvs:
     name: All Televisions
     entities:
-#      - switch.livingroom_tv
+      - switch.livingroom_tv
 #      - switch.upstairs_tv
   
   ### All Laundry Devices (e.g. washing-machine, tumble-dryer or dishwasher)
@@ -101,10 +101,10 @@ group:
       - input_boolean.scene_finished_washing
       - input_boolean.scene_good_night
       - input_boolean.scene_lights_out
-      - group.scene_cooking_on
-      - group.scene_washing_on
-      - group.scene_near_bedtime
-      - group.scene_cleaning_on
+#      - group.scene_cooking_on
+#      - group.scene_washing_on
+#      - group.scene_near_bedtime
+#      - group.scene_cleaning_on
   
   ### All Temperature Sensors
   all_temperature_sensors:
@@ -183,7 +183,7 @@ group:
   kitchen_rgb_lights:
     name: Kitchen RGB Lights
     entities:
-      - kitchen_table
+      - light.kitchen_table
   ### Color Temperature Lights
   kitchen_color_temp_lights:
     name: Kitchen Color Temperature Lights
@@ -314,6 +314,7 @@ group:
   all_window_sensors:
     name: All Window Sensors
     entities:
+      - binary_sensor.dummy
   
   ### Door Sensors
   all_door_sensors:

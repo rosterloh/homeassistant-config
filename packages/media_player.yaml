@@ -4,6 +4,10 @@
 #                                                               #
 #################################################################
 
+webostv:
+  host: !secret lg_tv
+  name: Living Room TV
+
 media_player:
 
   - platform: androidtv
@@ -15,10 +19,6 @@ media_player:
       "amazon": "Amazon Prime Video"
       "youtube": "Youtube"
       "netflix": "Netflix"
-      
-  - platform: webostv
-    host: !secret lg_tv
-    name: Living Room TV
 
 #################################################################
 #                                                               #

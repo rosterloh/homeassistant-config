@@ -87,9 +87,6 @@ automation:
         event: start
       - platform: state
         entity_id: sun.sun
-      - platform: state
-        entity_id: sensor.anniversary_anniversary
-        to: '0'
     action:
       - service: frontend.set_theme
         data_template:

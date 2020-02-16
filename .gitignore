@@ -16,6 +16,7 @@ node-red
 plex.conf
 www/community
 custom_components/average
+custom_components/badnest
 custom_components/browser_mod
 custom_components/customizer
 custom_components/hacs
