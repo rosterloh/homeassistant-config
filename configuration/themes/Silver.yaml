@@ -1,5 +1,5 @@
 Silver:
-  ### Theme Silver for Homekit Infused v0.13.x or newer
+  ### Theme Silver for Homekit Infused v1.2 or newer
   
   ## Lovelace Theme
   
@@ -7,7 +7,8 @@ Silver:
   background-image: 'linear-gradient(290deg, #a30088 -30%, #111111 65%)'
   
   # Lovelace Header Text
-  header-color: 'white'
+  header-color: 'White'
+  category-text: 'White'
   
   # Notification Badge
   notification-badge-color: 'white'

@@ -1,6 +1,6 @@
 homeassistant:
   customize: !include configuration/customize.yaml
-  packages: !include_dir_named packages
+  packages: !include_dir_named packages/
   whitelist_external_dirs:
     - /config
 
@@ -90,8 +90,8 @@ history:
       - cover
   exclude:
     entities:
-     - sensor.date
-     - sensor.time
+    - sensor.date
+    - sensor.time
 
 logger:
   default: error

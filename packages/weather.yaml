@@ -37,7 +37,7 @@ sensor:
     monitored_conditions:
       - us
     show_on_map: false
-    scan_interval: 300
+    scan_interval: 600
     city: london
     state: england
     country: uk

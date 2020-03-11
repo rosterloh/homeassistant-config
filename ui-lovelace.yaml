@@ -1,4 +1,3 @@
-# Custom Card Resources
 resources: !include lovelace/resources.yaml
 custom_header: !include lovelace/custom-header.yaml
 

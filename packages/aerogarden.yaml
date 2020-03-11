@@ -27,12 +27,12 @@ input_datetime:
     name: Aerogarden LEDs on time
     has_date: false
     has_time: true
-    initial: 20:00
+    initial: '20:00'
   aerogarden_leds_off:
     name: Aerogarden LEDs off time
     has_date: false
     has_time: true
-    initial: 08:00
+    initial: '08:00'
 
 #################################################################
 #                                                               #
@@ -46,7 +46,7 @@ automation:
     alias: AeroGarden LEDs automatic on
     trigger:
       platform: template
-      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_on', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_on', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
     condition:
       condition: state
       entity_id: input_boolean.aerogarden_leds_automate
@@ -59,7 +59,7 @@ automation:
     alias: AeroGarden LEDs automatic off
     trigger:
       platform: template
-      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_off', 'timestamp') | int | timestamp_custom('%H:%M', False)) }}"
+      value_template: "{{ states('sensor.time') == (state_attr('input_datetime.aerogarden_leds_off', 'timestamp') | int | timestamp_custom('%H:%M', True)) }}"
     condition:
       condition: state
       entity_id: input_boolean.aerogarden_leds_automate
