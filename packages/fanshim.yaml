@@ -1,0 +1,28 @@
+# Pimoroni Fan SHIM
+# sensor:
+#   - platform: command_line
+#     name: CPU Temperature
+#     command: "cat /sys/class/thermal/thermal_zone0/temp"
+#     unit_of_measurement: "°C"
+#     value_template: '{{ value | multiply(0.001) | round(1) }}'
+#     scan_interval: 10
+# switch:
+#   - platform: rpi_gpio
+#     ports:
+#       18: RPI Cooling Fan
+# climate:
+#   - platform: generic_thermostat
+#     name: RPI Cooling Fan Controller
+#     heater: switch.rpi_cooling_fan
+#     target_sensor: sensor.cpu_temperature
+#     min_temp: 55
+#     max_temp: 80
+#     ac_mode: true
+#     target_temp: 55
+#     cold_tolerance: 0.1
+#     hot_tolerance: 0.1
+#     min_cycle_duration:
+#       seconds: 30
+#     keep_alive:
+#       minutes: 5
+#     initial_hvac_mode: "cool"

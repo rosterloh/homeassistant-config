@@ -1,0 +1,26 @@
+# sensor:
+#   - platform: rest
+#     name: Octopus
+#     resource_template: >-
+#       https://api.octopus.energy/v1/products/AGILE-18-02-21/electricity-tariffs/E-1R-AGILE-18-02-21-N/standard-unit-rates/?period_from=
+#       {% set ts_now = ((as_timestamp(now())/1800)|round(0,'floor')|int * 1800) %}
+#       {{ ts_now |timestamp_custom ('%Y-%m-%dT%H:%M:%SZ') }}&period_to=
+#       {{ (ts_now + 24*60*60) |timestamp_custom ('%Y-%m-%dT%H:%M:%SZ') }}
+#     value_template: 'OK'
+#     json_attributes:
+#       - "results"
+#   - platform: template
+#     sensors:
+#       octopus_current_price: 
+#         unit_of_measurement: 'p/kWh'
+#         value_template: "{{ states.sensor.octopus.attributes.results[-1].value_inc_vat|round(2) }}"
+#       octopus_next_price: 
+#         unit_of_measurement: 'p/kWh'
+#         value_template: "{{ states.sensor.octopus.attributes.results[-2].value_inc_vat|round(2) }}"
+#       octopus_min_price: 
+#         unit_of_measurement: 'p/kWh'
+#         value_template: "{{ states.sensor.octopus.attributes.results|map(attribute='value_inc_vat')|list|min|round(2) }}"
+#         attribute_templates:
+#           valid_from: "{% set omp = states.sensor.octopus.attributes.results|map(attribute='value_inc_vat')|list|min %} {{ (states.sensor.octopus.attributes.results | selectattr('value_inc_vat', '==', omp) | list | last).valid_from }}"
+#           valid_to: "{% set omp = states.sensor.octopus.attributes.results|map(attribute='value_inc_vat')|list|min %} {{ (states.sensor.octopus.attributes.results | selectattr('value_inc_vat', '==', omp) | list | last).valid_to }}"
+# 
