@@ -1,1 +1,1 @@
-"[[[ if (states['sensor.washing_machine_power'].state > 0) return `${states['sensor.washing_machine_power'].state} W`; else return '&nbsp;' ]]]"
+"[[[ if (states['sensor.wasmachine_power'].state > 0) return `${states['sensor.wasmachine_power'].state} W`; else return '&nbsp;' ]]]"

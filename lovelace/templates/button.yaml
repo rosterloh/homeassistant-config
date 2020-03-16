@@ -2,18 +2,18 @@
 
 # card
 type: custom:button-card
-name: {{ name }}
-icon: {{ icon }}
+name: "{{ name }}"
+icon: "{{ icon }}"
 deep_press: {{ _global.deep_press.deep_press|default('false') }}
 color: {{ color|default('auto') }}
 size: {{ size|default('25%') }}
 lock:
-  enabled: {{ lock|default('false') }}
+  enabled: "{{ lock|default('false') }}"
   unlock: {{ lock_unlock|default('tap') }}
   duration: {{ lock_duration|default('5') }}
 aspect_ratio: {{ aspect_ratio|default('1/1') }}
 entity: {{ entity }}
-label: {{ label|default('"&nbsp;"') }}
+label: "{{ label|default('&nbsp;') }}"
 show_name: {{ show_name|default('true') }}
 show_icon: {{ show_icon|default('true') }}
 show_state: {{ show_state|default('true') }}
@@ -28,17 +28,23 @@ hold_action:
   service_data:
     title: ' '
     style:
+      position: fixed
+      z-index: 999
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      display: block
+      align-items: center
+      justify-content: center
       background: rgba(0, 0, 0, 0.5)
+      flex-direction: column
+      margin: 0
       "--iron-icon-fill-color": "#FFF"
-      "--iron-icon": "#FFF"
-      color: white !important
-      --paper-dialog-color: white !important
     card:
-      type: vertical-stack
-      cards:
-        - !include
-          - {{ template|default('switch_popup.yaml') }}
-          - entity: {{ entity }}
+      !include
+      - {{ template|default('switch_popup.yaml') }}
+      - entity: {{ entity }}
     deviceID:
       - this
   haptic: heavy
@@ -47,15 +53,16 @@ styles:
     - border-radius: "[[[ return states['input_select.border_radius'].state ]]]"
 #    - --ha-card-background: "var(--paper-card-background-color)"
     - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
+#    - padding: '2px'
   label:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.label_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
 #    - color: var(--primary-text-color) 
   state:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.state_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
     - text-transform: capitalize
@@ -66,19 +73,21 @@ styles:
   img_cell:
     - align-self: start
     - text-align: start
-    - margin-right: {{ margin_right|default('60px') }}
+    - margin-left: 20px
+    - align-items: flex-start
+    - justify-content: flex-start
   name:
     - justify-self: start
     - padding-left: 10px
     - font-weight: bold
-    - font-family: Helvetica 
-    - font-size: 13px
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]" 
+    - font-size: "[[[ return states['input_select.name_font_size_selector'].state ]]]"
 state:
   - value: "on" 
     spin: {{ spin_on|default('false') }} 
     styles:
       card:
-        - --ha-card-background: white
+        - --ha-card-background: {{ ha_card_background|default('white') }}
         - opacity: 1.0
         - box-shadow: none
       name:
@@ -114,6 +123,21 @@ state:
         - color: var(--primary-text-color)
       state:
         - color: hsl(0, 100%, 50%)
+      label:
+        - color: var(--primary-text-color)
+      lock:
+        - color: var(--paper-item-icon-color)
+  - value: "scening"
+    spin: {{ spin_off|default('false') }}
+    styles:
+      card:
+        - opacity: {{ opacity_off|default('0.8') }}
+      icon:
+        - color: {{ icon_color_off|default('var(--paper-item-icon-color)') }}
+      name:
+        - color: var(--primary-text-color)
+      state:
+        - color: var(--primary-text-color)
       label:
         - color: var(--primary-text-color)
       lock:

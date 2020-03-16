@@ -7,7 +7,7 @@ style: |
     margin-top: 12px;
   }
 name: Button
-icon: {{ icon|default('mdi:menu') }}
+icon: "{{ icon|default('mdi:menu') }}"
 deep_press: {{ deep_press|default('true') }}
 size: {{ size|default('80%') }}
 color: auto
@@ -39,25 +39,9 @@ tap_action:
   haptic: light
 hold_action:
   action: call-service
-  service: browser_mod.popup
+  service: input_boolean.turn_on
   service_data:
-    title: ' '
-    style:
-      background: rgba(0, 0, 0, 0.5)
-      "--iron-icon-fill-color": "#FFF"
-      "--iron-icon": "#FFF"
-      --paper-item-icon-color: white !important
-      --primary-text-color: white !important
-      --text-primary-color: white !important
-      color: white !important
-    card:
-      type: vertical-stack
-      cards:
-        - !include
-          - {{ template|default('popup_device_counters.yaml') }}
-          - entity: {{ entity }}
-    deviceID:
-      - this
+    entity_id: input_boolean.edit_mode
   haptic: heavy
 styles:
   card:
@@ -79,7 +63,7 @@ styles:
       - bottom: 50%
       - height: 15px
       - width: 15px
-      - font-size: 11px
+      - font-size: 10px
   icon:
     - color: var(--header-color)
 custom_fields: 

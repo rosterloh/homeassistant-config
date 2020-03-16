@@ -1,200 +1,187 @@
 # lovelace_gen
 
-- title: {{ _global.menu_header.title|default('Menu') }}
+- title: Menu
   path: menu
-  icon: {{ _global.menu_header.icon|default('mdi:menu') }}
+  icon: mdi:menu
   cards:
     - type: vertical-stack
       cards:
-        - !include
-          - '../templates/system_header.yaml'
-          - name: {{ _global.menu_header.subtitle|default('All categories') }}
-            icon: {{ _global.menu_header.icon|default('mdi:menu') }}
-            content: {{ _global.menu_header.title|default('Menu') }}
-        - !include
-          - '../templates/header_text.yaml'
-          - content: "##### {{ _global.menu_categories.quick_access|default('Quick Access') }}"
-        - type: custom:layout-card
+        - type: custom:state-switch
+          entity: input_boolean.header_advanced_mode_menu
+          states:
+            "off":
+              !include
+              - '../templates/system_header.yaml'
+              - name: input_text.name_header_secondary_menu
+                system_header: input_boolean.header_secondary_menu
+                icon: "[[[ return `${states['input_text.icon_header_menu'].state}` ]]]"
+                {% raw %}
+                content: "{{ states.input_text.name_header_menu.state }}"
+                {% endraw %}
+            "on":
+              !include
+              - '../templates/system_header_advanced.yaml'
+              - name: "{{ _global.header_secondary.menu|default('return `Set your own template in YAML`') }}"
+                system_header: input_boolean.header_secondary_menu
+                icon: "[[[ return `${states['input_text.icon_header_menu'].state}` ]]]"
+                {% raw %}
+                content: "{{ states.input_text.name_header_menu.state }}"
+                {% endraw %}
+        - type: conditional
+          conditions:
+            - entity: input_boolean.edit_mode
+              state: "on"
+          card:
+            !include
+            - '../templates/edit_mode_warning.yaml'
+            - template: menu_layout_popup.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.menu_favorites
+              state: "on"
+          card:
+            type: vertical-stack
+            cards:
+              - !include
+                - '../templates/header_text.yaml'
+                {% raw %}
+                - content: "##### {{ states.input_text.name_favorites.state }}"
+                {% endraw %}
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: custom:layout-card
+                    cards:
+                      - type: custom:state-switch
+                        entity: input_select.menu_button_selector
+                        states:
+                          Three Columns:
+                            type: horizontal-stack
+                            cards:
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: one
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: two
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: three
+                          Four Columns:
+                            type: horizontal-stack
+                            cards:
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: one
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: two
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: three
+                              - !include
+                                - '../templates/menu_buttons.yaml'
+                                - column: four   
+                  - !include ../includes/blank-card.yaml                
+        - type: conditional
+          conditions:
+            - entity: input_boolean.menu_all
+              state: "on"
+          card:
+            type: vertical-stack
+            cards:
+              - !include
+                - '../templates/header_text.yaml'
+                {% raw %}
+                - content: "##### {{ states.input_text.name_all.state }}"
+                {% endraw %}
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: custom:state-switch
+                    entity: input_select.menu_button_selector
+                    states:
+                      Three Columns:
+                        type: custom:layout-card
+                        min_columns: 3
+                        max_columns: 3
+                        justify_content: start
+                        layout: horizontal
+                        cards:
+                          !include ../includes/menu_buttons_all.yaml  
+                      Four Columns:
+                        type: custom:layout-card
+                        min_columns: 4
+                        max_columns: 4
+                        justify_content: start
+                        layout: horizontal
+                        cards:
+                          !include ../includes/menu_buttons_all.yaml
+                  - !include ../includes/blank-card.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.user_content_message
+              state: "on"
+          card:
+            type: horizontal-stack
+            cards:
+              - !include ../includes/blank-card.yaml
+              - type: custom:layout-card
+                cards:
+                  - !include ../includes/edit_mode/message-user-content-edit-mode.yaml
+              - !include ../includes/blank-card.yaml
+        - type: conditional
+          conditions:
+            - entity: input_boolean.menu_user_content
+              state: "on"
+          card:
+            type: vertical-stack
+            cards:
+              - !include
+                - '../templates/header_text.yaml'
+                {% raw %}
+                - content: "##### {{ states.input_text.name_custom.state }}"
+                {% endraw %}
+              - type: horizontal-stack
+                cards:
+                  - !include ../includes/blank-card.yaml
+                  - type: custom:layout-card
+                    cards:
+                      !include ../../user_content/views/menu_user_content.yaml
+                  - !include ../includes/blank-card.yaml
+        - type: vertical-stack
           cards:
-            - type: custom:layout-card
-              min_columns: 3
-              max_columns: 3
-              justify_content: start
-              layout: horizontal
+            - !include
+              - '../templates/header_text.yaml'
+              - content: "##### Homekit Infused"
+            - type: horizontal-stack
               cards:
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.first_button_name|default('Climate') }}
-                    label: {{ _global.menu_quick_access.first_button_label|default('Control') }}
-                    icon: {{ _global.menu_quick_access.first_button_icon|default('mdi:thermometer') }}
-                    navigation_path: {{ _global.menu_quick_access.first_button_navigation_path|default('/lovelace/climate') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.second_button_name|default('Device') }}
-                    label: {{ _global.menu_quick_access.second_button_label|default('Control') }}
-                    icon: {{ _global.menu_quick_access.second_button_icon|default('mdi:power-plug') }}
-                    navigation_path: {{ _global.menu_quick_access.second_button_navigation_path|default('/lovelace/devices') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.third_button_name|default('Light') }}
-                    label: {{ _global.menu_quick_access.third_button_label|default('Control') }}
-                    icon: {{ _global.menu_quick_access.third_button_icon|default('mdi:floor-lamp') }}
-                    navigation_path: {{ _global.menu_quick_access.third_button_navigation_path|default('/lovelace/lights') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.fourth_button_name|default('Scenes') }}
-                    label: {{ _global.menu_quick_access.fourth_button_label|default('Presets') }}
-                    icon: {{ _global.menu_quick_access.fourth_button_icon|default('mdi:arrange-send-backward') }}
-                    navigation_path: {{ _global.menu_quick_access.fourth_button_navigation_path|default('/lovelace/scenes') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.fifth_button_name|default('Security') }}
-                    label: {{ _global.menu_quick_access.fifth_button_label|default('Panel') }}
-                    icon: {{ _global.menu_quick_access.fifth_button_icon|default('mdi:cctv') }}
-                    navigation_path: {{ _global.menu_quick_access.fifth_button_navigation_path|default('/lovelace/security') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_quick_access.sixth_button_name|default('Vacuum') }}
-                    label: {{ _global.menu_quick_access.sixth_button_label|default('Control') }}
-                    icon: {{ _global.menu_quick_access.sixth_button_icon|default('mdi:robot-vacuum') }}
-                    navigation_path: {{ _global.menu_quick_access.sixth_button_navigation_path|default('/lovelace/vacuum') }}
-        - !include
-          - '../templates/header_text.yaml'
-          - content: "##### {{ _global.menu_categories.monitoring|default('Monitoring') }}"
-        - type: custom:layout-card
-          cards:
-            - type: custom:layout-card
-              min_columns: 3
-              max_columns: 3
-              justify_content: start
-              layout: horizontal
-              cards:
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.first_button_name|default('Battery') }}
-                    label: {{ _global.menu_monitoring.first_button_label|default('Information') }}
-                    icon: {{ _global.menu_monitoring.first_button_icon|default('mdi:battery') }}
-                    navigation_path: {{ _global.menu_monitoring.first_button_navigation_path|default('/lovelace/battery') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.second_button_name|default('Download') }}
-                    label: {{ _global.menu_monitoring.second_button_label|default('Manager') }}
-                    icon: {{ _global.menu_monitoring.second_button_icon|default('mdi:download') }}
-                    navigation_path: {{ _global.menu_monitoring.second_button_navigation_path|default('/lovelace/downloads') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.third_button_name|default('Energy') }}
-                    label: {{ _global.menu_monitoring.third_button_label|default('Consumption') }}
-                    icon: {{ _global.menu_monitoring.third_button_icon|default('mdi:chart-line') }}
-                    navigation_path: {{ _global.menu_monitoring.third_button_navigation_path|default('/lovelace/energy') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.fourth_button_name|default('Computers') }}
-                    label: {{ _global.menu_monitoring.fourth_button_label|default('Servers') }}
-                    icon: {{ _global.menu_monitoring.fourth_button_icon|default('mdi:server') }}
-                    navigation_path: {{ _global.menu_monitoring.fourth_button_navigation_path|default('/lovelace/computers') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.fifth_button_name|default('Laundry') }}
-                    label: {{ _global.menu_monitoring.fifth_button_label|default('Room') }}
-                    icon: {{ _global.menu_monitoring.fifth_button_icon|default('mdi:washing-machine') }}
-                    navigation_path: {{ _global.menu_monitoring.fifth_button_navigation_path|default('/lovelace/laundry') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_monitoring.sixth_button_name|default('Location') }}
-                    label: {{ _global.menu_monitoring.sixth_button_label|default('Map') }}
-                    icon: {{ _global.menu_monitoring.sixth_button_icon|default('mdi:navigation') }}
-                    navigation_path: {{ _global.menu_monitoring.sixth_button_navigation_path|default('/lovelace/location') }}
-        - !include
-          - '../templates/header_text.yaml'
-          - content: "##### {{ _global.menu_categories.other|default('Other') }}"
-        - type: custom:layout-card
-          cards:
-            - type: custom:layout-card
-              min_columns: 3
-              max_columns: 3
-              justify_content: start
-              layout: horizontal
-              cards:
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.first_button_name|default('Automation') }}
-                    label: {{ _global.menu_other.first_button_label|default('Control') }}
-                    icon: {{ _global.menu_other.first_button_icon|default('mdi:auto-fix') }}
-                    navigation_path: {{ _global.menu_other.first_button_navigation_path|default('/lovelace/automations') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.second_button_name|default('Calendar') }}
-                    label: {{ _global.menu_other.second_button_label|default('Birthdays') }}
-                    icon: {{ _global.menu_other.second_button_icon|default('mdi:calendar') }}
-                    navigation_path: {{ _global.menu_other.second_button_navigation_path|default('/lovelace/calendar') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.third_button_name|default('Certificate') }}
-                    label: {{ _global.menu_other.third_button_label|default('Information') }}
-                    icon: {{ _global.menu_other.third_button_icon|default('mdi:file-certificate-outline') }}
-                    navigation_path: {{ _global.menu_other.third_button_navigation_path|default('/lovelace/certificates') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.fourth_button_name|default('Cleaning') }}
-                    label: {{ _global.menu_other.fourth_button_label|default('Lists') }}
-                    icon: {{ _global.menu_other.fourth_button_icon|default('mdi:calendar-text') }}
-                    navigation_path: {{ _global.menu_other.fourth_button_navigation_path|default('/lovelace/cleaning') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.fifth_button_name|default('Floorplan') }}
-                    label: {{ _global.menu_other.fifth_button_label|default('Image') }}
-                    icon: {{ _global.menu_other.fifth_button_icon|default('mdi:floor-plan') }}
-                    navigation_path: {{ _global.menu_other.fifth_button_navigation_path|default('/lovelace/floorplan') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.sixth_button_name|default('Remote') }}
-                    label: {{ _global.menu_other.sixth_button_label|default('Control') }}
-                    icon: {{ _global.menu_other.sixth_button_icon|default('mdi:remote') }}
-                    navigation_path: {{ _global.menu_other.sixth_button_navigation_path|default('/lovelace/remote') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.seventh_button_name|default('Upcoming') }}
-                    label: {{ _global.menu_other.seventh_button_label|default('Media') }}
-                    icon: {{ _global.menu_other.seventh_button_icon|default('mdi:plex') }}
-                    navigation_path: {{ _global.menu_other.seventh_button_navigation_path|default('/lovelace/media') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.eighth_button_name|default('Waze') }}
-                    label: {{ _global.menu_other.eighth_button_label|default('Traffic Information') }}
-                    icon: {{ _global.menu_other.eighth_button_icon|default('mdi:waze') }}
-                    navigation_path: {{ _global.menu_other.eighth_button_navigation_path|default('/lovelace/waze') }}
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: {{ _global.menu_other.ninth_button_name|default('Weather') }}
-                    label: {{ _global.menu_other.ninth_button_label|default('Forecast') }}
-                    icon: {{ _global.menu_other.ninth_button_icon|default('mdi:weather-partly-cloudy') }}
-                    navigation_path: {{ _global.menu_other.ninth_button_navigation_path|default('/lovelace/weather') }}
-        - !include
-          - '../templates/header_text.yaml'
-          - content: "##### {{ _global.menu_categories.system|default('System') }}"
-        - type: custom:layout-card
-          cards:
-            - type: custom:layout-card
-              min_columns: 3
-              max_columns: 3
-              justify_content: start
-              layout: horizontal
-              cards:
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: About
-                    icon: mdi:help-circle-outline
-                    navigation_path: /lovelace/about
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: Test
-                    label: Environment
-                    icon: mdi:wrench
-                    navigation_path: /lovelace/test
-                - !include
-                  - '../templates/button_nav.yaml'
-                  - name: Themes
-                    label: Manager
-                    icon: mdi:palette 
-                    navigation_path: /lovelace/themes 
+                - !include ../includes/blank-card.yaml
+                - type: custom:layout-card
+                  min_columns: 3
+                  max_columns: 3
+                  justify_content: start
+                  layout: horizontal
+                  cards:
+                    - !include
+                      - '../templates/button_badge.yaml'
+                      - name: HKI
+                        label: About
+                        icon: mdi:help-circle-outline
+                        navigation_path: /lovelace/about
+                        hold_action: none
+                        notification: "[[[ if (states['input_text.hki_current_version'].state == `${states['sensor.hki_latest_version'].state}`) return '&nbsp'; else return `update`; ]]]"
+                        background_color: "[[[ if (states['input_text.hki_current_version'].state == `${states['sensor.hki_latest_version'].state}`) return 'rgba(0,0,0,0.0)'; else return 'var(--paper-item-icon-color)'; ]]]"                        
+                    - !include
+                      - '../templates/button_nav.yaml'
+                      - name: HKI
+                        label: Settings
+                        icon: mdi:tools
+                        navigation_path: /lovelace/settings
+                    - !include
+                      - '../templates/button_nav.yaml'
+                      - name: HA
+                        label: Settings
+                        icon: mdi:cogs 
+                        navigation_path: /lovelace/ha_settings
+                - !include ../includes/blank-card.yaml

@@ -2,6 +2,7 @@
 
 # Card
 type: custom:button-card
+template: variable_test
 style: |
   ha-card {
     margin-top: -5px;
@@ -27,8 +28,8 @@ styles:
     - height: 45px
     - width: {{ width|default('350px') }}
   name:
-    - font-size: 13px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.name_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - color: var(--header-color)
     - justify-self: {{ justify_self|default('start') }}
     - padding-left: {{ padding_left|default('13px') }}

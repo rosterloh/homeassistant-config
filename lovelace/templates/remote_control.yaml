@@ -156,8 +156,9 @@ cards:
         {% raw %}
         style: |
           ha-card {
+            position: relative;
             border-radius: {{ states('input_select.border_radius') }} !important;
-            overflow: hidden !important;
+            overflow-x: hidden !important;
             box-shadow: {{ states('input_select.box_shadow') }};
             background: var(--paper-card-background-color);
           }

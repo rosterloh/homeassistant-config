@@ -1,1 +1,1 @@
-"[[[ if (states['sensor.dryer_power'].state > 0) return `${states['sensor.dryer_power'].state} W`; else return '&nbsp;' ]]]"
+"[[[ if (states['sensor.droger_power'].state > 0) return `${states['sensor.droger_power'].state} W`; else return '&nbsp;' ]]]"

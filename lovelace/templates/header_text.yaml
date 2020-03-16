@@ -6,8 +6,8 @@ style: |
   ha-card {
     box-shadow: none;
     height: 33px;
-    background: none;
+    background: rgba(0,0,0,0.0);
     padding: 0px 11px;
-    color: var(--header-color);
+    color: var(--category-text);
   }
 content: '{{ content }}'

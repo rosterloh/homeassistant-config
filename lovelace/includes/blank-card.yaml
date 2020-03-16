@@ -6,8 +6,9 @@
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
+# Do NOT change this unless you know what you are doing!
 type: 'custom:button-card'
 color_type: blank-card
 styles:
   card:
-    - width: 5px
+    - width: 7px

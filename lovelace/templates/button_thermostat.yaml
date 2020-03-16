@@ -8,61 +8,40 @@ entity: {{ entity }}
 label: "[[[ return `${states['{{entity}}'].attributes.temperature}°` ]]]"
 deep_press: {{ _global.deep_press.deep_press|default('false') }}
 lock:
-  enabled: {{ lock|default('false') }}
-  unlock: {{ lock_unlock|default('tap') }}
-  duration: {{ lock_duration|default('5') }}
+  enabled: "{{ lock|default('false') }}"
+  unlock: tap
 show_icon: false
 show_name: true
 show_label: true
 show_state: true
-tap_action:
+hold_action:
   action: toggle
   haptic: light
-hold_action: 
+tap_action: 
   action: call-service
   service: browser_mod.popup
   service_data:
     title: ' '
     style:
+      position: fixed
+      z-index: 999
+      top: 0
+      left: 0
+      height: 100%
+      width: 100%
+      display: block
+      align-items: center
+      justify-content: center
       background: rgba(0, 0, 0, 0.5)
+      flex-direction: column
+      margin: 0
       "--iron-icon-fill-color": "#FFF"
-      "--iron-icon": "#FFF"
-      --paper-item-icon-color: white !important
-      --primary-text-color: white !important
-      --text-primary-color: white !important
-      --paper-dialog-color: white !important
     card:
-      type: custom:swipe-card
-      cards:
-        - type: custom:thermostat-popup-card
-          entity: {{ entity }}
-        - type: entities
-          style: |
-            ha-card {
-              --ha-card-background: transparant;
-              background: transparant;
-              box-shadow: none !important;
-              --paper-slider-knob-color: white !important;
-              --paper-slider-knob-start-color: white !important;
-              --paper-slider-pin-color: white !important;
-              --paper-slider-active-color: white !important;
-              "--iron-icon-fill-color": "#FFF";
-              "--iron-icon": "#FFF";
-              --paper-item-icon-color: white !important;
-              --primary-text-color: white !important;
-              --text-primary-color: white !important;
-              --paper-dialog-color: white !important;
-            }
-          entities:
-            - type: custom:more-info-card
-              style: |
-                ha-card {
-                  border-radius: none;
-                  box-shadow: none;
-                  margin-top: -40px;
-                }
-              entity: {{ entity }}
-              title: ' '
+      type: custom:thermostat-popup-card
+      entity: {{ entity }}
+      fullscreen: false
+      settings: true
+      settingsPosition: bottom
     deviceID:
       - this
   haptic: heavy
@@ -73,14 +52,14 @@ styles:
     - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
     - opacity: 0.5
   label:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.label_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
 #    - color: var(--primary-text-color)
   state:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.state_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
     - text-transform: capitalize
@@ -95,8 +74,8 @@ styles:
     - justify-self: start
     - padding-left: 10px
     - font-weight: bold
-    - font-family: Helvetica 
-    - font-size: 13px
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]" 
+    - font-size: "[[[ return states['input_select.name_font_size_selector'].state ]]]"
 #    - color: var(--primary-text-color)
   grid:
     - grid-template-areas: '"i i" "n n" "area area" "s l"'

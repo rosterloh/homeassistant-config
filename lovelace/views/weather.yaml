@@ -1,74 +1,182 @@
 # lovelace_gen
 
-- title: {{ _global.weather_header.title|default('Weather') }}
+- title: Weather
   path: weather
-  icon: {{ _global.weather_header.icon|default('mdi:information-outline') }}
+  icon: mdi:information-outline
   cards:   
     - type: vertical-stack
       cards:
-        - !include
-          - '../templates/system_header.yaml'
-          - name: "[[[ return `${states['sensor.dark_sky_summary'].state}` ]]]"
-            icon: {{ _global.weather_header.icon|default('mdi:information-outline') }}
-            content: {{ _global.weather_header.title|default('Weather') }}
-    - type: custom:layout-card
-      cards:
-        - type: custom:layout-card
-          min_columns: 1
-          justify_content: start
-          layout: vertical
-          cards:
-            - type: custom:air-visual-card
-              {% raw %}
-              style: |
-                ha-card {
-                  border-radius: {{ states('input_select.border_radius') }};
-                  box-shadow: {{ states('input_select.box_shadow') }};
-                  overflow: hidden;
-                }
-              {% endraw %}
-              air_pollution_level: {{ _global.weather.air_pollution_level|default('sensor.u_s_air_pollution_level') }}
-              air_quality_index: {{ _global.weather.air_quality_index|default('sensor.u_s_air_quality_index') }}
-              main_pollutant: {{ _global.weather.main_pollutant|default('sensor.u_s_main_pollutant') }}
-              temp: {{ _global.weather.weather_entity|default('weather.dark_sky') }}
-              city: {{ _global.weather.city_name|default('Eindhoven') }}
-            - type: custom:weather-card
-              {% raw %}
-              style: |
-                ha-card {
-                  font-size: 12px;
-                  font-family: Helvetica;
-                  box-shadow: {{ states('input_select.box_shadow') }};
-                  opacity: 0.8;
-                  border-radius: {{ states('input_select.border_radius') }};
-                }
-              {% endraw %}
-              entity: {{ _global.weather.weather_entity|default('weather.dark_sky') }}
-              current: true
-              details: true
-              forecast: true
-            - type: horizontal-stack
-              cards:
-                - !include
-                  - '../templates/button_weather_popup.yaml'
-                  - entity: input_boolean.dummy1
-                    name: {{ _global.weather.left_button_name|default('Buienradar') }}
-                    icon: {{ _global.weather.left_button_icon|default('mdi:weather-pouring')}}
-                    size: 11%
-                    aspect_ratio: 2/1
-                    show_label: false
-                    show_state: false
-                    margin_right: 128px
-                    template: weather_iframe_1.yaml
-                - !include
-                  - '../templates/button_weather_popup.yaml'
-                  - entity: input_boolean.dummy1
-                    name: {{ _global.weather.right_button_name|default('Windy') }}
-                    icon: {{ _global.weather.right_button_icon|default('mdi:weather-windy')}}
-                    size: 11%
-                    aspect_ratio: 2/1
-                    show_label: false
-                    show_state: false
-                    margin_right: 128px
-                    template: weather_iframe_2.yaml
-      
+        - type: custom:state-switch
+          entity: input_boolean.header_advanced_mode_weather          
+          states:
+            "off":
+              !include
+              - '../templates/system_header.yaml'
+              - name: input_text.name_header_secondary_weather
+                system_header: input_boolean.header_secondary_weather
+                icon: "[[[ return `${states['input_text.icon_header_weather'].state}` ]]]"
+                {% raw %}
+                content: "{{ states.input_text.name_header_weather.state }}"
+                {% endraw %}
+            "on":
+              !include
+              - '../templates/system_header_advanced.yaml'
+              - name: "{{ _global.header_secondary.weather|default('return `Set your own template in YAML`') }}"
+                system_header: input_boolean.header_secondary_weather
+                icon: "[[[ return `${states['input_text.icon_header_weather'].state}` ]]]"
+{% raw %}
+                content: "{{ states.input_text.name_header_weather.state }}"
+        - type: conditional
+          conditions:
+            - entity: input_boolean.edit_mode
+              state: "on"
+          card:
+            !include
+            - '../templates/edit_mode_warning.yaml'
+            - template: weather_layout_popup.yaml
+    - type: conditional
+      conditions:
+        - entity: input_boolean.weather_air_visual
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:layout-card
+            min_columns: 1
+            justify_content: start
+            layout: vertical
+            cards:
+              - type: "custom:config-template-card"
+                entities:
+                  - input_text.air_pollution_level
+                  - input_text.air_quality_index
+                  - input_text.main_pollutant
+                  - input_text.weather_entity
+                  - input_text.city
+                card:
+                  type: custom:air-visual-card
+                  style: |
+                    ha-card {
+                      border-radius: {{ states('input_select.border_radius') }};
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                      overflow: hidden;
+                    }
+                  air_pollution_level: "${states['input_text.air_pollution_level'].state}"
+                  air_quality_index: "${states['input_text.air_quality_index'].state}"
+                  main_pollutant: "${states['input_text.main_pollutant'].state}"
+                  temp: "${states['input_text.weather_entity'].state}"
+                  city: "${states['input_text.city'].state}"
+          - !include ../includes/blank-card.yaml
+    - type: conditional
+      conditions:
+        - entity: input_boolean.weather_card
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:layout-card
+            min_columns: 1
+            justify_content: start
+            layout: vertical
+            cards:
+              - type: "custom:config-template-card"
+                entities:
+                  - input_text.air_pollution_level
+                  - input_text.air_quality_index
+                  - input_text.main_pollutant
+                  - input_text.weather_entity
+                  - input_text.city
+                card:
+                  type: custom:weather-card
+                  style: |
+                    ha-card {
+                      font-size: 12px;
+                      font-family: Helvetica;
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                      opacity: 0.8;
+                      border-radius: {{ states('input_select.border_radius') }};
+                    }
+                  entity: "${states['input_text.weather_entity'].state}"
+                  current: true
+                  details: true
+                  forecast: true
+          - !include ../includes/blank-card.yaml
+    - type: conditional
+      conditions:
+        - entity: input_boolean.weather_iframe_1
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:layout-card
+            cards:
+              - type: "custom:config-template-card"
+                entities:
+                  - input_text.weather_iframe_1
+                card:
+                  type: iframe
+                  style: |
+                    ha-card {
+                      position: relative !important;
+                      border-radius: {{ states('input_select.border_radius') }} !important;
+                      overflow: hidden !important;
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }
+                  aspect_ratio: 100%
+                  url: "${states['input_text.weather_iframe_1'].state}"
+          - !include ../includes/blank-card.yaml
+    - type: conditional
+      conditions:
+        - entity: input_boolean.weather_iframe_2
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml
+          - type: custom:layout-card
+            cards:
+              - type: "custom:config-template-card"
+                entities:
+                  - input_text.weather_iframe_2
+                card:
+                  type: iframe
+                  style: |
+                    ha-card {
+                      position: relative !important;
+                      overflow: hidden !important;
+                      box-shadow: {{ states('input_select.box_shadow') }};
+                    }
+                    iframe {
+                      border-radius: {{ states('input_select.border_radius') }};
+                    }
+                  aspect_ratio: 100%
+                  url: "${states['input_text.weather_iframe_2'].state}"
+          - !include ../includes/blank-card.yaml
+    - type: conditional
+      conditions:
+        - entity: input_boolean.user_content_message
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml   
+          - type: custom:layout-card
+            cards:
+              - !include ../includes/edit_mode/message-user-content-edit-mode.yaml
+          - !include ../includes/blank-card.yaml                     
+    - type: conditional
+      conditions:
+        - entity: input_boolean.weather_user_content
+          state: "on"
+      card:
+        type: horizontal-stack
+        cards:
+          - !include ../includes/blank-card.yaml   
+          - type: custom:layout-card
+            cards:
+              !include ../../user_content/views/weather_user_content.yaml
+          - !include ../includes/blank-card.yaml   
+{% endraw %}

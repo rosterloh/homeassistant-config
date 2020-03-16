@@ -30,14 +30,14 @@ styles:
 #    - --ha-card-background: "var(--paper-card-background-color)"
     - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
   label:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.label_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
 #    - color: var(--primary-text-color) 
   state:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.state_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
     - text-transform: capitalize
@@ -47,13 +47,15 @@ styles:
   img_cell:
     - align-self: start
     - text-align: start
-    - margin-right: {{ margin_right|default('40px') }}
+    - margin-left: 20px
+    - align-items: flex-start
+    - justify-content: flex-start
   name:
     - justify-self: start
     - padding-left: 10px
     - font-weight: bold
-    - font-family: Helvetica 
-    - font-size: 13px
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]" 
+    - font-size: "[[[ return states['input_select.name_font_size_selector'].state ]]]"
 #    - color: var(--primary-text-color) 
   icon:
 #    - color: var(--primary-text-color) 
@@ -64,14 +66,15 @@ styles:
       - border-radius: 12px
       - overflow: visible
       - position: absolute
-      - right: 7%
-      - top: 7%
+      - right: 7px
+      - top: 7px
       - padding: 0px 5px
       - height: 22px
       - min-width: 12px
-      - font-size: 11px
-      - line-height: 20px
+      - font-size: "[[[ return states['input_select.badge_font_size_selector'].state ]]]"
+      - line-height: 22px
       - font-weight: bold
+      - text-transform: "[[[ return states['input_select.badge_text_transform'].state ]]]"
 custom_fields: 
   notification: "{{ notification }}"
 state:

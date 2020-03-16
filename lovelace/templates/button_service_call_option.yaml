@@ -2,8 +2,8 @@
 
 # card
 type: custom:button-card
-name: {{ name }}
-icon: {{ icon }}
+name: "{{ name }}"
+icon: "{{ icon }}"
 deep_press: {{ _global.deep_press.deep_press|default('false') }}
 color: {{ color|default('auto') }}
 size: {{ size|default('25%') }}
@@ -13,7 +13,7 @@ lock:
   duration: {{ lock_duration|default('5') }}
 aspect_ratio: {{ aspect_ratio|default('1/1') }}
 entity: {{ entity }}
-label: {{ label|default('"&nbsp;"') }}
+label: "{{ label|default('&nbsp;') }}"
 show_name: {{ show_name|default('true') }}
 show_icon: {{ show_icon|default('true') }}
 show_state: {{ show_state|default('false') }}
@@ -24,7 +24,7 @@ tap_action:
   service: {{ service|default('input_select.select_option') }}
   service_data:
     entity_id: {{ service_entity }}
-    "{{extra|default('option') }}": {{ option }}
+    "{{extra|default('option') }}": "{{ option }}"
   haptic: heavy
 hold_action:
   action: none
@@ -34,14 +34,14 @@ styles:
 #    - --ha-card-background: "var(--paper-card-background-color)"
     - box-shadow: "[[[ return states['input_select.box_shadow'].state ]]]"
   label:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.label_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
 #    - color: var(--primary-text-color) 
   state:
-    - font-size: 11px
-    - font-family: Helvetica
+    - font-size: "[[[ return states['input_select.state_font_size_selector'].state ]]]"
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]"
     - padding: 0px 10px
     - justify-self: start
     - text-transform: capitalize
@@ -52,13 +52,15 @@ styles:
   img_cell:
     - align-self: start
     - text-align: start
-    - margin-right: {{ margin_right|default('60px') }}
+    - margin-left: 20px
+    - align-items: flex-start
+    - justify-content: flex-start
   name:
     - justify-self: start
     - padding-left: 10px
     - font-weight: bold
-    - font-family: Helvetica 
-    - font-size: 13px
+    - font-family: "[[[ return states['input_text.font_family'].state ]]]" 
+    - font-size: "[[[ return states['input_select.name_font_size_selector'].state ]]]"
 state:
   - value: "on" 
     spin: {{ spin_on|default('false') }} 

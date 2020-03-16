@@ -6,6 +6,7 @@
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
+# Do NOT change this unless you know what you are doing!
 type: custom:button-card
 color_type: blank-card
 aspect_ratio: 1/1

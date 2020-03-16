@@ -13,4 +13,5 @@
 #### #### #### #### #### #### #### #### #### #### #### #
 
 # Card Config
+# Do NOT change this unless you know what you are doing!
 "[[[ if (entity.state < 20) return 'red'; if (entity.state >= 20 && entity.state < 80) return 'orange'; else return 'green'; ]]]"
