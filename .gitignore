@@ -23,4 +23,4 @@ custom_components/hacs
 custom_components/huesensor
 custom_components/lovelace_gen
 esphome/secrets.yaml
-service_account.json
+**/service_account.json

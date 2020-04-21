@@ -1,0 +1,128 @@
+#badnest:
+#  issue_token: !secret nest_issue_token
+#  cookie: !secret nest_cookie
+#  region: eu
+
+#climate:
+#  - platform: badnest
+#    scan_interval: 10
+
+#camera:
+#  - platform: badnest
+
+#sensor:
+#  - platform: badnest
+
+input_boolean:
+  boost_active:
+    name: Boost Active
+    icon: mdi:fire
+
+input_number:
+  boost_target:
+    name: Boost Target Temperature
+    min: 16.0
+    max: 25.0
+    step: 0.5
+    unit_of_measurement: '°C'
+    mode: box
+
+  previous_target:
+    name: Previous Target Temperature
+    min: 16.0
+    max: 25.0
+    step: 0.5
+    unit_of_measurement: '°C'
+    mode: box
+
+  boost_duration:
+    name: Boost Duration
+    min: 20
+    max: 90
+    step: 5
+    unit_of_measurement: 'mins'
+
+script:
+  # Heating Boost Script
+  heating_boost:
+    alias: 'Heating Boost'
+    sequence:
+    # Save the current target temperature as previous target temperature
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.previous_target
+        value: "{{ states('sensor.living_room_thermostat_target') }}"
+    # Save the new target as boost target temperature
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.boost_target
+        value: "{{ states('sensor.living_room_thermostat_temperature') | float + 1 }}"
+    # Set the thermostat to match boost target
+    - service: climate.set_temperature
+      data_template:
+        entity_id: climate.living_room
+        hvac_mode: heat
+        temperature: "{{ states('input_number.boost_target') }}"
+    # Wait until thermostat and boost targets match - if it fails, cancel after 30 seconds
+    - wait_template: "{{ (states('sensor.living_room_thermostat_target')) == (states('input_number.boost_target')) }}"
+      timeout: '00:00:30'
+      continue_on_timeout: 'false'
+      # Turn on boost active boolean
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.boost_active
+    # Wait for 30 minutes
+    - delay:
+        minutes: "{{ states('input_number.boost_duration') | int }}"
+
+automation:
+
+# Reset thermostat when Heating Boost script finishes
+- alias: Heating Boost Finish
+  trigger:
+  # When script is turned off
+  - platform: state
+    entity_id: script.heating_boost
+    from: 'on'
+    to: 'off'
+  condition:
+  # If the boost active boolean is on
+  - condition: state
+    entity_id: input_boolean.boost_active
+    state: 'on'
+  action:
+  # Set the thermostat to previous target temp
+  - service: climate.set_temperature
+    data_template:
+      entity_id: climate.living_room
+      hvac_mode: heat
+      temperature: "{{ states('input_number.previous_target') }}"
+  # Wait 2 seconds
+  - delay: '00:00:02'
+  # Turn off Boost boolean
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.boost_active
+
+# Cancel Heating Boost when Nest schedule takes control or thermostat manually changed
+- alias: Heating Boost Overridden
+  trigger:
+  # When thermostat is changed
+  - platform: state
+    entity_id: sensor.living_room_thermostat_target
+  condition:
+  # If boost active boolean is on
+  - condition: state
+    entity_id: input_boolean.boost_active
+    state: 'on'
+  action:
+  # Then cancel the script
+  - service: script.turn_off
+    data:
+      entity_id: script.heating_boost
+  # Wait 2 seconds
+  - delay: '00:00:02'
+  # and then turn off the boost active boolean
+  - service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.boost_active

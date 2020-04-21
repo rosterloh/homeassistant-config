@@ -1,0 +1,200 @@
+device_tracker:
+
+  - platform: netgear
+    host: 192.168.1.1
+    port: 80
+    username: admin
+    password: !secret netgear_password
+    
+group:
+  internet:
+    name: Internet
+    view: no
+    entities:
+      - sensor.speedtest_ping
+      - sensor.speedtest_download
+      - sensor.speedtest_upload
+      
+  rpi resources:
+    name: RPi Resources
+    view: no
+    entities:
+      - sensor.disk_use
+      - sensor.memory_use_percent
+      - sensor.processor_use
+      - sensor.cpu_temperature
+      - sensor.last_boot
+      
+speedtestdotnet:
+  monitored_conditions:
+      - ping
+      - download
+      - upload
+  server_id: 17176
+  scan_interval:
+    hours: 4
+
+sensor:
+  - platform: filesize
+    file_paths:
+      - /config/home-assistant_v2.db
+      - /config/home-assistant.log
+
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: "/"
+    - type: memory_free
+    - type: memory_use
+    - type: memory_use_percent
+    - type: processor_use
+    - type: last_boot
+
+  - platform: uptime
+    name: Time Online
+    unit_of_measurement: hours
+
+  - platform: template
+    sensors:
+      count_automations:
+        entity_id: sensor.date
+        friendly_name: Automations
+        value_template: >
+          {%- set domains = ['automation'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_scripts:
+        entity_id: sensor.date
+        friendly_name: Scripts
+        value_template: >
+          {%- set domains = ['script'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_binary_sensors:
+        entity_id: sensor.date
+        friendly_name: Binary Sensors
+        value_template: >
+          {%- set domains = ['binary_sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_sensors:
+        entity_id: sensor.date
+        friendly_name: Sensors
+        value_template: >
+          {%- set domains = ['sensor'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_switches:
+        entity_id: sensor.date
+        friendly_name: Switches
+        value_template: >
+          {%- set domains = ['switch'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+      count_lights:
+        entity_id: sensor.date
+        friendly_name: Lights
+        value_template: >
+          {%- set domains = ['light'] -%}
+          {%- for domain in domains -%}
+            {%- for item in states[domain] -%}
+              {% if loop.first %}
+                {{loop.length}}
+              {% endif %}
+            {%- endfor -%}
+          {%- endfor -%}
+
+system_health:
+
+automation:
+## Notify of High Disk Use
+  - alias: Disk Use Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.disk_use
+      above: 12
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server Disk Use is {{states.sensor.disk_use.state}}Gb'
+          
+## Notify of High CPU Usage
+  - alias: CPU Use Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.processor_use
+      above: 85
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server Processor {{states.sensor.processor_use.state}}%'
+          
+## Notify if CPU Temperature is High
+  - alias: CPU Temp Alarm
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.cpu_temperature
+      above: 85
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - HA Server CPU Temp is {{states.sensor.cpu_temperature.state}}c'
+          
+## Notify if ISP Download Speed has dropped
+  - alias: Internet Download Speed Drop
+    initial_state: 'on'
+    trigger:
+      platform: numeric_state
+      entity_id: sensor.speedtest_download
+      below: 40
+    action:
+      - service: persistent_notification.create
+        data:
+          title: 'HA HASSIO Server'
+          message: 'Warning - ISP Download Speed is {{states.sensor.speedtest_download.state}}Mbps'
+
+  - id: letsencrypt-renewal
+    alias: "Let's Encrypt Renewal"
+    trigger:
+      platform: time
+      at: '00:00:00'
+    action:
+      - service: hassio.addon_restart
+        data:
+          addon: core_letsencrypt

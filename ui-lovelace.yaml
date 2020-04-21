@@ -1,7 +1,17 @@
-resources: !include lovelace/resources.yaml
-custom_header: !include lovelace/custom-header.yaml
+# resources: !include lovelace/resources.yaml
+# custom_header: !include lovelace/custom-header.yaml
+
+# Resources in dwains-theme/resources/custom_resources.yaml
+
+custom_header:
+  !include dwains-theme/plugins/custom_header/configuration.yaml
+  
+button_card_templates:
+  !include_dir_merge_named dwains-theme/plugins/button-cards-templates
 
 title: Tun Furlong
 background: var(--background-image)
-popup_cards: !include lovelace/templates/legacy_popup_cards.yaml
-views: !include_dir_merge_list lovelace/views/
+views:
+  !include_dir_merge_list dwains-theme/views/main/
+# popup_cards: !include lovelace/templates/legacy_popup_cards.yaml
+# views: !include_dir_merge_list lovelace/views/

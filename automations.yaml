@@ -11,3 +11,15 @@
   action:
   - entity_id: light.wled
     service: light.turn_on
+- id: '1587032289560'
+  alias: Turn Plant LEDs on
+  description: ''
+  trigger:
+  - at: '20:00'
+    platform: time
+  condition: []
+  action:
+  - device_id: e6e2b28c2f4c432eb577d69eb46f35e1
+    domain: light
+    entity_id: light.aerogarden_plant_leds
+    type: turn_on

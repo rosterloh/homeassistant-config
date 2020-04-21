@@ -1,0 +1,35 @@
+google_assistant:
+  project_id: !secret google_assistant_project
+  service_account: !include service_account.json
+  report_state: true
+  expose_by_default: false
+  entity_config:
+    sensor.bme680_temperature:
+      expose: true
+      room: Workshop
+    sensor.bme680_humidity:
+      expose: true
+      room: Workshop
+    sensor.workshop_temperature:
+      expose: true
+      room: Workshop
+    sensor.workshop_humidity:
+      expose: true
+      room: Workshop
+    light.aerogarden_plant_leds:
+      expose: true
+      room: Workshop
+    light.wled:
+      expose: true
+    light.workshop_bulb:
+      expose: true
+      room: Workshop
+    light.workshop_leds:
+      expose: true
+      room: Workshop
+    binary_sensor.workshop_door:
+      expose: true
+      room: Workshop
+    binary_sensor.workshop_presence:
+      expose: true
+      room: Workshop

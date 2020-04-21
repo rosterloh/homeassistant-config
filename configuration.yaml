@@ -4,13 +4,8 @@ homeassistant:
   whitelist_external_dirs:
     - /config
 
-lovelace:
-  mode: yaml
-
-browser_mod:
-
-hacs:
-  token: !secret hacs_github_access_token
+# lovelace:
+#   mode: yaml
 
 hassio:
 
@@ -20,7 +15,7 @@ http:
   base_url: https://rosterloh.synology.me:8123
   cors_allowed_origins:
     - https://rosterloh.synology.me
-    - 192.168.1.0/24
+    # - 192.168.1.0/24
 
 stream:
 
@@ -29,9 +24,6 @@ stream:
 config:
 conversation:
 discovery:
-frontend:
-  javascript_version: latest
-  themes: !include_dir_merge_named configuration/themes/
 logbook:
 map:
 mobile_app:
@@ -40,44 +32,9 @@ ssdp:
 updater:
 zeroconf:
 safe_mode:
+system_health:
 
 shell_command: !include configuration/shell_command.yaml
-
-google_assistant:
-  project_id: !secret google_assistant_project
-  service_account: !include service_account.json
-  report_state: true
-  expose_by_default: false
-  entity_config:
-    sensor.bme680_temperature:
-      expose: true
-      room: Workshop
-    sensor.bme680_humidity:
-      expose: true
-      room: Workshop
-    sensor.workshop_temperature:
-      expose: true
-      room: Workshop
-    sensor.workshop_humidity:
-      expose: true
-      room: Workshop
-    light.aerogarden_plant_leds:
-      expose: true
-      room: Workshop
-    light.wled:
-      expose: true
-    light.workshop_bulb:
-      expose: true
-      room: Workshop
-    light.workshop_leds:
-      expose: true
-      room: Workshop
-    binary_sensor.workshop_door:
-      expose: true
-      room: Workshop
-    binary_sensor.workshop_presence:
-      expose: true
-      room: Workshop
 
 history:
   include:

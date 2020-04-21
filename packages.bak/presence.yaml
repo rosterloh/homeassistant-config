@@ -1,0 +1,55 @@
+#device_tracker:
+
+#  - platform: google_maps
+#    username: !secret google_username
+
+#  - platform: huesensor
+
+#binary_sensor:
+#  - platform: huesensor
+#sensor:
+#  - platform: huesensor
+
+#script:
+#  nest_set_away:
+#    sequence:
+#      - service: nest.set_away_mode
+#        data:
+#          away_mode: away
+#  nest_set_home:
+#    sequence:
+#      - service: nest.set_away_mode
+#        data:
+#          away_mode: home
+
+automation:
+
+  - alias: Richard Home Alert
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: person.richard
+      from: 'not_home'
+      to: 'home'
+      for:
+        seconds: 30
+    action:
+    - service: notify.slack
+      data:
+        title: "Location"
+        message: "Richard has arrived home"
+
+  - alias: Jess Home Alert
+    initial_state: 'true'
+    trigger:
+    - platform: state
+      entity_id: person.jess
+      from: 'not_home'
+      to: 'home'
+      for:
+        seconds: 30
+    action:
+    - service: notify.slack
+      data:
+        title: "Location"
+        message: "Jess has arrived home"
